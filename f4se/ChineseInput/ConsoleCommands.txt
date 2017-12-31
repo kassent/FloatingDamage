@@ -1,0 +1,6651 @@
+BetterConsole: 01000010
+
+longName : Show
+shortName: TST
+opCode:    256
+command:   03724DC0
+
+longName : ShowVars
+shortName: SV
+opCode:    257
+command:   03724E10
+
+longName : ShowGlobalVars
+shortName: SGLV
+opCode:    258
+command:   03724E60
+
+longName : ShowQuestVars
+shortName: SQV
+opCode:    259
+command:   03724EB0
+
+longName : ShowQuests
+shortName: SQ
+opCode:    260
+command:   03724F00
+
+longName : ShowQuestAliases
+shortName: 
+opCode:    261
+command:   03724F50
+
+longName : SetPapyrusQuestVar
+shortName: SETPQV
+opCode:    262
+command:   03724FA0
+
+longName : SetPapyrusVar
+shortName: SETPV
+opCode:    263
+command:   03724FF0
+
+longName : SetQuestAliases
+shortName: 
+opCode:    264
+command:   03725040
+
+longName : ClearQuestAliases
+shortName: 
+opCode:    265
+command:   03725090
+
+longName : ToggleCombatStats
+shortName: TCS
+opCode:    266
+command:   037250E0
+
+longName : ToggleSafeZone
+shortName: TSZ
+opCode:    267
+command:   03725130
+
+longName : ToggleAI
+shortName: TAI
+opCode:    268
+command:   03725180
+
+longName : ToggleCollisionGeometry
+shortName: TCG
+opCode:    269
+command:   037251D0
+
+longName : ToggleMaterialGeometry
+shortName: TMG
+opCode:    270
+command:   03725220
+
+longName : ToggleStairsGeometry
+shortName: TSG
+opCode:    271
+command:   03725270
+
+longName : ToggleHiResHeightfieldGeometry
+shortName: THRHG
+opCode:    272
+command:   037252C0
+
+longName : ToggleBorders
+shortName: TB
+opCode:    273
+command:   03725310
+
+longName : ToggleSky
+shortName: TS
+opCode:    274
+command:   03725360
+
+longName : ToggleWireframe
+shortName: TWF
+opCode:    275
+command:   037253B0
+
+longName : ToggleCollision
+shortName: TCL
+opCode:    276
+command:   03725400
+
+longName : ToggleDebugText
+shortName: TDT
+opCode:    277
+command:   03725450
+
+longName : ToggleMenus
+shortName: TM
+opCode:    278
+command:   037254A0
+
+longName : TogglePrimitives
+shortName: TPR
+opCode:    279
+command:   037254F0
+
+longName : ShowScenegraph
+shortName: SSG
+opCode:    280
+command:   03725540
+
+longName : ShowScenegraph
+shortName: SFSG
+opCode:    281
+command:   03725590
+
+longName : ToggleMagicStats
+shortName: TMS
+opCode:    282
+command:   037255E0
+
+longName : ShowAnim
+shortName: SA
+opCode:    283
+command:   03725630
+
+longName : Show1stPerson
+shortName: S1ST
+opCode:    284
+command:   03725680
+
+longName : Help
+shortName: 
+opCode:    285
+command:   037256D0
+
+longName : ToggleNavMesh
+shortName: TNM
+opCode:    286
+command:   03725720
+
+longName : TogglePathLine
+shortName: TPL
+opCode:    287
+command:   03725770
+
+longName : PickRefByID
+shortName: PRID
+opCode:    288
+command:   037257C0
+
+longName : PickLastRef
+shortName: PLR
+opCode:    289
+command:   03725810
+
+longName : PickNextRef
+shortName: PNR
+opCode:    290
+command:   03725860
+
+longName : PickNextActor
+shortName: PNA
+opCode:    291
+command:   037258B0
+
+longName : PickClosestActor
+shortName: PCA
+opCode:    292
+command:   03725900
+
+longName : GetSelectedRef
+shortName: GSR
+opCode:    293
+command:   03725950
+
+longName : IsLastRef
+shortName: 
+opCode:    294
+command:   037259A0
+
+longName : SetLightingPasses
+shortName: SLP
+opCode:    295
+command:   037259F0
+
+longName : ToggleLODLand
+shortName: TLL
+opCode:    296
+command:   03725A40
+
+longName : TriggerPipboyEffect
+shortName: PIP
+opCode:    297
+command:   03725A90
+
+longName : CharacterLight
+shortName: CL
+opCode:    298
+command:   03725AE0
+
+longName : ShowLightBounds
+shortName: SLB
+opCode:    299
+command:   03725B30
+
+longName : VatsTarget
+shortName: VT
+opCode:    300
+command:   03725B80
+
+longName : ToggleAmbientOcclusion
+shortName: AO
+opCode:    301
+command:   03725BD0
+
+longName : ToggleScalableAmbientOcclusion
+shortName: SAO
+opCode:    302
+command:   03725C20
+
+longName : ToggleMotionBlur
+shortName: MB
+opCode:    303
+command:   03725C70
+
+longName : ToggleScreenSpaceReflections
+shortName: SSR
+opCode:    304
+command:   03725CC0
+
+longName : ToggleScreenSpaceSubsurfaceScattering
+shortName: TSSS
+opCode:    305
+command:   03725D10
+
+longName : ToggleFXAA
+shortName: FXAA
+opCode:    306
+command:   03725D60
+
+longName : ToggleTAA
+shortName: TAA
+opCode:    307
+command:   03725DB0
+
+longName : ToggleHDRCS
+shortName: HDRCS
+opCode:    308
+command:   03725E00
+
+longName : ViewGBuffer
+shortName: gbuffer
+opCode:    309
+command:   03725E50
+
+longName : ToggleCombinedWeapon
+shortName: cmb
+opCode:    310
+command:   03725EA0
+
+longName : ToggleMeshCombinerGPU
+shortName: tcm
+opCode:    311
+command:   03725EF0
+
+longName : ToggleWeaponCombination
+shortName: twc
+opCode:    312
+command:   03725F40
+
+longName : ToggleWeaponCombinationBounds
+shortName: twb
+opCode:    313
+command:   03725F90
+
+longName : SetThreadsNumMeshCombiner
+shortName: trdmc
+opCode:    314
+command:   03725FE0
+
+longName : CombineObject
+shortName: cmbobj
+opCode:    315
+command:   03726030
+
+longName : ToggleHandsCulled
+shortName: cullhnd
+opCode:    316
+command:   03726080
+
+longName : ToggleBokehDof
+shortName: BOK
+opCode:    317
+command:   037260D0
+
+longName : ToggleLensFlare
+shortName: LF
+opCode:    318
+command:   03726120
+
+longName : Sunbeams
+shortName: SB
+opCode:    319
+command:   03726170
+
+longName : RenderLocalMap		
+shortName: rlm
+opCode:    320
+command:   037261C0
+
+longName : SetLODObjectDistance
+shortName: SLOD
+opCode:    321
+command:   03726210
+
+longName : ToggleGrassUpdate
+shortName: TGU
+opCode:    322
+command:   03726260
+
+longName : CenterOnCell
+shortName: COC
+opCode:    323
+command:   037262B0
+
+longName : SetGameSetting
+shortName: SetGS
+opCode:    324
+command:   03726300
+
+longName : SetINISetting
+shortName: SetINI
+opCode:    325
+command:   03726350
+
+longName : GetINISetting
+shortName: GetINI
+opCode:    326
+command:   037263A0
+
+longName : CenterOnExterior
+shortName: COE
+opCode:    327
+command:   037263F0
+
+longName : CalcPathToPoint
+shortName: P2P
+opCode:    328
+command:   03726440
+
+longName : CalcLowPathToPoint
+shortName: LP2P
+opCode:    329
+command:   03726490
+
+longName : SetFog
+shortName: 
+opCode:    330
+command:   037264E0
+
+longName : SetClipDist
+shortName: 
+opCode:    331
+command:   03726530
+
+longName : ToggleShadowVolumes
+shortName: TSV
+opCode:    332
+command:   03726580
+
+longName : SetForceWetness
+shortName: SFW
+opCode:    333
+command:   037265D0
+
+longName : SetWetnessLevel
+shortName: SWL
+opCode:    334
+command:   03726620
+
+longName : SetRainLevel
+shortName: SRL
+opCode:    335
+command:   03726670
+
+longName : SetImageSpaceGlow
+shortName: SISG
+opCode:    336
+command:   037266C0
+
+longName : ToggleDetection
+shortName: TDETECT
+opCode:    337
+command:   03726710
+
+longName : ToggleHighProcess
+shortName: THIGHPROCESS
+opCode:    338
+command:   03726760
+
+longName : ToggleLowProcess
+shortName: TLOWPROCESS
+opCode:    339
+command:   037267B0
+
+longName : ToggleMiddleLowProcess
+shortName: TMLOWPROCESS
+opCode:    340
+command:   03726800
+
+longName : ToggleMiddleHighProcess
+shortName: TMHIGHPROCESS
+opCode:    341
+command:   03726850
+
+longName : ToggleAiSchedules
+shortName: TAIS
+opCode:    342
+command:   037268A0
+
+longName : SpeakSound
+shortName: 
+opCode:    343
+command:   037268F0
+
+longName : BetaComment
+shortName: BC
+opCode:    344
+command:   03726940
+
+longName : GameComment
+shortName: GC
+opCode:    345
+command:   03726990
+
+longName : ToggleCellNode
+shortName: TCN
+opCode:    346
+command:   037269E0
+
+longName : ToggleTrees
+shortName: TT
+opCode:    347
+command:   03726A30
+
+longName : SetCameraFOV
+shortName: FOV
+opCode:    348
+command:   03726A80
+
+longName : ToggleGodMode
+shortName: TGM
+opCode:    349
+command:   03726AD0
+
+longName : RefreshShaders
+shortName: RS
+opCode:    350
+command:   03726B20
+
+longName : ReloadFXP
+shortName: RFXP
+opCode:    351
+command:   03726B70
+
+longName : ToggleScripts
+shortName: TSCR
+opCode:    352
+command:   03726BC0
+
+longName : ToggleConversations
+shortName: TCONV
+opCode:    353
+command:   03726C10
+
+longName : ToggleFullHelp
+shortName: TFH
+opCode:    354
+command:   03726C60
+
+longName : ShowQuestLog
+shortName: SQL
+opCode:    355
+command:   03726CB0
+
+longName : ShowFullQuestLog
+shortName: SFQL
+opCode:    356
+command:   03726D00
+
+longName : DumpTexturePalette
+shortName: DTP
+opCode:    357
+command:   03726D50
+
+longName : DumpModelMap
+shortName: DMM
+opCode:    358
+command:   03726DA0
+
+longName : DumpSoundMap
+shortName: DSM
+opCode:    359
+command:   03726DF0
+
+longName : CenterOnWorld
+shortName: COW
+opCode:    360
+command:   03726E40
+
+longName : ToggleGrass
+shortName: TG
+opCode:    361
+command:   03726E90
+
+longName : CreateGrassAt
+shortName: cga
+opCode:    362
+command:   03726EE0
+
+longName : AddFaceAnimNote
+shortName: AFAN
+opCode:    363
+command:   03726F30
+
+longName : RefreshINI
+shortName: REFINI
+opCode:    364
+command:   03726F80
+
+longName : ToggleEmotions
+shortName: temo
+opCode:    365
+command:   03726FD0
+
+longName : AddDecal
+shortName: 
+opCode:    366
+command:   03727020
+
+longName : TestCode
+shortName: 
+opCode:    367
+command:   03727070
+
+longName : PlayerSpellBook
+shortName: psb
+opCode:    368
+command:   037270C0
+
+longName : PrintAiList
+shortName: pai
+opCode:    369
+command:   03727110
+
+longName : ShowQuestTargets
+shortName: SQT
+opCode:    370
+command:   03727160
+
+longName : HairTint
+shortName: 
+opCode:    371
+command:   037271B0
+
+longName : SaveGame
+shortName: save
+opCode:    372
+command:   03727200
+
+longName : LoadGame
+shortName: load
+opCode:    373
+command:   03727250
+
+longName : DisplayPlayerIDs
+shortName: dpid
+opCode:    374
+command:   037272A0
+
+longName : SetDisplayPlayerID
+shortName: spid
+opCode:    375
+command:   037272F0
+
+longName : TestAllCells
+shortName: TAC
+opCode:    376
+command:   03727340
+
+longName : RenderTestCell
+shortName: rtc
+opCode:    377
+command:   03727390
+
+longName : RenderTestHere
+shortName: rth
+opCode:    378
+command:   037273E0
+
+longName : SaveWorld
+shortName: 
+opCode:    379
+command:   03727430
+
+longName : ReloadCurrentClimate
+shortName: rcc
+opCode:    380
+command:   03727480
+
+longName : ReloadCurrentWeather
+shortName: rcw
+opCode:    381
+command:   037274D0
+
+longName : TestSeenData
+shortName: tsd
+opCode:    382
+command:   03727520
+
+longName : TestLocalMap
+shortName: tlm
+opCode:    383
+command:   03727570
+
+longName : MoveToQuestTarget
+shortName: movetoqt
+opCode:    384
+command:   037275C0
+
+longName : PrintNPCDialog
+shortName: pdialog
+opCode:    385
+command:   03727610
+
+longName : ShowSubtitle
+shortName: 
+opCode:    386
+command:   03727660
+
+longName : ShowRenderPasses
+shortName: srp
+opCode:    387
+command:   037276B0
+
+longName : FreezeRenderAccumulation
+shortName: fra
+opCode:    388
+command:   03727700
+
+longName : ToggleOcclusion
+shortName: tocc
+opCode:    389
+command:   03727750
+
+longName : OutputMemContexts
+shortName: omc
+opCode:    390
+command:   037277A0
+
+longName : OutputMemStats
+shortName: oms
+opCode:    391
+command:   037277F0
+
+longName : SetMemCheckPoint
+shortName: smcp
+opCode:    392
+command:   03727840
+
+longName : GetMemCheckPoint
+shortName: gmcp
+opCode:    393
+command:   03727890
+
+longName : IncMemCheckPoint
+shortName: imcp
+opCode:    394
+command:   037278E0
+
+longName : OutputAllocations
+shortName: outalloc
+opCode:    395
+command:   03727930
+
+longName : AddWatchAddress
+shortName: awa
+opCode:    396
+command:   03727980
+
+longName : RemoveWatchAddress
+shortName: rwa
+opCode:    397
+command:   037279D0
+
+longName : ToggleDetectionStats
+shortName: tds
+opCode:    398
+command:   03727A20
+
+longName : SetTargetRefraction
+shortName: str
+opCode:    399
+command:   03727A70
+
+longName : SetTargetRefractionFire
+shortName: strf
+opCode:    400
+command:   03727AC0
+
+longName : ToggleRefractionDebug
+shortName: trd
+opCode:    401
+command:   03727B10
+
+longName : ToggleCharControllerShape
+shortName: TCCS
+opCode:    402
+command:   03727B60
+
+longName : ShowHeadTrackTarget
+shortName: SHeadT
+opCode:    403
+command:   03727BB0
+
+longName : SetCinematicParam
+shortName: SCP
+opCode:    404
+command:   03727C00
+
+longName : SetTintParam
+shortName: STP
+opCode:    405
+command:   03727C50
+
+longName : SetHDRParam
+shortName: SHP
+opCode:    406
+command:   03727CA0
+
+longName : VisualRefPosition
+shortName: VRP
+opCode:    407
+command:   03727CF0
+
+longName : ShowPivot
+shortName: SP
+opCode:    408
+command:   03727D40
+
+longName : PrintHDRParam
+shortName: PHP
+opCode:    409
+command:   03727D90
+
+longName : ToggleHDRDebug
+shortName: THD
+opCode:    410
+command:   03727DE0
+
+longName : RevertWorld
+shortName: rw
+opCode:    411
+command:   03727E30
+
+longName : OutputArchiveProfile
+shortName: oap
+opCode:    412
+command:   03727E80
+
+longName : QuitGame
+shortName: qqq
+opCode:    413
+command:   03727ED0
+
+longName : Screenshot
+shortName: 
+opCode:    414
+command:   03727F20
+
+longName : SaveIniFiles
+shortName: saveini
+opCode:    415
+command:   03727F70
+
+longName : SetDebugText
+shortName: sdt
+opCode:    416
+command:   03727FC0
+
+longName : GetDebugText
+shortName: gdt
+opCode:    417
+command:   03728010
+
+longName : ToggleLiteBrite
+shortName: tlb
+opCode:    418
+command:   03728060
+
+longName : RunMemoryPass
+shortName: rmp
+opCode:    419
+command:   037280B0
+
+longName : ResetMemContexts
+shortName: rmc
+opCode:    420
+command:   03728100
+
+longName : ToggleWaterSystem
+shortName: TWS
+opCode:    421
+command:   03728150
+
+longName : ToggleWaterRadius
+shortName: TWR
+opCode:    422
+command:   037281A0
+
+longName : ShowWhoDetectsPlayer
+shortName: SWDP
+opCode:    423
+command:   037281F0
+
+longName : ToggleCombatAI
+shortName: tcai
+opCode:    424
+command:   03728240
+
+longName : ToggleGamePause
+shortName: tgp
+opCode:    425
+command:   03728290
+
+longName : StepOneFrame
+shortName: sof
+opCode:    426
+command:   037282E0
+
+longName : ToggleFlyCam
+shortName: tfc
+opCode:    427
+command:   03728330
+
+longName : ToggleFXCam
+shortName: tfxc
+opCode:    428
+command:   03728380
+
+longName : ModWaterShader
+shortName: mws
+opCode:    429
+command:   037283D0
+
+longName : WaterColor
+shortName: mwc
+opCode:    430
+command:   03728420
+
+longName : BeginTrace
+shortName: bt
+opCode:    431
+command:   03728470
+
+longName : RunCellTest
+shortName: rct
+opCode:    432
+command:   037284C0
+
+longName : StartAllQuests
+shortName: saq
+opCode:    433
+command:   03728510
+
+longName : CompleteAllQuestStages
+shortName: caqs
+opCode:    434
+command:   03728560
+
+longName : ToggleFogOfWar
+shortName: TFOW
+opCode:    435
+command:   037285B0
+
+longName : OutputLocalMapPictures
+shortName: OLMP
+opCode:    436
+command:   03728600
+
+longName : SetGamma
+shortName: sg
+opCode:    437
+command:   03728650
+
+longName : WasteMemory
+shortName: wm
+opCode:    438
+command:   037286A0
+
+longName : ClearAdaptedLight
+shortName: cal
+opCode:    439
+command:   037286F0
+
+longName : ToggleCastShadows
+shortName: tsh
+opCode:    440
+command:   03728740
+
+longName : SetHudGlowConstants
+shortName: shgc
+opCode:    441
+command:   03728790
+
+longName : CloseFile
+shortName: 
+opCode:    442
+command:   037287E0
+
+longName : SetTreeMipmapBias
+shortName: stmb
+opCode:    443
+command:   03728830
+
+longName : SendSherlockDebugText
+shortName: ssdt
+opCode:    444
+command:   03728880
+
+longName : OutputMemStats
+shortName: omsfw
+opCode:    445
+command:   037288D0
+
+longName : PlayExplosion
+shortName: 
+opCode:    446
+command:   03728920
+
+longName : SetMaxAniso
+shortName: sma
+opCode:    447
+command:   03728970
+
+longName : SetMeshLODLevel
+shortName: smll
+opCode:    448
+command:   037289C0
+
+longName : SetTargetDOF
+shortName: stdof
+opCode:    449
+command:   03728A10
+
+longName : ToggleFullScreenMotionBlur
+shortName: tfsmb
+opCode:    450
+command:   03728A60
+
+longName : SetTriLinearThreshold
+shortName: stlt
+opCode:    451
+command:   03728AB0
+
+longName : SetVel
+shortName: 
+opCode:    452
+command:   03728B00
+
+longName : DebugCombat
+shortName: dc
+opCode:    453
+command:   03728B50
+
+longName : ToggleCombatDebug
+shortName: tcd
+opCode:    454
+command:   03728BA0
+
+longName : TogglePathingInfoFunction
+shortName: TPI
+opCode:    455
+command:   03728BF0
+
+longName : ShowInventory
+shortName: inv
+opCode:    456
+command:   03728C40
+
+longName : ShowInventoryVars
+shortName: siv
+opCode:    457
+command:   03728C90
+
+longName : ResetPerformanceTimers
+shortName: rpt
+opCode:    458
+command:   03728CE0
+
+longName : ToggleDebugDecal
+shortName: TDD
+opCode:    459
+command:   03728D30
+
+longName : ToggleDecalRendering
+shortName: TDR
+opCode:    460
+command:   03728D80
+
+longName : SetImageSpaceModifiersEnable
+shortName: sisme
+opCode:    461
+command:   03728DD0
+
+longName : SetUFOCamSpeedMult
+shortName: sucsm
+opCode:    462
+command:   03728E20
+
+longName : ToggleTestLight
+shortName: TTL
+opCode:    463
+command:   03728E70
+
+longName : PlaceLocationMarker
+shortName: plm
+opCode:    464
+command:   03728EC0
+
+longName : ClearLocationMarkers
+shortName: clm
+opCode:    465
+command:   03728F10
+
+longName : ToggleMultiboundCheck
+shortName: mbc
+opCode:    466
+command:   03728F60
+
+longName : AddOcclusionPlane
+shortName: AOP
+opCode:    467
+command:   03728FB0
+
+longName : SetGlobalRadialBlur
+shortName: sgrb
+opCode:    468
+command:   03729000
+
+longName : OutputTextureUseMap
+shortName: OTUM
+opCode:    469
+command:   03729050
+
+longName : ClearScreenBlood
+shortName: csb
+opCode:    470
+command:   037290A0
+
+longName : ResetDialogueFlags
+shortName: rdf
+opCode:    471
+command:   037290F0
+
+longName : GetValueInfo
+shortName: 
+opCode:    472
+command:   03729140
+
+longName : ToggleBoundVisGeom
+shortName: tbvg
+opCode:    473
+command:   03729190
+
+longName : SetConsoleOuputFile
+shortName: scof
+opCode:    474
+command:   037291E0
+
+longName : IgnoreRenderPass
+shortName: irp
+opCode:    475
+command:   03729230
+
+longName : PlayVATSCameras
+shortName: pvc
+opCode:    476
+command:   03729280
+
+longName : SetTargetFalloff
+shortName: stfo
+opCode:    477
+command:   037292D0
+
+longName : ToggleActorMover
+shortName: tam
+opCode:    478
+command:   03729320
+
+longName : CopySaves
+shortName: CopySaves
+opCode:    479
+command:   03729370
+
+longName : ToggleEOFImageSpace
+shortName: teofis
+opCode:    480
+command:   037293C0
+
+longName : ForceFileCache
+shortName: ffc
+opCode:    481
+command:   03729410
+
+longName : DumpNiUpdates
+shortName: dnu
+opCode:    482
+command:   03729460
+
+longName : TestDegrade
+shortName: 
+opCode:    483
+command:   037294B0
+
+longName : ToggleDepthBias
+shortName: tdb
+opCode:    484
+command:   03729500
+
+longName : ToggleSPURenderBatch
+shortName: tSPURB
+opCode:    485
+command:   03729550
+
+longName : ToggleSPUTransformUpdate
+shortName: tSPUTU
+opCode:    486
+command:   037295A0
+
+longName : ToggleSPUCulling
+shortName: tSPUC
+opCode:    487
+command:   037295F0
+
+longName : ModifyFaceGen
+shortName: mfg
+opCode:    488
+command:   03729640
+
+longName : ForceRSXCrash
+shortName: fRSX
+opCode:    489
+command:   03729690
+
+longName : SetEmitterParticleMax
+shortName: 
+opCode:    490
+command:   037296E0
+
+longName : SetMPSParticleMax
+shortName: 
+opCode:    491
+command:   03729730
+
+longName : SetTaskThreadSleep
+shortName: 
+opCode:    492
+command:   03729780
+
+longName : SetTaskThreadUpdateSleep
+shortName: 
+opCode:    493
+command:   037297D0
+
+longName : EvalActorTextures
+shortName: EAT
+opCode:    494
+command:   03729820
+
+longName : CreateSaveData
+shortName: createsaves
+opCode:    495
+command:   03729870
+
+longName : CreateGameData
+shortName: 
+opCode:    496
+command:   037298C0
+
+longName : LoadFlashMovie
+shortName: 
+opCode:    497
+command:   03729910
+
+longName : ShowMenu
+shortName: 
+opCode:    498
+command:   03729960
+
+longName : HideMenu
+shortName: 
+opCode:    499
+command:   037299B0
+
+longName : RecvAnimEvent
+shortName: rae
+opCode:    500
+command:   03729A00
+
+longName : RunConsoleBatch
+shortName: bat
+opCode:    501
+command:   03729A50
+
+longName : LTGraph
+shortName: LTGraph
+opCode:    502
+command:   03729AA0
+
+longName : RTGraph
+shortName: RTGraph
+opCode:    503
+command:   03729AF0
+
+longName : ToggleHeapTracking
+shortName: THT
+opCode:    504
+command:   03729B40
+
+longName : TogglePoolTracking
+shortName: TPT
+opCode:    505
+command:   03729B90
+
+longName : RumbleManager
+shortName: RM
+opCode:    506
+command:   03729BE0
+
+longName : InstallMemoryTracker
+shortName: IMT
+opCode:    507
+command:   03729C30
+
+longName : UninstallMemoryTracker
+shortName: UMT
+opCode:    508
+command:   03729C80
+
+longName : CheckMemory
+shortName: chkmem
+opCode:    509
+command:   03729CD0
+
+longName : SetStackDepth
+shortName: SSD
+opCode:    510
+command:   03729D20
+
+longName : PathToRef
+shortName: PTR
+opCode:    511
+command:   03729D70
+
+longName : StartAIControlledRobotTest
+shortName: SPTP
+opCode:    512
+command:   03729DC0
+
+longName : TestHandleManagerWarnAndKillSDM
+shortName: THMWAKS
+opCode:    513
+command:   03729E10
+
+longName : SetFaceTarget
+shortName: SFT
+opCode:    514
+command:   03729E60
+
+longName : PrecomputedLOSGeneration
+shortName: plg
+opCode:    515
+command:   03729EB0
+
+longName : PrecomputedLOSDebug
+shortName: pld
+opCode:    516
+command:   03729F00
+
+longName : GenerateCoverEdges
+shortName: gce
+opCode:    517
+command:   03729F50
+
+longName : GenerateCoverDebug
+shortName: gcd
+opCode:    518
+command:   03729FA0
+
+longName : SetPathSprinting
+shortName: SPS
+opCode:    519
+command:   03729FF0
+
+longName : SetAnimGraphVar
+shortName: sgv
+opCode:    520
+command:   0372A040
+
+longName : SetTreeTrunkFlexibility
+shortName: STSTF
+opCode:    521
+command:   0372A090
+
+longName : SetTreeBranchFlexibility
+shortName: STSBF
+opCode:    522
+command:   0372A0E0
+
+longName : SetTreeBranchAnimationRange
+shortName: STSBR
+opCode:    523
+command:   0372A130
+
+longName : SetTreeLeafFlexibility
+shortName: STSLF
+opCode:    524
+command:   0372A180
+
+longName : SetTreeLeafAmplitude
+shortName: STSLAMP
+opCode:    525
+command:   0372A1D0
+
+longName : SetTreeLeafFrequency
+shortName: STSLFRQ
+opCode:    526
+command:   0372A220
+
+longName : SetTreeWindDirection
+shortName: STSWD
+opCode:    527
+command:   0372A270
+
+longName : SetTreeWindMagnitude
+shortName: STSWM
+opCode:    528
+command:   0372A2C0
+
+longName : SetBloodParam
+shortName: SBP
+opCode:    529
+command:   0372A310
+
+longName : RegisterPrefix
+shortName: RPRFX
+opCode:    530
+command:   0372A360
+
+longName : ToggleEventLog
+shortName: TEL
+opCode:    531
+command:   0372A3B0
+
+longName : ExportPerfTrackingData
+shortName: EPTD
+opCode:    532
+command:   0372A400
+
+longName : DisplayGraphVariable
+shortName: dgv
+opCode:    533
+command:   0372A450
+
+longName : ToggleMotionDriven
+shortName: TMD
+opCode:    534
+command:   0372A4A0
+
+longName : ToggleControlsDriven
+shortName: TC
+opCode:    535
+command:   0372A4F0
+
+longName : ToggleGUIOverlay
+shortName: TGO
+opCode:    536
+command:   0372A540
+
+longName : ModifyGUIOverlay
+shortName: MGO
+opCode:    537
+command:   0372A590
+
+longName : AddCustomOverlay
+shortName: ACO
+opCode:    538
+command:   0372A5E0
+
+longName : SetCustomOverlayForm
+shortName: SetCOF
+opCode:    539
+command:   0372A630
+
+longName : CloseCustomOverlay
+shortName: CloseCO
+opCode:    540
+command:   0372A680
+
+longName : SetActionComplete
+shortName: SAC
+opCode:    541
+command:   0372A6D0
+
+longName : SetConsoleScopeQuest
+shortName: SSQ
+opCode:    542
+command:   0372A720
+
+longName : GetDistanceFromActorsPath
+shortName: GDFAP
+opCode:    543
+command:   0372A770
+
+longName : ClearConsole
+shortName: clear
+opCode:    544
+command:   0372A7C0
+
+longName : ToggleMarkers
+shortName: TMK
+opCode:    545
+command:   0372A810
+
+longName : KillAllProjectiles
+shortName: kap
+opCode:    546
+command:   0372A860
+
+longName : PlayTerrainEffect
+shortName: PTFX
+opCode:    547
+command:   0372A8B0
+
+longName : CellInfo
+shortName: 
+opCode:    548
+command:   0372A900
+
+longName : Textures
+shortName: tx
+opCode:    549
+command:   0372A950
+
+longName : Timing
+shortName: FPS
+opCode:    550
+command:   0372A9A0
+
+longName : Polygons
+shortName: Polys
+opCode:    551
+command:   0372A9F0
+
+longName : Actors
+shortName: Actors
+opCode:    552
+command:   0372AA40
+
+longName : Quest
+shortName: Quest
+opCode:    553
+command:   0372AA90
+
+longName : Particles
+shortName: Particles
+opCode:    554
+command:   0372AAE0
+
+longName : Memory
+shortName: 
+opCode:    555
+command:   0372AB30
+
+longName : FileStreamerStats
+shortName: fsstats
+opCode:    556
+command:   0372AB80
+
+longName : SetGraphicMemoryHysteresis
+shortName: SetGMH
+opCode:    557
+command:   0372ABD0
+
+longName : AllocateGraphicMemory
+shortName: AllocGM
+opCode:    558
+command:   0372AC20
+
+longName : ShowNodes
+shortName: 
+opCode:    559
+command:   0372AC70
+
+longName : ShowBones
+shortName: 
+opCode:    560
+command:   0372ACC0
+
+longName : SaveDebugTextPages
+shortName: SaveDTP
+opCode:    561
+command:   0372AD10
+
+longName : OutputFixedStringTable
+shortName: OFST
+opCode:    562
+command:   0372AD60
+
+longName : AttachPapyrusScript
+shortName: APS
+opCode:    563
+command:   0372ADB0
+
+longName : SaveHavokSnapshot
+shortName: SHS
+opCode:    564
+command:   0372AE00
+
+longName : SetNPCWeight
+shortName: SNPCW
+opCode:    565
+command:   0372AE50
+
+longName : ShowClosestLocationForSphere
+shortName: SCLFS
+opCode:    566
+command:   0372AEA0
+
+longName : PrintShaderMacros
+shortName: PSM
+opCode:    567
+command:   0372AEF0
+
+longName : ToggleAudioOverlay
+shortName: TAO
+opCode:    568
+command:   0372AF40
+
+longName : TogglePapyrusLog
+shortName: TPLog
+opCode:    569
+command:   0372AF90
+
+longName : ToggleContextOverlay
+shortName: TCO
+opCode:    570
+command:   0372AFE0
+
+longName : ForceOutOfMemory
+shortName: FOOM
+opCode:    571
+command:   0372B030
+
+longName : ToggleMovement
+shortName: TMOVE
+opCode:    572
+command:   0372B080
+
+longName : ToggleAnimations
+shortName: TANIM
+opCode:    573
+command:   0372B0D0
+
+longName : SetWarning
+shortName: 
+opCode:    574
+command:   0372B120
+
+longName : TestFadeNodes
+shortName: TestFN
+opCode:    575
+command:   0372B170
+
+longName : ShowLowMaxHeights
+shortName: slmh
+opCode:    576
+command:   0372B1C0
+
+longName : ShowHighMaxHeights
+shortName: shmh
+opCode:    577
+command:   0372B210
+
+longName : EnableStoryManagerLogging
+shortName: esml
+opCode:    578
+command:   0372B260
+
+longName : DumpPapyrusStacks
+shortName: dps
+opCode:    579
+command:   0372B2B0
+
+longName : DumpPapyrusTimers
+shortName: dpt
+opCode:    580
+command:   0372B300
+
+longName : DumpPapyrusLOSEvents
+shortName: dple
+opCode:    581
+command:   0372B350
+
+longName : DumpPapyrusDistanceEvents
+shortName: dpde
+opCode:    582
+command:   0372B3A0
+
+longName : DumpPapyrusPersistenceInfo
+shortName: dppi
+opCode:    583
+command:   0372B3F0
+
+longName : DumpPapyrusEventRegistrations
+shortName: dper
+opCode:    584
+command:   0372B440
+
+longName : SoundCatMod
+shortName: scm
+opCode:    585
+command:   0372B490
+
+longName : RunCompaction
+shortName: rcmpct
+opCode:    586
+command:   0372B4E0
+
+longName : ToggleAnimatorCam
+shortName: animcam
+opCode:    587
+command:   0372B530
+
+longName : ToggleImmortalMode
+shortName: TIM
+opCode:    588
+command:   0372B580
+
+longName : SetSubgraphToDebug
+shortName: sgd
+opCode:    589
+command:   0372B5D0
+
+longName : EnableRumble
+shortName: 
+opCode:    590
+command:   0372B620
+
+longName : HavokVDBCapture
+shortName: vdbcapture
+opCode:    591
+command:   0372B670
+
+longName : ToggleMapCam
+shortName: tmc
+opCode:    592
+command:   0372B6C0
+
+longName : ToggleNavmeshInfo
+shortName: tni
+opCode:    593
+command:   0372B710
+
+longName : PlaySyncAnim
+shortName: syncanim
+opCode:    594
+command:   0372B760
+
+longName : SetFormKnown
+shortName: 
+opCode:    595
+command:   0372B7B0
+
+longName : SetDebugQuest
+shortName: 
+opCode:    596
+command:   0372B800
+
+longName : SetQuestAliasLogging
+shortName: sqal
+opCode:    597
+command:   0372B850
+
+longName : SetRace
+shortName: 
+opCode:    598
+command:   0372B8A0
+
+longName : FindForm
+shortName: find
+opCode:    599
+command:   0372B8F0
+
+longName : StartPapyrusScriptProfile
+shortName: StartPSP
+opCode:    600
+command:   0372B940
+
+longName : StopPapyrusScriptProfile
+shortName: StopPSP
+opCode:    601
+command:   0372B990
+
+longName : StartPapyrusFormProfile
+shortName: StartPFP
+opCode:    602
+command:   0372B9E0
+
+longName : StopPapyrusFormProfile
+shortName: StopPFP
+opCode:    603
+command:   0372BA30
+
+longName : StartPapyrusStackRootProfile
+shortName: StartPSRP
+opCode:    604
+command:   0372BA80
+
+longName : StopPapyrusStackRootProfile
+shortName: StopPSRP
+opCode:    605
+command:   0372BAD0
+
+longName : TogglePapyrusGlobalProfiler
+shortName: TPGP
+opCode:    606
+command:   0372BB20
+
+longName : PrintQuestSceneInfo
+shortName: PrintS
+opCode:    607
+command:   0372BB70
+
+longName : IsInvulnerable
+shortName: isinv
+opCode:    608
+command:   0372BBC0
+
+longName : ExportInventoryItemInfo
+shortName: eiii
+opCode:    609
+command:   0372BC10
+
+longName : CollisionMesh
+shortName: colmesh
+opCode:    610
+command:   0372BC60
+
+longName : HavokWorldStep
+shortName: hkstep
+opCode:    611
+command:   0372BCB0
+
+longName : IsolateRendering
+shortName: ir
+opCode:    612
+command:   0372BD00
+
+longName : ToggleWaterCurrentGeometry
+shortName: twcg
+opCode:    613
+command:   0372BD50
+
+longName : PerformAction
+shortName: pa
+opCode:    614
+command:   0372BDA0
+
+longName : StartTrackPlayerDoors
+shortName: StartTPD
+opCode:    615
+command:   0372BDF0
+
+longName : StopTrackPlayerDoors
+shortName: StopTPD
+opCode:    616
+command:   0372BE40
+
+longName : CheckPlayerDoors
+shortName: CheckPD
+opCode:    617
+command:   0372BE90
+
+longName : SetInChargen
+shortName: 
+opCode:    618
+command:   0372BEE0
+
+longName : ClearAchievement
+shortName: 
+opCode:    619
+command:   0372BF30
+
+longName : ForceReset
+shortName: 
+opCode:    620
+command:   0372BF80
+
+longName : ForceCloseFiles
+shortName: FCF
+opCode:    621
+command:   0372BFD0
+
+longName : HotLoadPlugin
+shortName: HLP
+opCode:    622
+command:   0372C020
+
+longName : GenerateBendableSpline
+shortName: Spline
+opCode:    623
+command:   0372C070
+
+longName : ReloadScript
+shortName: 
+opCode:    624
+command:   0372C0C0
+
+longName : TestAim
+shortName: ta
+opCode:    625
+command:   0372C110
+
+longName : PushCamera
+shortName: pushcam
+opCode:    626
+command:   0372C160
+
+longName : MoveToEditorCamera
+shortName: movetocam
+opCode:    627
+command:   0372C1B0
+
+longName : MoveToEditorSelection
+shortName: movetosel
+opCode:    628
+command:   0372C200
+
+longName : PlaceFurnitureTester
+shortName: PFT
+opCode:    629
+command:   0372C250
+
+longName : DumpConditionFunctions
+shortName: DCF
+opCode:    630
+command:   0372C2A0
+
+longName : ReloadAnimationGraphs
+shortName: RAG
+opCode:    631
+command:   0372C2F0
+
+longName : ToggleHUDOverlay
+shortName: tho
+opCode:    632
+command:   0372C340
+
+longName : SetHUDOverlayMode
+shortName: shom
+opCode:    633
+command:   0372C390
+
+longName : ToggleWeaponOverlay
+shortName: two
+opCode:    634
+command:   0372C3E0
+
+longName : ForceDetect
+shortName: fd
+opCode:    635
+command:   0372C430
+
+longName : ToggleAnimationOverlay
+shortName: tano
+opCode:    636
+command:   0372C480
+
+longName : Warnings
+shortName: 
+opCode:    637
+command:   0372C4D0
+
+longName : ShowSPECIALMenu
+shortName: 
+opCode:    638
+command:   0372C520
+
+longName : ChangeAnimArchetype
+shortName: caa
+opCode:    639
+command:   0372C570
+
+longName : ChangeAnimFlavor
+shortName: caf
+opCode:    640
+command:   0372C5C0
+
+longName : SetAngryWithPlayer
+shortName: sawp
+opCode:    641
+command:   0372C610
+
+longName : ForceRepath
+shortName: frp
+opCode:    642
+command:   0372C660
+
+longName : ForcePathFailure
+shortName: fpf
+opCode:    643
+command:   0372C6B0
+
+longName : DumpFormList
+shortName: dfl
+opCode:    644
+command:   0372C700
+
+longName : TraceAnimationEvents
+shortName: tae
+opCode:    645
+command:   0372C750
+
+longName : ShowMods
+shortName: mods
+opCode:    646
+command:   0372C7A0
+
+longName : DumpInputEnableLayers
+shortName: diel
+opCode:    647
+command:   0372C7F0
+
+longName : AttachMod
+shortName: amod
+opCode:    648
+command:   0372C840
+
+longName : RemoveMod
+shortName: rmod
+opCode:    649
+command:   0372C890
+
+longName : SpawnTemplatedObject
+shortName: sto
+opCode:    650
+command:   0372C8E0
+
+longName : CallFunction
+shortName: cf
+opCode:    651
+command:   0372C930
+
+longName : CallQuestFunction
+shortName: cqf
+opCode:    652
+command:   0372C980
+
+longName : CallGlobalFunction
+shortName: cgf
+opCode:    653
+command:   0372C9D0
+
+longName : ResetInputEnableLayer
+shortName: riel
+opCode:    654
+command:   0372CA20
+
+longName : ForceEnablePlayerControls
+shortName: fepc
+opCode:    655
+command:   0372CA70
+
+longName : ResetForceEnabledPlayerControls
+shortName: rfepc
+opCode:    656
+command:   0372CAC0
+
+longName : GetActorRefOwner
+shortName: garo
+opCode:    657
+command:   0372CB10
+
+longName : SetActorRefOwner
+shortName: saro
+opCode:    658
+command:   0372CB60
+
+longName : HasActorRefOwner
+shortName: haro
+opCode:    659
+command:   0372CBB0
+
+longName : SetOutfit
+shortName: 
+opCode:    660
+command:   0372CC00
+
+longName : PassTime
+shortName: 
+opCode:    661
+command:   0372CC50
+
+longName : LinkLocations
+shortName: 
+opCode:    662
+command:   0372CCA0
+
+longName : ShowLinkedLocations
+shortName: 
+opCode:    663
+command:   0372CCF0
+
+longName : SetLinkedRef
+shortName: 
+opCode:    664
+command:   0372CD40
+
+longName : ResetContainer
+shortName: 
+opCode:    665
+command:   0372CD90
+
+longName : SetSceneForDebug
+shortName: 
+opCode:    666
+command:   0372CDE0
+
+longName : PreloadExterior
+shortName: 
+opCode:    667
+command:   0372CE30
+
+longName : TestPath
+shortName: tp
+opCode:    668
+command:   0372CE80
+
+longName : ToggleControlsOverlay
+shortName: tcon
+opCode:    669
+command:   0372CED0
+
+longName : Refresh
+shortName: 
+opCode:    670
+command:   0372CF20
+
+longName : ToggleMTR
+shortName: tMTR
+opCode:    671
+command:   0372CF70
+
+longName : DynamicResolution
+shortName: dr
+opCode:    672
+command:   0372CFC0
+
+longName : TestLoadingMenu
+shortName: 
+opCode:    673
+command:   0372D010
+
+longName : RecalcInstanceData
+shortName: rid
+opCode:    674
+command:   0372D060
+
+longName : DismemberActor
+shortName: dismember
+opCode:    675
+command:   0372D0B0
+
+longName : ToggleReferencePose
+shortName: trp
+opCode:    676
+command:   0372D100
+
+longName : PyConsole
+shortName: py
+opCode:    677
+command:   0372D150
+
+longName : LuaConsole
+shortName: lua
+opCode:    678
+command:   0372D1A0
+
+longName : SetPersistLocation
+shortName: 
+opCode:    679
+command:   0372D1F0
+
+longName : SetLocationRefType
+shortName: 
+opCode:    680
+command:   0372D240
+
+longName : ShowLocData
+shortName: sld
+opCode:    681
+command:   0372D290
+
+longName : ReserveLoc
+shortName: rsv
+opCode:    682
+command:   0372D2E0
+
+longName : UpdateAwakeSound
+shortName: UAS
+opCode:    683
+command:   0372D330
+
+longName : PrintAudioDeviceInfo
+shortName: padi
+opCode:    684
+command:   0372D380
+
+longName : SetHarvested
+shortName: 
+opCode:    685
+command:   0372D3D0
+
+longName : PauseScene
+shortName: 
+opCode:    686
+command:   0372D420
+
+longName : SpawnDupe
+shortName: 
+opCode:    687
+command:   0372D470
+
+longName : CombineLoadedObjects
+shortName: clo
+opCode:    688
+command:   0372D4C0
+
+longName : ShowCombinedObjects
+shortName: sco
+opCode:    689
+command:   0372D510
+
+longName : ShowMeshLOD
+shortName: smlod
+opCode:    690
+command:   0372D560
+
+longName : ForceKillSound
+shortName: fks
+opCode:    691
+command:   0372D5B0
+
+longName : DisableDistantReferences
+shortName: ddr
+opCode:    692
+command:   0372D600
+
+longName : FireAssert
+shortName: 
+opCode:    693
+command:   0372D650
+
+longName : ForcePersistent
+shortName: fp
+opCode:    694
+command:   0372D6A0
+
+longName : PlayEventCamera
+shortName: tec
+opCode:    695
+command:   0372D6F0
+
+longName : ChangeStance
+shortName: chs
+opCode:    696
+command:   0372D740
+
+longName : AuditionSoundDescriptor
+shortName: ASD
+opCode:    697
+command:   0372D790
+
+longName : PushSoundCategorySnapshot
+shortName: PSCS
+opCode:    698
+command:   0372D7E0
+
+longName : RemoveSoundCategorySnapshot
+shortName: RSCS
+opCode:    699
+command:   0372D830
+
+longName : BuildAnimationData
+shortName: bad
+opCode:    700
+command:   0372D880
+
+longName : SetNumMTRJobs
+shortName: 
+opCode:    701
+command:   0372D8D0
+
+longName : SwitchSkeleton
+shortName: 
+opCode:    702
+command:   0372D920
+
+longName : GetHelloorGreeting
+shortName: 
+opCode:    703
+command:   0372D970
+
+longName : CaptureNextFrameGPU
+shortName: gpucap
+opCode:    704
+command:   0372D9C0
+
+longName : TogglePreCulling
+shortName: tpc
+opCode:    705
+command:   0372DA10
+
+longName : HideNonOccluders
+shortName: hno
+opCode:    706
+command:   0372DA60
+
+longName : DumpPowerGrids
+shortName: dpg
+opCode:    707
+command:   0372DAB0
+
+longName : SetBoneTintRegion
+shortName: sbtr
+opCode:    708
+command:   0372DB00
+
+longName : ToggleContextRollOptim
+shortName: tcro
+opCode:    709
+command:   0372DB50
+
+longName : SendDialogueEvent
+shortName: sde
+opCode:    710
+command:   0372DBA0
+
+longName : RefreshGlobalTexture
+shortName: rgt
+opCode:    711
+command:   0372DBF0
+
+longName : SetForceSpeechChallengeAlwaysSucceed
+shortName: 
+opCode:    712
+command:   0372DC40
+
+longName : SetForceSpeechChallengeAlwaysFail
+shortName: 
+opCode:    713
+command:   0372DC90
+
+longName : RunMaterialsAnalysis
+shortName: rma
+opCode:    714
+command:   0372DCE0
+
+longName : CaptureMessages
+shortName: 
+opCode:    715
+command:   0372DD30
+
+longName : SetSSRIntensity
+shortName: ssri
+opCode:    716
+command:   0372DD80
+
+longName : SetSSRBlendingPower
+shortName: ssrbp
+opCode:    717
+command:   0372DDD0
+
+longName : SetSSRAngleThreshold
+shortName: ssrat
+opCode:    718
+command:   0372DE20
+
+longName : SetSSREdgeFadeFactor
+shortName: ssreff
+opCode:    719
+command:   0372DE70
+
+longName : SetSSRVerticalBlurPower
+shortName: ssrvbp
+opCode:    720
+command:   0372DEC0
+
+longName : SetSSRVerticalAlignmentPower
+shortName: ssrvap
+opCode:    721
+command:   0372DF10
+
+longName : SetSSRVerticalStretchingPower
+shortName: ssrvsp
+opCode:    722
+command:   0372DF60
+
+longName : SetSSRRayStepScale
+shortName: ssrrss
+opCode:    723
+command:   0372DFB0
+
+longName : ToggleZPrepass
+shortName: zpp
+opCode:    724
+command:   0372E000
+
+longName : RainOcclusion
+shortName: ro
+opCode:    725
+command:   0372E050
+
+longName : SetGpuMemoryPriority
+shortName: 
+opCode:    726
+command:   0372E0A0
+
+longName : ToggleRainSplash
+shortName: trs
+opCode:    727
+command:   0372E0F0
+
+longName : CaptureMessage
+shortName: 
+opCode:    728
+command:   0372E140
+
+longName : ToggleTrijuice
+shortName: TJ
+opCode:    729
+command:   0372E190
+
+longName : SetPresentThreshold
+shortName: spt
+opCode:    730
+command:   0372E1E0
+
+longName : BNetLogin
+shortName: login
+opCode:    731
+command:   0372E230
+
+longName : BNetLoginSSO
+shortName: loginsso
+opCode:    732
+command:   0372E280
+
+longName : BNetLogout
+shortName: logout
+opCode:    733
+command:   0372E2D0
+
+longName : IsLoggedIn
+shortName: isonline
+opCode:    734
+command:   0372E320
+
+longName : BNetCreateAccount
+shortName: createaccount
+opCode:    735
+command:   0372E370
+
+longName : BNetLinkAccount
+shortName: link
+opCode:    736
+command:   0372E3C0
+
+longName : BNetUnlinkAccount
+shortName: unlink
+opCode:    737
+command:   0372E410
+
+longName : RequestOTP
+shortName: requestcode
+opCode:    738
+command:   0372E460
+
+longName : VerifyOTP
+shortName: verifycode
+opCode:    739
+command:   0372E4B0
+
+longName : GetLegalDocs
+shortName: getlegaldocs
+opCode:    740
+command:   0372E500
+
+longName : AcceptLegalDoc
+shortName: acceptlegaldoc
+opCode:    741
+command:   0372E550
+
+longName : SubscribeUGC
+shortName: subscribe
+opCode:    742
+command:   0372E5A0
+
+longName : UnsubscribeUGC
+shortName: unsubscribe
+opCode:    743
+command:   0372E5F0
+
+longName : GetSubscribedList
+shortName: getsubscribed
+opCode:    744
+command:   0372E640
+
+longName : FollowUGC
+shortName: follow
+opCode:    745
+command:   0372E690
+
+longName : UnfollowUGC
+shortName: unfollow
+opCode:    746
+command:   0372E6E0
+
+longName : GetFollowedList
+shortName: getfollowed
+opCode:    747
+command:   0372E730
+
+longName : GetUGCDetails
+shortName: getdetails
+opCode:    748
+command:   0372E780
+
+longName : DownloadUGC
+shortName: download
+opCode:    749
+command:   0372E7D0
+
+longName : ToggleMTRDeferredLights
+shortName: tMTRDFL
+opCode:    750
+command:   0372E820
+
+longName : UpdateGodraySettings
+shortName: gr
+opCode:    751
+command:   0372E870
+
+longName : UpdateFlexSettings
+shortName: flex
+opCode:    752
+command:   0372E8C0
+
+longName : UpdateHBAOSettings
+shortName: hbao
+opCode:    753
+command:   0372E910
+
+longName : ExportWorkshopPowerGrid
+shortName: export
+opCode:    754
+command:   0372E960
+
+longName : StartWorkshop
+shortName: workshop
+opCode:    755
+command:   0372E9B0
+
+longName : ToggleVBlankOptim
+shortName: tvbo
+opCode:    756
+command:   0372EA00
+
+longName : ProcessValidDismemberments
+shortName: pvdo
+opCode:    757
+command:   0372EA50
+
+longName : ToggleSegmentVisibility
+shortName: tsgv
+opCode:    758
+command:   0372EAA0
+
+longName : AddKeyword
+shortName: 
+opCode:    759
+command:   0372EAF0
+
+longName : SetAmbientParticlesEnabled
+shortName: sape
+opCode:    760
+command:   0372EB40
+
+longName : ToggleDOQM
+shortName: tDOQM
+opCode:    761
+command:   0372EB90
+
+longName : ScrapAll
+shortName: 
+opCode:    762
+command:   0372EBE0
+
+longName : GetBudgetCounts
+shortName: 
+opCode:    763
+command:   0372EC30
+
+longName : WorkshopBudget
+shortName: 
+opCode:    764
+command:   0372EC80
+
+longName : ToggleLookAtDebug
+shortName: tLAD
+opCode:    765
+command:   0372ECD0
+
+longName : SetESRAMSetup
+shortName: esram
+opCode:    766
+command:   0372ED20
+
+longName : ToggleESRAM
+shortName: tesram
+opCode:    767
+command:   0372ED70
+
+longName : SetBookViewPort
+shortName: setbookvp
+opCode:    768
+command:   0372EDC0
+
+longName : SetBookOffset
+shortName: setbookoffset
+opCode:    769
+command:   0372EE10
+
+longName : ToggleMTA
+shortName: tMTA
+opCode:    770
+command:   0372EE60
+
+longName : SetPresentInterval
+shortName: spi
+opCode:    771
+command:   0372EEB0
+
+longName : CallStackTraceDepth
+shortName: trace
+opCode:    772
+command:   0372EF00
+
+longName : CommandedActivate
+shortName: ca
+opCode:    773
+command:   0372EF50
+
+longName : StoreInWorkshop
+shortName: store
+opCode:    774
+command:   0372EFA0
+
+longName : InstanceNamingRules
+shortName: inr
+opCode:    775
+command:   0372EFF0
+
+longName : GetOrbisModInfo
+shortName: 
+opCode:    776
+command:   0372F040
+
+longName : GetWantBlocking
+shortName: 
+opCode:    4096
+command:   03714DD0
+
+longName : GetDistance
+shortName: 
+opCode:    4097
+command:   03714E20
+
+longName : AddItem
+shortName: 
+opCode:    4098
+command:   03714E70
+
+longName : SetEssential
+shortName: 
+opCode:    4099
+command:   03714EC0
+
+longName : Rotate
+shortName: 
+opCode:    4100
+command:   03714F10
+
+longName : GetLocked
+shortName: 
+opCode:    4101
+command:   03714F60
+
+longName : GetPos
+shortName: 
+opCode:    4102
+command:   03714FB0
+
+longName : SetPos
+shortName: 
+opCode:    4103
+command:   03715000
+
+longName : GetAngle
+shortName: 
+opCode:    4104
+command:   03715050
+
+longName : SetAngle
+shortName: 
+opCode:    4105
+command:   037150A0
+
+longName : GetStartingPos
+shortName: 
+opCode:    4106
+command:   037150F0
+
+longName : GetStartingAngle
+shortName: 
+opCode:    4107
+command:   03715140
+
+longName : GetSecondsPassed
+shortName: 
+opCode:    4108
+command:   03715190
+
+longName : Activate
+shortName: 
+opCode:    4109
+command:   037151E0
+
+longName : GetValue
+shortName: GetAV
+opCode:    4110
+command:   03715230
+
+longName : SetValue
+shortName: SetAV
+opCode:    4111
+command:   03715280
+
+longName : ModValue
+shortName: ModAV
+opCode:    4112
+command:   037152D0
+
+longName : SetAtStart
+shortName: 
+opCode:    4113
+command:   03715320
+
+longName : GetCurrentTime
+shortName: 
+opCode:    4114
+command:   03715370
+
+longName : PlayGroup
+shortName: 
+opCode:    4115
+command:   037153C0
+
+longName : LoopGroup
+shortName: 
+opCode:    4116
+command:   03715410
+
+longName : SkipAnim
+shortName: 
+opCode:    4117
+command:   03715460
+
+longName : StartCombat
+shortName: 
+opCode:    4118
+command:   037154B0
+
+longName : StopCombat
+shortName: 
+opCode:    4119
+command:   03715500
+
+longName : GetScale
+shortName: 
+opCode:    4120
+command:   03715550
+
+longName : IsMoving
+shortName: 
+opCode:    4121
+command:   037155A0
+
+longName : IsTurning
+shortName: 
+opCode:    4122
+command:   037155F0
+
+longName : GetLineOfSight
+shortName: GetLOS
+opCode:    4123
+command:   03715640
+
+longName : AddSpell
+shortName: 
+opCode:    4124
+command:   03715690
+
+longName : RemoveSpell
+shortName: 
+opCode:    4125
+command:   037156E0
+
+longName : Cast
+shortName: 
+opCode:    4126
+command:   03715730
+
+longName : GetButtonPressed
+shortName: 
+opCode:    4127
+command:   03715780
+
+longName : GetInSameCell
+shortName: 
+opCode:    4128
+command:   037157D0
+
+longName : Enable
+shortName: 
+opCode:    4129
+command:   03715820
+
+longName : Disable
+shortName: 
+opCode:    4130
+command:   03715870
+
+longName : GetDisabled
+shortName: 
+opCode:    4131
+command:   037158C0
+
+longName : MenuMode
+shortName: 
+opCode:    4132
+command:   03715910
+
+longName : PlaceAtMe
+shortName: 
+opCode:    4133
+command:   03715960
+
+longName : PlaySound
+shortName: 
+opCode:    4134
+command:   037159B0
+
+longName : GetDisease
+shortName: 
+opCode:    4135
+command:   03715A00
+
+longName : FailAllObjectives
+shortName: 
+opCode:    4136
+command:   03715A50
+
+longName : GetClothingValue
+shortName: 
+opCode:    4137
+command:   03715AA0
+
+longName : SameFaction
+shortName: 
+opCode:    4138
+command:   03715AF0
+
+longName : SameRace
+shortName: 
+opCode:    4139
+command:   03715B40
+
+longName : SameSex
+shortName: 
+opCode:    4140
+command:   03715B90
+
+longName : GetDetected
+shortName: 
+opCode:    4141
+command:   03715BE0
+
+longName : GetDead
+shortName: 
+opCode:    4142
+command:   03715C30
+
+longName : GetItemCount
+shortName: 
+opCode:    4143
+command:   03715C80
+
+longName : GetGold
+shortName: 
+opCode:    4144
+command:   03715CD0
+
+longName : GetSleeping
+shortName: 
+opCode:    4145
+command:   03715D20
+
+longName : GetTalkedToPC
+shortName: 
+opCode:    4146
+command:   03715D70
+
+longName : Say
+shortName: 
+opCode:    4147
+command:   03715DC0
+
+longName : SayTo
+shortName: 
+opCode:    4148
+command:   03715E10
+
+longName : ShowHelpMessage
+shortName: 
+opCode:    4149
+command:   03715E60
+
+longName : StartQuest
+shortName: 
+opCode:    4150
+command:   03715EB0
+
+longName : StopQuest
+shortName: 
+opCode:    4151
+command:   03715F00
+
+longName : GetQuestRunning
+shortName: GetQR
+opCode:    4152
+command:   03715F50
+
+longName : SetStage
+shortName: 
+opCode:    4153
+command:   03715FA0
+
+longName : GetStage
+shortName: 
+opCode:    4154
+command:   03715FF0
+
+longName : GetStageDone
+shortName: 
+opCode:    4155
+command:   03716040
+
+longName : GetFactionRankDifference
+shortName: 
+opCode:    4156
+command:   03716090
+
+longName : GetAlarmed
+shortName: 
+opCode:    4157
+command:   037160E0
+
+longName : IsRaining
+shortName: 
+opCode:    4158
+command:   03716130
+
+longName : GetAttacked
+shortName: 
+opCode:    4159
+command:   03716180
+
+longName : GetIsCreature
+shortName: 
+opCode:    4160
+command:   037161D0
+
+longName : GetLockLevel
+shortName: 
+opCode:    4161
+command:   03716220
+
+longName : GetShouldAttack
+shortName: 
+opCode:    4162
+command:   03716270
+
+longName : GetInCell
+shortName: 
+opCode:    4163
+command:   037162C0
+
+longName : GetIsClass
+shortName: 
+opCode:    4164
+command:   03716310
+
+longName : GetIsRace
+shortName: 
+opCode:    4165
+command:   03716360
+
+longName : GetIsSex
+shortName: 
+opCode:    4166
+command:   037163B0
+
+longName : GetInFaction
+shortName: 
+opCode:    4167
+command:   03716400
+
+longName : GetIsID
+shortName: 
+opCode:    4168
+command:   03716450
+
+longName : GetFactionRank
+shortName: 
+opCode:    4169
+command:   037164A0
+
+longName : GetGlobalValue
+shortName: 
+opCode:    4170
+command:   037164F0
+
+longName : IsSnowing
+shortName: 
+opCode:    4171
+command:   03716540
+
+longName : FastTravel
+shortName: ft
+opCode:    4172
+command:   03716590
+
+longName : GetRandomPercent
+shortName: 
+opCode:    4173
+command:   037165E0
+
+longName : RemoveMusic
+shortName: 
+opCode:    4174
+command:   03716630
+
+longName : WouldBeStealing
+shortName: 
+opCode:    4175
+command:   03716680
+
+longName : GetLevel
+shortName: 
+opCode:    4176
+command:   037166D0
+
+longName : IsRotating
+shortName: 
+opCode:    4177
+command:   03716720
+
+longName : RemoveItem
+shortName: 
+opCode:    4178
+command:   03716770
+
+longName : GetLeveledEncounterValue
+shortName: 
+opCode:    4179
+command:   037167C0
+
+longName : GetDeadCount
+shortName: 
+opCode:    4180
+command:   03716810
+
+longName : AddToMap
+shortName: ShowMap
+opCode:    4181
+command:   03716860
+
+longName : StartConversation
+shortName: 
+opCode:    4182
+command:   037168B0
+
+longName : Drop
+shortName: 
+opCode:    4183
+command:   03716900
+
+longName : AddTopic
+shortName: 
+opCode:    4184
+command:   03716950
+
+longName : ShowMessage
+shortName: 
+opCode:    4185
+command:   037169A0
+
+longName : SetAlert
+shortName: 
+opCode:    4186
+command:   037169F0
+
+longName : GetIsAlerted
+shortName: 
+opCode:    4187
+command:   03716A40
+
+longName : Look
+shortName: 
+opCode:    4188
+command:   03716A90
+
+longName : StopLook
+shortName: 
+opCode:    4189
+command:   03716AE0
+
+longName : EvaluatePackage
+shortName: evp
+opCode:    4190
+command:   03716B30
+
+longName : SendAssaultAlarm
+shortName: 
+opCode:    4191
+command:   03716B80
+
+longName : EnablePlayerControls
+shortName: epc
+opCode:    4192
+command:   03716BD0
+
+longName : DisablePlayerControls
+shortName: dpc
+opCode:    4193
+command:   03716C20
+
+longName : GetPlayerControlsDisabled
+shortName: gpc
+opCode:    4194
+command:   03716C70
+
+longName : GetHeadingAngle
+shortName: 
+opCode:    4195
+command:   03716CC0
+
+longName : PickIdle
+shortName: 
+opCode:    4196
+command:   03716D10
+
+longName : IsWeaponMagicOut
+shortName: 
+opCode:    4197
+command:   03716D60
+
+longName : IsTorchOut
+shortName: 
+opCode:    4198
+command:   03716DB0
+
+longName : IsShieldOut
+shortName: 
+opCode:    4199
+command:   03716E00
+
+longName : CreateDetectionEvent
+shortName: 
+opCode:    4200
+command:   03716E50
+
+longName : IsActionRef
+shortName: 
+opCode:    4201
+command:   03716EA0
+
+longName : IsFacingUp
+shortName: 
+opCode:    4202
+command:   03716EF0
+
+longName : GetKnockedState
+shortName: 
+opCode:    4203
+command:   03716F40
+
+longName : GetWeaponAnimType
+shortName: 
+opCode:    4204
+command:   03716F90
+
+longName : IsWeaponSkillType
+shortName: 
+opCode:    4205
+command:   03716FE0
+
+longName : GetCurrentAIPackage
+shortName: 
+opCode:    4206
+command:   03717030
+
+longName : IsWaiting
+shortName: 
+opCode:    4207
+command:   03717080
+
+longName : IsIdlePlaying
+shortName: 
+opCode:    4208
+command:   037170D0
+
+longName : CompleteQuest
+shortName: 
+opCode:    4209
+command:   03717120
+
+longName : Lock
+shortName: 
+opCode:    4210
+command:   03717170
+
+longName : UnLock
+shortName: 
+opCode:    4211
+command:   037171C0
+
+longName : IsIntimidatedbyPlayer
+shortName: 
+opCode:    4212
+command:   03717210
+
+longName : IsPlayerInRegion
+shortName: 
+opCode:    4213
+command:   03717260
+
+longName : GetActorAggroRadiusViolated
+shortName: 
+opCode:    4214
+command:   037172B0
+
+longName : GetCrimeKnown
+shortName: 
+opCode:    4215
+command:   03717300
+
+longName : SetEnemy
+shortName: 
+opCode:    4216
+command:   03717350
+
+longName : SetAlly
+shortName: 
+opCode:    4217
+command:   037173A0
+
+longName : GetCrime
+shortName: 
+opCode:    4218
+command:   037173F0
+
+longName : IsGreetingPlayer
+shortName: 
+opCode:    4219
+command:   03717440
+
+longName : StartMisterSandMan
+shortName: 
+opCode:    4220
+command:   03717490
+
+longName : IsGuard
+shortName: 
+opCode:    4221
+command:   037174E0
+
+longName : StartCannibal
+shortName: 
+opCode:    4222
+command:   03717530
+
+longName : HasBeenEaten
+shortName: 
+opCode:    4223
+command:   03717580
+
+longName : GetStaminaPercentage
+shortName: GetStamina
+opCode:    4224
+command:   037175D0
+
+longName : HasBeenRead
+shortName: 
+opCode:    4225
+command:   03717620
+
+longName : GetDying
+shortName: 
+opCode:    4226
+command:   03717670
+
+longName : GetSceneActionPercent
+shortName: 
+opCode:    4227
+command:   037176C0
+
+longName : WouldRefuseCommand
+shortName: 
+opCode:    4228
+command:   03717710
+
+longName : SameFactionAsPC
+shortName: 
+opCode:    4229
+command:   03717760
+
+longName : SameRaceAsPC
+shortName: 
+opCode:    4230
+command:   037177B0
+
+longName : SameSexAsPC
+shortName: 
+opCode:    4231
+command:   03717800
+
+longName : GetIsReference
+shortName: 
+opCode:    4232
+command:   03717850
+
+longName : SetFactionRank
+shortName: 
+opCode:    4233
+command:   037178A0
+
+longName : ModFactionRank
+shortName: 
+opCode:    4234
+command:   037178F0
+
+longName : KillActor
+shortName: kill
+opCode:    4235
+command:   03717940
+
+longName : ResurrectActor
+shortName: resurrect
+opCode:    4236
+command:   03717990
+
+longName : IsTalking
+shortName: 
+opCode:    4237
+command:   037179E0
+
+longName : GetComponentCount
+shortName: 
+opCode:    4238
+command:   03717A30
+
+longName : GetCurrentAIProcedure
+shortName: 
+opCode:    4239
+command:   03717A80
+
+longName : GetTrespassWarningLevel
+shortName: 
+opCode:    4240
+command:   03717AD0
+
+longName : IsTrespassing
+shortName: 
+opCode:    4241
+command:   03717B20
+
+longName : IsInMyOwnedCell
+shortName: 
+opCode:    4242
+command:   03717B70
+
+longName : GetWindSpeed
+shortName: 
+opCode:    4243
+command:   03717BC0
+
+longName : GetCurrentWeatherPercent
+shortName: getweatherpct
+opCode:    4244
+command:   03717C10
+
+longName : GetIsCurrentWeather
+shortName: getweather
+opCode:    4245
+command:   03717C60
+
+longName : IsContinuingPackagePCNear
+shortName: 
+opCode:    4246
+command:   03717CB0
+
+longName : SetCrimeFaction
+shortName: 
+opCode:    4247
+command:   03717D00
+
+longName : GetIsCrimeFaction
+shortName: 
+opCode:    4248
+command:   03717D50
+
+longName : CanHaveFlames
+shortName: 
+opCode:    4249
+command:   03717DA0
+
+longName : HasFlames
+shortName: 
+opCode:    4250
+command:   03717DF0
+
+longName : AddFlames
+shortName: 
+opCode:    4251
+command:   03717E40
+
+longName : RemoveFlames
+shortName: 
+opCode:    4252
+command:   03717E90
+
+longName : GetOpenState
+shortName: 
+opCode:    4253
+command:   03717EE0
+
+longName : MoveToMarker
+shortName: MoveTo
+opCode:    4254
+command:   03717F30
+
+longName : GetSitting
+shortName: 
+opCode:    4255
+command:   03717F80
+
+longName : GetFurnitureMarkerID
+shortName: 
+opCode:    4256
+command:   03717FD0
+
+longName : GetIsCurrentPackage
+shortName: 
+opCode:    4257
+command:   03718020
+
+longName : IsCurrentFurnitureRef
+shortName: 
+opCode:    4258
+command:   03718070
+
+longName : IsCurrentFurnitureObj
+shortName: 
+opCode:    4259
+command:   037180C0
+
+longName : SetSize
+shortName: CSize
+opCode:    4260
+command:   03718110
+
+longName : RemoveMe
+shortName: 
+opCode:    4261
+command:   03718160
+
+longName : DropMe
+shortName: 
+opCode:    4262
+command:   037181B0
+
+longName : GetFactionReaction
+shortName: 
+opCode:    4263
+command:   03718200
+
+longName : SetFactionReaction
+shortName: 
+opCode:    4264
+command:   03718250
+
+longName : ModFactionReaction
+shortName: 
+opCode:    4265
+command:   037182A0
+
+longName : GetDayOfWeek
+shortName: 
+opCode:    4266
+command:   037182F0
+
+longName : IgnoreCrime
+shortName: 
+opCode:    4267
+command:   03718340
+
+longName : GetTalkedToPCParam
+shortName: 
+opCode:    4268
+command:   03718390
+
+longName : RemoveAllItems
+shortName: 
+opCode:    4269
+command:   037183E0
+
+longName : WakeUpPC
+shortName: 
+opCode:    4270
+command:   03718430
+
+longName : IsPCSleeping
+shortName: 
+opCode:    4271
+command:   03718480
+
+longName : IsPCAMurderer
+shortName: 
+opCode:    4272
+command:   037184D0
+
+longName : SetCombatStyle
+shortName: setcs
+opCode:    4273
+command:   03718520
+
+longName : PlaySound3D
+shortName: 
+opCode:    4274
+command:   03718570
+
+longName : SelectPlayerSpell
+shortName: spspell
+opCode:    4275
+command:   037185C0
+
+longName : HasSameEditorLocationAsRef
+shortName: 
+opCode:    4276
+command:   03718610
+
+longName : HasSameEditorLocationAsRefAlias
+shortName: 
+opCode:    4277
+command:   03718660
+
+longName : GetEquipped
+shortName: 
+opCode:    4278
+command:   037186B0
+
+longName : Wait
+shortName: 
+opCode:    4279
+command:   03718700
+
+longName : StopWaiting
+shortName: 
+opCode:    4280
+command:   03718750
+
+longName : IsSwimming
+shortName: 
+opCode:    4281
+command:   037187A0
+
+longName : ScriptEffectElapsedSeconds
+shortName: 
+opCode:    4282
+command:   037187F0
+
+longName : SetCellPublicFlag
+shortName: setpublic
+opCode:    4283
+command:   03718840
+
+longName : GetPCSleepHours
+shortName: 
+opCode:    4284
+command:   03718890
+
+longName : SetPCSleepHours
+shortName: 
+opCode:    4285
+command:   037188E0
+
+longName : GetAmountSoldStolen
+shortName: 
+opCode:    4286
+command:   03718930
+
+longName : ModAmountSoldStolen
+shortName: 
+opCode:    4287
+command:   03718980
+
+longName : GetIgnoreCrime
+shortName: 
+opCode:    4288
+command:   037189D0
+
+longName : GetPCExpelled
+shortName: 
+opCode:    4289
+command:   03718A20
+
+longName : SetPCExpelled
+shortName: 
+opCode:    4290
+command:   03718A70
+
+longName : GetPCFactionMurder
+shortName: 
+opCode:    4291
+command:   03718AC0
+
+longName : SetPCFactionMurder
+shortName: 
+opCode:    4292
+command:   03718B10
+
+longName : GetPCEnemyofFaction
+shortName: 
+opCode:    4293
+command:   03718B60
+
+longName : SetPCEnemyofFaction
+shortName: 
+opCode:    4294
+command:   03718BB0
+
+longName : GetPCFactionAttack
+shortName: 
+opCode:    4295
+command:   03718C00
+
+longName : SetPCFactionAttack
+shortName: 
+opCode:    4296
+command:   03718C50
+
+longName : StartScene
+shortName: 
+opCode:    4297
+command:   03718CA0
+
+longName : StopScene
+shortName: 
+opCode:    4298
+command:   03718CF0
+
+longName : GetDestroyed
+shortName: 
+opCode:    4299
+command:   03718D40
+
+longName : SetDestroyed
+shortName: 
+opCode:    4300
+command:   03718D90
+
+longName : GetActionRef
+shortName: getAR
+opCode:    4301
+command:   03718DE0
+
+longName : GetSelf
+shortName: this
+opCode:    4302
+command:   03718E30
+
+longName : GetContainer
+shortName: 
+opCode:    4303
+command:   03718E80
+
+longName : GetForceRun
+shortName: 
+opCode:    4304
+command:   03718ED0
+
+longName : SetForceRun
+shortName: 
+opCode:    4305
+command:   03718F20
+
+longName : GetForceSneak
+shortName: 
+opCode:    4306
+command:   03718F70
+
+longName : SetForceSneak
+shortName: 
+opCode:    4307
+command:   03718FC0
+
+longName : AdvancePCSkill
+shortName: AdvSkill
+opCode:    4308
+command:   03719010
+
+longName : AdvancePCLevel
+shortName: AdvLevel
+opCode:    4309
+command:   03719060
+
+longName : HasMagicEffect
+shortName: 
+opCode:    4310
+command:   037190B0
+
+longName : GetDefaultOpen
+shortName: 
+opCode:    4311
+command:   03719100
+
+longName : SetDefaultOpen
+shortName: 
+opCode:    4312
+command:   03719150
+
+longName : ShowClassMenu
+shortName: 
+opCode:    4313
+command:   037191A0
+
+longName : ShowLooksMenu
+shortName: SLM
+opCode:    4314
+command:   037191F0
+
+longName : Spawn
+shortName: 
+opCode:    4315
+command:   03719240
+
+longName : ShowNameMenu
+shortName: 
+opCode:    4316
+command:   03719290
+
+longName : SetOpenState
+shortName: 
+opCode:    4317
+command:   037192E0
+
+longName : ResetReference
+shortName: RecycleActor
+opCode:    4318
+command:   03719330
+
+longName : IsSpellTarget
+shortName: 
+opCode:    4319
+command:   03719380
+
+longName : GetVATSMode
+shortName: 
+opCode:    4320
+command:   037193D0
+
+longName : GetPersuasionNumber
+shortName: 
+opCode:    4321
+command:   03719420
+
+longName : GetVampireFeed
+shortName: 
+opCode:    4322
+command:   03719470
+
+longName : GetCannibal
+shortName: 
+opCode:    4323
+command:   037194C0
+
+longName : GetIsClassDefault
+shortName: 
+opCode:    4324
+command:   03719510
+
+longName : GetClassDefaultMatch
+shortName: 
+opCode:    4325
+command:   03719560
+
+longName : GetInCellParam
+shortName: 
+opCode:    4326
+command:   037195B0
+
+longName : GetPlayerDialogueInput
+shortName: 
+opCode:    4327
+command:   03719600
+
+longName : GetCombatTarget
+shortName: 
+opCode:    4328
+command:   03719650
+
+longName : GetPackageTarget
+shortName: 
+opCode:    4329
+command:   037196A0
+
+longName : ShowSpellMaking
+shortName: 
+opCode:    4330
+command:   037196F0
+
+longName : GetVatsTargetHeight
+shortName: 
+opCode:    4331
+command:   03719740
+
+longName : SetGhost
+shortName: 
+opCode:    4332
+command:   03719790
+
+longName : GetIsGhost
+shortName: 
+opCode:    4333
+command:   037197E0
+
+longName : EquipItem
+shortName: EquipObject
+opCode:    4334
+command:   03719830
+
+longName : UnequipItem
+shortName: UnEquipObject
+opCode:    4335
+command:   03719880
+
+longName : SetClass
+shortName: 
+opCode:    4336
+command:   037198D0
+
+longName : SetUnconscious
+shortName: 
+opCode:    4337
+command:   03719920
+
+longName : GetUnconscious
+shortName: 
+opCode:    4338
+command:   03719970
+
+longName : SetRestrained
+shortName: 
+opCode:    4339
+command:   037199C0
+
+longName : GetRestrained
+shortName: 
+opCode:    4340
+command:   03719A10
+
+longName : ForceFlee
+shortName: Flee
+opCode:    4341
+command:   03719A60
+
+longName : GetIsUsedItem
+shortName: 
+opCode:    4342
+command:   03719AB0
+
+longName : GetIsUsedItemType
+shortName: 
+opCode:    4343
+command:   03719B00
+
+longName : IsScenePlaying
+shortName: 
+opCode:    4344
+command:   03719B50
+
+longName : IsInDialogueWithPlayer
+shortName: 
+opCode:    4345
+command:   03719BA0
+
+longName : GetLocationCleared
+shortName: 
+opCode:    4346
+command:   03719BF0
+
+longName : SetLocationCleared
+shortName: 
+opCode:    4347
+command:   03719C40
+
+longName : ForceRefIntoAlias
+shortName: 
+opCode:    4348
+command:   03719C90
+
+longName : EmptyRefAlias
+shortName: 
+opCode:    4349
+command:   03719CE0
+
+longName : GetIsPlayableRace
+shortName: 
+opCode:    4350
+command:   03719D30
+
+longName : GetOffersServicesNow
+shortName: 
+opCode:    4351
+command:   03719D80
+
+longName : GetGameSetting
+shortName: GetGS
+opCode:    4352
+command:   03719DD0
+
+longName : StopCombatAlarmOnActor
+shortName: SCAOnActor
+opCode:    4353
+command:   03719E20
+
+longName : HasAssociationType
+shortName: 
+opCode:    4354
+command:   03719E70
+
+longName : HasFamilyRelationship
+shortName: Family
+opCode:    4355
+command:   03719EC0
+
+longName : SetWeather
+shortName: sw
+opCode:    4356
+command:   03719F10
+
+longName : HasParentRelationship
+shortName: IsParent
+opCode:    4357
+command:   03719F60
+
+longName : IsWarningAbout
+shortName: 
+opCode:    4358
+command:   03719FB0
+
+longName : IsWeaponOut
+shortName: 
+opCode:    4359
+command:   0371A000
+
+longName : HasSpell
+shortName: 
+opCode:    4360
+command:   0371A050
+
+longName : IsTimePassing
+shortName: 
+opCode:    4361
+command:   0371A0A0
+
+longName : IsPleasant
+shortName: 
+opCode:    4362
+command:   0371A0F0
+
+longName : IsCloudy
+shortName: 
+opCode:    4363
+command:   0371A140
+
+longName : TrapUpdate
+shortName: 
+opCode:    4364
+command:   0371A190
+
+longName : ShowQuestObjectives
+shortName: SQO
+opCode:    4365
+command:   0371A1E0
+
+longName : ForceValue
+shortName: ForceAV
+opCode:    4366
+command:   0371A230
+
+longName : IncrementPCSkill
+shortName: IncPCS
+opCode:    4367
+command:   0371A280
+
+longName : DoTrap
+shortName: 
+opCode:    4368
+command:   0371A2D0
+
+longName : EnableFastTravel
+shortName: EnableFast
+opCode:    4369
+command:   0371A320
+
+longName : IsSmallBump
+shortName: 
+opCode:    4370
+command:   0371A370
+
+longName : GetParentRef
+shortName: 
+opCode:    4371
+command:   0371A3C0
+
+longName : GetBaseValue
+shortName: GetBaseAV
+opCode:    4373
+command:   0371A460
+
+longName : IsOwner
+shortName: 
+opCode:    4374
+command:   0371A4B0
+
+longName : SetOwnership
+shortName: 
+opCode:    4375
+command:   0371A500
+
+longName : IsCellOwner
+shortName: 
+opCode:    4376
+command:   0371A550
+
+longName : SetCellOwnership
+shortName: 
+opCode:    4377
+command:   0371A5A0
+
+longName : IsHorseStolen
+shortName: 
+opCode:    4378
+command:   0371A5F0
+
+longName : SetCellFullName
+shortName: 
+opCode:    4379
+command:   0371A640
+
+longName : SetActorFullName
+shortName: 
+opCode:    4380
+command:   0371A690
+
+longName : IsLeftUp
+shortName: 
+opCode:    4381
+command:   0371A6E0
+
+longName : IsSneaking
+shortName: 
+opCode:    4382
+command:   0371A730
+
+longName : IsRunning
+shortName: 
+opCode:    4383
+command:   0371A780
+
+longName : GetFriendHit
+shortName: 
+opCode:    4384
+command:   0371A7D0
+
+longName : IsInCombat
+shortName: 
+opCode:    4385
+command:   0371A820
+
+longName : SetPackDuration
+shortName: SPDur
+opCode:    4386
+command:   0371A870
+
+longName : PlayMagicShaderVisuals
+shortName: PMS
+opCode:    4387
+command:   0371A8C0
+
+longName : PlayMagicEffectVisuals
+shortName: PME
+opCode:    4388
+command:   0371A910
+
+longName : StopMagicShaderVisuals
+shortName: SMS
+opCode:    4389
+command:   0371A960
+
+longName : StopMagicEffectVisuals
+shortName: SME
+opCode:    4390
+command:   0371A9B0
+
+longName : ResetInterior
+shortName: 
+opCode:    4391
+command:   0371AA00
+
+longName : IsAnimPlaying
+shortName: 
+opCode:    4392
+command:   0371AA50
+
+longName : SetActorAlpha
+shortName: SAA
+opCode:    4393
+command:   0371AAA0
+
+longName : EnableLinkedPathPoints
+shortName: 
+opCode:    4394
+command:   0371AAF0
+
+longName : DisableLinkedPathPoints
+shortName: 
+opCode:    4395
+command:   0371AB40
+
+longName : IsInInterior
+shortName: 
+opCode:    4396
+command:   0371AB90
+
+longName : ForceWeather
+shortName: fw
+opCode:    4397
+command:   0371ABE0
+
+longName : ToggleActorsAI
+shortName: 
+opCode:    4398
+command:   0371AC30
+
+longName : IsActorsAIOff
+shortName: 
+opCode:    4399
+command:   0371AC80
+
+longName : IsWaterObject
+shortName: 
+opCode:    4400
+command:   0371ACD0
+
+longName : GetPlayerAction
+shortName: 
+opCode:    4401
+command:   0371AD20
+
+longName : IsActorUsingATorch
+shortName: 
+opCode:    4402
+command:   0371AD70
+
+longName : SetLevel
+shortName: 
+opCode:    4403
+command:   0371ADC0
+
+longName : ResetFallDamageTimer
+shortName: 
+opCode:    4404
+command:   0371AE10
+
+longName : IsXBox
+shortName: 
+opCode:    4405
+command:   0371AE60
+
+longName : GetInWorldspace
+shortName: 
+opCode:    4406
+command:   0371AEB0
+
+longName : ModPCMiscStat
+shortName: ModPCMS
+opCode:    4407
+command:   0371AF00
+
+longName : GetPCMiscStat
+shortName: GetPCMS
+opCode:    4408
+command:   0371AF50
+
+longName : GetPairedAnimation
+shortName: GPA
+opCode:    4409
+command:   0371AFA0
+
+longName : IsActorAVictim
+shortName: 
+opCode:    4410
+command:   0371AFF0
+
+longName : GetTotalPersuasionNumber
+shortName: 
+opCode:    4411
+command:   0371B040
+
+longName : SetScale
+shortName: 
+opCode:    4412
+command:   0371B090
+
+longName : ModScale
+shortName: 
+opCode:    4413
+command:   0371B0E0
+
+longName : GetIdleDoneOnce
+shortName: 
+opCode:    4414
+command:   0371B130
+
+longName : KillAllActors
+shortName: killall
+opCode:    4415
+command:   0371B180
+
+longName : GetNoRumors
+shortName: 
+opCode:    4416
+command:   0371B1D0
+
+longName : SetNoRumors
+shortName: 
+opCode:    4417
+command:   0371B220
+
+longName : Dispel
+shortName: 
+opCode:    4418
+command:   0371B270
+
+longName : GetCombatState
+shortName: 
+opCode:    4419
+command:   0371B2C0
+
+longName : TriggerHitShader
+shortName: ths
+opCode:    4420
+command:   0371B310
+
+longName : GetWithinPackageLocation
+shortName: 
+opCode:    4421
+command:   0371B360
+
+longName : Reset3DState
+shortName: 
+opCode:    4422
+command:   0371B3B0
+
+longName : IsRidingMount
+shortName: 
+opCode:    4423
+command:   0371B400
+
+longName : DispelAllSpells
+shortName: 
+opCode:    4424
+command:   0371B450
+
+longName : IsFleeing
+shortName: 
+opCode:    4425
+command:   0371B4A0
+
+longName : AddAchievement
+shortName: 
+opCode:    4426
+command:   0371B4F0
+
+longName : DuplicateAllItems
+shortName: 
+opCode:    4427
+command:   0371B540
+
+longName : IsInDangerousWater
+shortName: 
+opCode:    4428
+command:   0371B590
+
+longName : EssentialDeathReload
+shortName: 
+opCode:    4429
+command:   0371B5E0
+
+longName : SetShowQuestItems
+shortName: 
+opCode:    4430
+command:   0371B630
+
+longName : DuplicateNPCStats
+shortName: 
+opCode:    4431
+command:   0371B680
+
+longName : ResetHealth
+shortName: 
+opCode:    4432
+command:   0371B6D0
+
+longName : SetIgnoreFriendlyHits
+shortName: sifh
+opCode:    4433
+command:   0371B720
+
+longName : GetIgnoreFriendlyHits
+shortName: gifh
+opCode:    4434
+command:   0371B770
+
+longName : IsPlayersLastRiddenMount
+shortName: 
+opCode:    4435
+command:   0371B7C0
+
+longName : SetActorRefraction
+shortName: sar
+opCode:    4436
+command:   0371B810
+
+longName : SetItemValue
+shortName: 
+opCode:    4437
+command:   0371B860
+
+longName : SetRigidBodyMass
+shortName: 
+opCode:    4438
+command:   0371B8B0
+
+longName : ShowViewerStrings
+shortName: svs
+opCode:    4439
+command:   0371B900
+
+longName : ReleaseWeatherOverride
+shortName: rwo
+opCode:    4440
+command:   0371B950
+
+longName : SetAllReachable
+shortName: 
+opCode:    4441
+command:   0371B9A0
+
+longName : SetAllVisible
+shortName: 
+opCode:    4442
+command:   0371B9F0
+
+longName : SetNoAvoidance
+shortName: 
+opCode:    4443
+command:   0371BA40
+
+longName : SendTrespassAlarm
+shortName: 
+opCode:    4444
+command:   0371BA90
+
+longName : SetSceneIsComplex
+shortName: 
+opCode:    4445
+command:   0371BAE0
+
+longName : Autosave
+shortName: 
+opCode:    4446
+command:   0371BB30
+
+longName : StartMasterFileSeekData
+shortName: 
+opCode:    4447
+command:   0371BB80
+
+longName : DumpMasterFileSeekData
+shortName: 
+opCode:    4448
+command:   0371BBD0
+
+longName : IsActor
+shortName: 
+opCode:    4449
+command:   0371BC20
+
+longName : IsEssential
+shortName: 
+opCode:    4450
+command:   0371BC70
+
+longName : PreloadMagicEffect
+shortName: 
+opCode:    4451
+command:   0371BCC0
+
+longName : ShowDialogSubtitles
+shortName: 
+opCode:    4452
+command:   0371BD10
+
+longName : SetPlayerResistingArrest
+shortName: 
+opCode:    4453
+command:   0371BD60
+
+longName : IsPlayerMovingIntoNewSpace
+shortName: 
+opCode:    4454
+command:   0371BDB0
+
+longName : GetInCurrentLocation
+shortName: 
+opCode:    4455
+command:   0371BE00
+
+longName : GetInCurrentLocationAlias
+shortName: 
+opCode:    4456
+command:   0371BE50
+
+longName : GetTimeDead
+shortName: 
+opCode:    4457
+command:   0371BEA0
+
+longName : HasLinkedRef
+shortName: 
+opCode:    4458
+command:   0371BEF0
+
+longName : GetLinkedRef
+shortName: 
+opCode:    4459
+command:   0371BF40
+
+longName : DamageObject
+shortName: do
+opCode:    4460
+command:   0371BF90
+
+longName : IsChild
+shortName: 
+opCode:    4461
+command:   0371BFE0
+
+longName : GetStolenItemValueNoCrime
+shortName: 
+opCode:    4462
+command:   0371C030
+
+longName : GetLastPlayerAction
+shortName: 
+opCode:    4463
+command:   0371C080
+
+longName : IsPlayerActionActive
+shortName: 
+opCode:    4464
+command:   0371C0D0
+
+longName : SetTalkingActivatorActor
+shortName: 
+opCode:    4465
+command:   0371C120
+
+longName : IsTalkingActivatorActor
+shortName: 
+opCode:    4466
+command:   0371C170
+
+longName : ShowBarterMenu
+shortName: sbm
+opCode:    4467
+command:   0371C1C0
+
+longName : IsInList
+shortName: 
+opCode:    4468
+command:   0371C210
+
+longName : GetStolenItemValue
+shortName: 
+opCode:    4469
+command:   0371C260
+
+longName : AddPerk
+shortName: 
+opCode:    4470
+command:   0371C2B0
+
+longName : GetCrimeGoldViolent
+shortName: getviolent
+opCode:    4471
+command:   0371C300
+
+longName : GetCrimeGoldNonviolent
+shortName: getnonviolent
+opCode:    4472
+command:   0371C350
+
+longName : ShowRepairMenu
+shortName: srm
+opCode:    4473
+command:   0371C3A0
+
+longName : IsOwnedBy
+shortName: 
+opCode:    4474
+command:   0371C3F0
+
+longName : AddNote
+shortName: AN
+opCode:    4475
+command:   0371C440
+
+longName : GetCommandDistance
+shortName: 
+opCode:    4476
+command:   0371C490
+
+longName : GetCommandLocationDistance
+shortName: 
+opCode:    4477
+command:   0371C4E0
+
+longName : AddToFaction
+shortName: Addfac
+opCode:    4478
+command:   0371C530
+
+longName : RemoveFromFaction
+shortName: Removefac
+opCode:    4479
+command:   0371C580
+
+longName : DamageValue
+shortName: DamageAV
+opCode:    4480
+command:   0371C5D0
+
+longName : RestoreValue
+shortName: RestoreAV
+opCode:    4481
+command:   0371C620
+
+longName : TriggerHUDShudder
+shortName: hudsh
+opCode:    4482
+command:   0371C670
+
+longName : GetObjectiveFailed
+shortName: 
+opCode:    4483
+command:   0371C6C0
+
+longName : SetObjectiveFailed
+shortName: 
+opCode:    4484
+command:   0371C710
+
+longName : SetGlobalTimeMultiplier
+shortName: sgtm
+opCode:    4485
+command:   0371C760
+
+longName : GetHitLocation
+shortName: 
+opCode:    4486
+command:   0371C7B0
+
+longName : IsPC1stPerson
+shortName: pc1st
+opCode:    4487
+command:   0371C800
+
+longName : PurgeCellBuffers
+shortName: pcb
+opCode:    4488
+command:   0371C850
+
+longName : PushActorAway
+shortName: 
+opCode:    4489
+command:   0371C8A0
+
+longName : SetActorsAI
+shortName: 
+opCode:    4490
+command:   0371C8F0
+
+longName : ClearOwnership
+shortName: 
+opCode:    4491
+command:   0371C940
+
+longName : GetCauseofDeath
+shortName: 
+opCode:    4492
+command:   0371C990
+
+longName : IsLimbGone
+shortName: 
+opCode:    4493
+command:   0371C9E0
+
+longName : IsWeaponInList
+shortName: 
+opCode:    4494
+command:   0371CA30
+
+longName : PlayIdle
+shortName: 
+opCode:    4495
+command:   0371CA80
+
+longName : ApplyImageSpaceModifier
+shortName: imod
+opCode:    4496
+command:   0371CAD0
+
+longName : RemoveImageSpaceModifier
+shortName: rimod
+opCode:    4497
+command:   0371CB20
+
+longName : IsBribedbyPlayer
+shortName: 
+opCode:    4498
+command:   0371CB70
+
+longName : GetRelationshipRank
+shortName: 
+opCode:    4499
+command:   0371CBC0
+
+longName : SetRelationshipRank
+shortName: 
+opCode:    4500
+command:   0371CC10
+
+longName : SetCellImageSpace
+shortName: 
+opCode:    4501
+command:   0371CC60
+
+longName : ShowChargenMenu
+shortName: scgm
+opCode:    4502
+command:   0371CCB0
+
+longName : GetVATSValue
+shortName: 
+opCode:    4503
+command:   0371CD00
+
+longName : IsKiller
+shortName: 
+opCode:    4504
+command:   0371CD50
+
+longName : IsKillerObject
+shortName: 
+opCode:    4505
+command:   0371CDA0
+
+longName : GetFactionCombatReaction
+shortName: 
+opCode:    4506
+command:   0371CDF0
+
+longName : UseWeapon
+shortName: 
+opCode:    4507
+command:   0371CE40
+
+longName : EvaluateSpellConditions
+shortName: esc
+opCode:    4508
+command:   0371CE90
+
+longName : ToggleMotionBlur
+shortName: tmb
+opCode:    4509
+command:   0371CEE0
+
+longName : Exists
+shortName: 
+opCode:    4510
+command:   0371CF30
+
+longName : GetGroupMemberCount
+shortName: 
+opCode:    4511
+command:   0371CF80
+
+longName : GetGroupTargetCount
+shortName: 
+opCode:    4512
+command:   0371CFD0
+
+longName : SetObjectiveCompleted
+shortName: 
+opCode:    4513
+command:   0371D020
+
+longName : SetObjectiveDisplayed
+shortName: 
+opCode:    4514
+command:   0371D070
+
+longName : GetObjectiveCompleted
+shortName: 
+opCode:    4515
+command:   0371D0C0
+
+longName : GetObjectiveDisplayed
+shortName: 
+opCode:    4516
+command:   0371D110
+
+longName : SetImageSpace
+shortName: 
+opCode:    4517
+command:   0371D160
+
+longName : PipboyRadio
+shortName: prad
+opCode:    4518
+command:   0371D1B0
+
+longName : RemovePerk
+shortName: 
+opCode:    4519
+command:   0371D200
+
+longName : DisableAllActors
+shortName: DisAA
+opCode:    4520
+command:   0371D250
+
+longName : GetIsFormType
+shortName: 
+opCode:    4521
+command:   0371D2A0
+
+longName : GetIsVoiceType
+shortName: 
+opCode:    4522
+command:   0371D2F0
+
+longName : GetPlantedExplosive
+shortName: 
+opCode:    4523
+command:   0371D340
+
+longName : CompleteAllObjectives
+shortName: 
+opCode:    4524
+command:   0371D390
+
+longName : IsScenePackageRunning
+shortName: 
+opCode:    4525
+command:   0371D3E0
+
+longName : GetHealthPercentage
+shortName: 
+opCode:    4526
+command:   0371D430
+
+longName : SetAudioMultithreading
+shortName: SAM
+opCode:    4527
+command:   0371D480
+
+longName : GetIsObjectType
+shortName: 
+opCode:    4528
+command:   0371D4D0
+
+longName : ShowChargenMenuParams
+shortName: scgmp
+opCode:    4529
+command:   0371D520
+
+longName : PlayerVisualDetection
+shortName: PVD
+opCode:    4530
+command:   0371D570
+
+longName : PlayerAudioDetection
+shortName: PAD
+opCode:    4531
+command:   0371D5C0
+
+longName : ExitGame
+shortName: exit
+opCode:    4532
+command:   0371D610
+
+longName : GetIsCreatureType
+shortName: 
+opCode:    4533
+command:   0371D660
+
+longName : HasKey
+shortName: 
+opCode:    4534
+command:   0371D6B0
+
+longName : IsFurnitureEntryType
+shortName: 
+opCode:    4535
+command:   0371D700
+
+longName : ShowWarning
+shortName: 
+opCode:    4536
+command:   0371D750
+
+longName : EnterTrigger
+shortName: 
+opCode:    4537
+command:   0371D7A0
+
+longName : MarkForDelete
+shortName: 
+opCode:    4538
+command:   0371D7F0
+
+longName : SetPlayerAIDriven
+shortName: 
+opCode:    4539
+command:   0371D840
+
+longName : GetInCurrentLocationFormList
+shortName: 
+opCode:    4540
+command:   0371D890
+
+longName : GetInZone
+shortName: 
+opCode:    4541
+command:   0371D8E0
+
+longName : GetVelocity
+shortName: 
+opCode:    4542
+command:   0371D930
+
+longName : GetGraphVariableFloat
+shortName: 
+opCode:    4543
+command:   0371D980
+
+longName : HasPerk
+shortName: 
+opCode:    4544
+command:   0371D9D0
+
+longName : GetFactionRelation
+shortName: 
+opCode:    4545
+command:   0371DA20
+
+longName : IsLastIdlePlayed
+shortName: 
+opCode:    4546
+command:   0371DA70
+
+longName : SetNPCRadio
+shortName: snr
+opCode:    4547
+command:   0371DAC0
+
+longName : SetPlayerTeammate
+shortName: 
+opCode:    4548
+command:   0371DB10
+
+longName : GetPlayerTeammate
+shortName: 
+opCode:    4549
+command:   0371DB60
+
+longName : GetPlayerTeammateCount
+shortName: 
+opCode:    4550
+command:   0371DBB0
+
+longName : OpenActorContainer
+shortName: 
+opCode:    4551
+command:   0371DC00
+
+longName : ClearFactionPlayerEnemyFlag
+shortName: 
+opCode:    4552
+command:   0371DC50
+
+longName : ClearActorsFactionsPlayerEnemyFlag
+shortName: 
+opCode:    4553
+command:   0371DCA0
+
+longName : GetActorCrimePlayerEnemy
+shortName: 
+opCode:    4554
+command:   0371DCF0
+
+longName : GetCrimeGold
+shortName: 
+opCode:    4555
+command:   0371DD40
+
+longName : SetCrimeGold
+shortName: 
+opCode:    4556
+command:   0371DD90
+
+longName : ModCrimeGold
+shortName: 
+opCode:    4557
+command:   0371DDE0
+
+longName : GetPlayerGrabbedRef
+shortName: 
+opCode:    4558
+command:   0371DE30
+
+longName : IsPlayerGrabbedRef
+shortName: 
+opCode:    4559
+command:   0371DE80
+
+longName : PlaceLeveledActorAtMe
+shortName: 
+opCode:    4560
+command:   0371DED0
+
+longName : GetKeywordItemCount
+shortName: 
+opCode:    4561
+command:   0371DF20
+
+longName : ShowLockpickMenu
+shortName: slpm
+opCode:    4562
+command:   0371DF70
+
+longName : GetBroadcastState
+shortName: 
+opCode:    4563
+command:   0371DFC0
+
+longName : SetBroadcastState
+shortName: 
+opCode:    4564
+command:   0371E010
+
+longName : StartRadioConversation
+shortName: 
+opCode:    4565
+command:   0371E060
+
+longName : GetDestructionStage
+shortName: 
+opCode:    4566
+command:   0371E0B0
+
+longName : ClearDestruction
+shortName: 
+opCode:    4567
+command:   0371E100
+
+longName : CastImmediateOnSelf
+shortName: cios
+opCode:    4568
+command:   0371E150
+
+longName : GetIsAlignment
+shortName: 
+opCode:    4569
+command:   0371E1A0
+
+longName : ResetQuest
+shortName: 
+opCode:    4570
+command:   0371E1F0
+
+longName : SetQuestDelay
+shortName: 
+opCode:    4571
+command:   0371E240
+
+longName : IsProtected
+shortName: 
+opCode:    4572
+command:   0371E290
+
+longName : GetThreatRatio
+shortName: 
+opCode:    4573
+command:   0371E2E0
+
+longName : MatchFaceGeometry
+shortName: 
+opCode:    4574
+command:   0371E330
+
+longName : GetIsUsedItemEquipType
+shortName: 
+opCode:    4575
+command:   0371E380
+
+longName : GetPlayerName
+shortName: 
+opCode:    4576
+command:   0371E3D0
+
+longName : FireWeapon
+shortName: 
+opCode:    4577
+command:   0371E420
+
+longName : PayCrimeGold
+shortName: 
+opCode:    4578
+command:   0371E470
+
+longName : GetPlayerActivated
+shortName: 
+opCode:    4579
+command:   0371E4C0
+
+longName : MatchRace
+shortName: 
+opCode:    4580
+command:   0371E510
+
+longName : GetFullyEnabledActorsInHigh
+shortName: 
+opCode:    4581
+command:   0371E560
+
+longName : SexChange
+shortName: 
+opCode:    4582
+command:   0371E5B0
+
+longName : IsCarryable
+shortName: 
+opCode:    4583
+command:   0371E600
+
+longName : GetConcussed
+shortName: 
+opCode:    4584
+command:   0371E650
+
+longName : SetZoneRespawns
+shortName: 
+opCode:    4585
+command:   0371E6A0
+
+longName : SetVATSTarget
+shortName: 
+opCode:    4586
+command:   0371E6F0
+
+longName : GetMapMarkerVisible
+shortName: 
+opCode:    4587
+command:   0371E740
+
+longName : ResetInventory
+shortName: 
+opCode:    4588
+command:   0371E790
+
+longName : PlayerKnows
+shortName: 
+opCode:    4589
+command:   0371E7E0
+
+longName : GetPermanentValue
+shortName: 
+opCode:    4590
+command:   0371E830
+
+longName : GetKillingBlowLimb
+shortName: 
+opCode:    4591
+command:   0371E880
+
+longName : GoToJail
+shortName: 
+opCode:    4592
+command:   0371E8D0
+
+longName : CanPayCrimeGold
+shortName: 
+opCode:    4593
+command:   0371E920
+
+longName : ServeTime
+shortName: 
+opCode:    4594
+command:   0371E970
+
+longName : GetDaysInJail
+shortName: 
+opCode:    4595
+command:   0371E9C0
+
+longName : EPAlchemyGetMakingPoison
+shortName: 
+opCode:    4596
+command:   0371EA10
+
+longName : EPAlchemyEffectHasKeyword
+shortName: 
+opCode:    4597
+command:   0371EA60
+
+longName : ShowAllMapMarkers
+shortName: tmm
+opCode:    4598
+command:   0371EAB0
+
+longName : GetAllowWorldInteractions
+shortName: 
+opCode:    4599
+command:   0371EB00
+
+longName : ResetAI
+shortName: 
+opCode:    4600
+command:   0371EB50
+
+longName : SetRumble
+shortName: 
+opCode:    4601
+command:   0371EBA0
+
+longName : DialogueGetAv
+shortName: 
+opCode:    4602
+command:   0371EBF0
+
+longName : DialogueHasPerk
+shortName: 
+opCode:    4603
+command:   0371EC40
+
+longName : GetLastHitCritical
+shortName: 
+opCode:    4604
+command:   0371EC90
+
+longName : AddMusic
+shortName: 
+opCode:    4605
+command:   0371ECE0
+
+longName : DialogueGetItemCount
+shortName: 
+opCode:    4606
+command:   0371ED30
+
+longName : LastCrippledCondition
+shortName: 
+opCode:    4607
+command:   0371ED80
+
+longName : HasSharedPowerGrid
+shortName: spg
+opCode:    4608
+command:   0371EDD0
+
+longName : IsCombatTarget
+shortName: 
+opCode:    4609
+command:   0371EE20
+
+longName : TriggerScreenBlood
+shortName: tsb
+opCode:    4610
+command:   0371EE70
+
+longName : GetVATSRightAreaFree
+shortName: 
+opCode:    4611
+command:   0371EEC0
+
+longName : GetVATSLeftAreaFree
+shortName: 
+opCode:    4612
+command:   0371EF10
+
+longName : GetVATSBackAreaFree
+shortName: 
+opCode:    4613
+command:   0371EF60
+
+longName : GetVATSFrontAreaFree
+shortName: 
+opCode:    4614
+command:   0371EFB0
+
+longName : GetIsLockBroken
+shortName: 
+opCode:    4615
+command:   0371F000
+
+longName : IsPS3
+shortName: 
+opCode:    4616
+command:   0371F050
+
+longName : IsWindowsPC
+shortName: 
+opCode:    4617
+command:   0371F0A0
+
+longName : GetVATSRightTargetVisible
+shortName: 
+opCode:    4618
+command:   0371F0F0
+
+longName : GetVATSLeftTargetVisible
+shortName: 
+opCode:    4619
+command:   0371F140
+
+longName : GetVATSBackTargetVisible
+shortName: 
+opCode:    4620
+command:   0371F190
+
+longName : GetVATSFrontTargetVisible
+shortName: 
+opCode:    4621
+command:   0371F1E0
+
+longName : AttachAshPile
+shortName: 
+opCode:    4622
+command:   0371F230
+
+longName : SetCriticalStage
+shortName: 
+opCode:    4623
+command:   0371F280
+
+longName : IsInCriticalStage
+shortName: 
+opCode:    4624
+command:   0371F2D0
+
+longName : RemoveFromAllFactions
+shortName: 
+opCode:    4625
+command:   0371F320
+
+longName : GetXPForNextLevel
+shortName: 
+opCode:    4626
+command:   0371F370
+
+longName : ShowLockpickMenuDebug
+shortName: slpmd
+opCode:    4627
+command:   0371F3C0
+
+longName : ForceSave
+shortName: 
+opCode:    4628
+command:   0371F410
+
+longName : GetInfamy
+shortName: 
+opCode:    4629
+command:   0371F460
+
+longName : GetInfamyViolent
+shortName: 
+opCode:    4630
+command:   0371F4B0
+
+longName : GetInfamyNonViolent
+shortName: 
+opCode:    4631
+command:   0371F500
+
+longName : GetTypeCommandPerforming
+shortName: 
+opCode:    4632
+command:   0371F550
+
+longName : Sin
+shortName: 
+opCode:    4633
+command:   0371F5A0
+
+longName : Cos
+shortName: 
+opCode:    4634
+command:   0371F5F0
+
+longName : Tan
+shortName: 
+opCode:    4635
+command:   0371F640
+
+longName : Sqrt
+shortName: 
+opCode:    4636
+command:   0371F690
+
+longName : Log
+shortName: 
+opCode:    4637
+command:   0371F6E0
+
+longName : Abs
+shortName: 
+opCode:    4638
+command:   0371F730
+
+longName : GetQuestCompleted
+shortName: GetQC
+opCode:    4639
+command:   0371F780
+
+longName : GetSpeechChallengeSuccessLevel
+shortName: 
+opCode:    4640
+command:   0371F7D0
+
+longName : PipBoyRadioOff
+shortName: 
+opCode:    4641
+command:   0371F820
+
+longName : AutoDisplayObjectives
+shortName: 
+opCode:    4642
+command:   0371F870
+
+longName : IsGoreDisabled
+shortName: 
+opCode:    4643
+command:   0371F8C0
+
+longName : FadeSFX
+shortName: FSFX
+opCode:    4644
+command:   0371F910
+
+longName : SetMinimalUse
+shortName: 
+opCode:    4645
+command:   0371F960
+
+longName : IsSceneActionComplete
+shortName: 
+opCode:    4646
+command:   0371F9B0
+
+longName : ShowQuestStages
+shortName: SQS
+opCode:    4647
+command:   0371FA00
+
+longName : GetSpellUsageNum
+shortName: 
+opCode:    4648
+command:   0371FA50
+
+longName : ForceRadioStationUpdate
+shortName: FRSU
+opCode:    4649
+command:   0371FAA0
+
+longName : GetActorsInHigh
+shortName: 
+opCode:    4650
+command:   0371FAF0
+
+longName : HasLoaded3D
+shortName: 
+opCode:    4651
+command:   0371FB40
+
+longName : DisableAllMines
+shortName: 
+opCode:    4652
+command:   0371FB90
+
+longName : SetLastExtDoorActivated
+shortName: 
+opCode:    4653
+command:   0371FBE0
+
+longName : KillQuestUpdates
+shortName: KQU
+opCode:    4654
+command:   0371FC30
+
+longName : IsImageSpaceActive
+shortName: 
+opCode:    4655
+command:   0371FC80
+
+longName : HasKeyword
+shortName: 
+opCode:    4656
+command:   0371FCD0
+
+longName : HasRefType
+shortName: 
+opCode:    4657
+command:   0371FD20
+
+longName : LocationHasKeyword
+shortName: 
+opCode:    4658
+command:   0371FD70
+
+longName : LocationHasRefType
+shortName: 
+opCode:    4659
+command:   0371FDC0
+
+longName : CreateEvent
+shortName: 
+opCode:    4660
+command:   0371FE10
+
+longName : GetIsEditorLocation
+shortName: 
+opCode:    4661
+command:   0371FE60
+
+longName : GetIsAliasRef
+shortName: 
+opCode:    4662
+command:   0371FEB0
+
+longName : GetIsEditorLocationAlias
+shortName: 
+opCode:    4663
+command:   0371FF00
+
+longName : IsSprinting
+shortName: 
+opCode:    4664
+command:   0371FF50
+
+longName : IsBlocking
+shortName: 
+opCode:    4665
+command:   0371FFA0
+
+longName : HasEquippedSpell
+shortName: hasspell
+opCode:    4666
+command:   0371FFF0
+
+longName : GetCurrentCastingType
+shortName: getcasting
+opCode:    4667
+command:   03720040
+
+longName : GetCurrentDeliveryType
+shortName: getdelivery
+opCode:    4668
+command:   03720090
+
+longName : EquipSpell
+shortName: 
+opCode:    4669
+command:   037200E0
+
+longName : GetAttackState
+shortName: 
+opCode:    4670
+command:   03720130
+
+longName : GetAliasedRef
+shortName: 
+opCode:    4671
+command:   03720180
+
+longName : GetEventData
+shortName: 
+opCode:    4672
+command:   037201D0
+
+longName : IsCloserToAThanB
+shortName: 
+opCode:    4673
+command:   03720220
+
+longName : LevelMinusPCLevel
+shortName: 
+opCode:    4674
+command:   03720270
+
+longName : IsBleedingOut
+shortName: 
+opCode:    4676
+command:   03720310
+
+longName : UnlockWord
+shortName: 
+opCode:    4677
+command:   03720360
+
+longName : TeachWord
+shortName: 
+opCode:    4678
+command:   037203B0
+
+longName : AddToContainer
+shortName: 
+opCode:    4679
+command:   03720400
+
+longName : GetRelativeAngle
+shortName: 
+opCode:    4680
+command:   03720450
+
+longName : SendAnimEvent
+shortName: sae
+opCode:    4681
+command:   037204A0
+
+longName : GetMovementDirection
+shortName: 
+opCode:    4685
+command:   037205E0
+
+longName : IsInScene
+shortName: 
+opCode:    4686
+command:   03720630
+
+longName : GetRefTypeDeadCount
+shortName: 
+opCode:    4687
+command:   03720680
+
+longName : GetRefTypeAliveCount
+shortName: 
+opCode:    4688
+command:   037206D0
+
+longName : ApplyHavokImpulse
+shortName: 
+opCode:    4689
+command:   03720720
+
+longName : GetIsFlying
+shortName: 
+opCode:    4690
+command:   03720770
+
+longName : IsCurrentSpell
+shortName: 
+opCode:    4691
+command:   037207C0
+
+longName : SpellHasKeyword
+shortName: 
+opCode:    4692
+command:   03720810
+
+longName : GetEquippedItemType
+shortName: 
+opCode:    4693
+command:   03720860
+
+longName : GetLocationAliasCleared
+shortName: 
+opCode:    4694
+command:   037208B0
+
+longName : SetLocationAliasCleared
+shortName: 
+opCode:    4695
+command:   03720900
+
+longName : GetLocationAliasRefTypeDeadCount
+shortName: 
+opCode:    4696
+command:   03720950
+
+longName : GetLocationAliasRefTypeAliveCount
+shortName: 
+opCode:    4697
+command:   037209A0
+
+longName : IsWardState
+shortName: 
+opCode:    4698
+command:   037209F0
+
+longName : IsInSameCurrentLocationAsRef
+shortName: 
+opCode:    4699
+command:   03720A40
+
+longName : IsInSameCurrentLocationAsRefAlias
+shortName: 
+opCode:    4700
+command:   03720A90
+
+longName : LocationAliasIsLocation
+shortName: 
+opCode:    4701
+command:   03720AE0
+
+longName : GetKeywordDataForLocation
+shortName: 
+opCode:    4702
+command:   03720B30
+
+longName : SetKeywordDataForLocation
+shortName: 
+opCode:    4703
+command:   03720B80
+
+longName : GetKeywordDataForAlias
+shortName: 
+opCode:    4704
+command:   03720BD0
+
+longName : SetKeywordDataForAlias
+shortName: 
+opCode:    4705
+command:   03720C20
+
+longName : LocationAliasHasKeyword
+shortName: 
+opCode:    4706
+command:   03720C70
+
+longName : IsNullPackageData
+shortName: 
+opCode:    4707
+command:   03720CC0
+
+longName : GetNumericPackageData
+shortName: 
+opCode:    4708
+command:   03720D10
+
+longName : IsPlayerRadioOn
+shortName: 
+opCode:    4709
+command:   03720D60
+
+longName : GetPlayerRadioFrequency
+shortName: 
+opCode:    4710
+command:   03720DB0
+
+longName : GetHighestRelationshipRank
+shortName: 
+opCode:    4711
+command:   03720E00
+
+longName : GetLowestRelationshipRank
+shortName: 
+opCode:    4712
+command:   03720E50
+
+longName : HasAssociationTypeAny
+shortName: 
+opCode:    4713
+command:   03720EA0
+
+longName : HasFamilyRelationshipAny
+shortName: 
+opCode:    4714
+command:   03720EF0
+
+longName : GetPathingTargetOffset
+shortName: 
+opCode:    4715
+command:   03720F40
+
+longName : GetPathingTargetAngleOffset
+shortName: 
+opCode:    4716
+command:   03720F90
+
+longName : GetPathingTargetSpeed
+shortName: 
+opCode:    4717
+command:   03720FE0
+
+longName : GetPathingTargetSpeedAngle
+shortName: 
+opCode:    4718
+command:   03721030
+
+longName : GetMovementSpeed
+shortName: 
+opCode:    4719
+command:   03721080
+
+longName : GetInContainer
+shortName: 
+opCode:    4720
+command:   037210D0
+
+longName : IsLocationLoaded
+shortName: 
+opCode:    4721
+command:   03721120
+
+longName : IsLocationAliasLoaded
+shortName: 
+opCode:    4722
+command:   03721170
+
+longName : IsDualCasting
+shortName: 
+opCode:    4723
+command:   037211C0
+
+longName : DualCast
+shortName: 
+opCode:    4724
+command:   03721210
+
+longName : GetVMQuestVariable
+shortName: 
+opCode:    4725
+command:   03721260
+
+longName : GetCombatAudioDetection
+shortName: adcombat
+opCode:    4726
+command:   037212B0
+
+longName : GetCombatVisualDetection
+shortName: vdcombat
+opCode:    4727
+command:   03721300
+
+longName : IsCasting
+shortName: 
+opCode:    4728
+command:   03721350
+
+longName : GetFlyingState
+shortName: 
+opCode:    4729
+command:   037213A0
+
+longName : SetCommandState
+shortName: 
+opCode:    4730
+command:   037213F0
+
+longName : IsInFavorState
+shortName: 
+opCode:    4731
+command:   03721440
+
+longName : HasTwoHandedWeaponEquipped
+shortName: 
+opCode:    4732
+command:   03721490
+
+longName : IsFurnitureExitType
+shortName: 
+opCode:    4733
+command:   037214E0
+
+longName : IsInFriendStatewithPlayer
+shortName: 
+opCode:    4734
+command:   03721530
+
+longName : GetWithinDistance
+shortName: 
+opCode:    4735
+command:   03721580
+
+longName : GetValuePercent
+shortName: 
+opCode:    4736
+command:   037215D0
+
+longName : IsUnique
+shortName: 
+opCode:    4737
+command:   03721620
+
+longName : GetLastBumpDirection
+shortName: 
+opCode:    4738
+command:   03721670
+
+longName : CameraShake
+shortName: 
+opCode:    4739
+command:   037216C0
+
+longName : GetInfoChallangeSuccess
+shortName: 
+opCode:    4740
+command:   03721710
+
+longName : GetIsInjured
+shortName: 
+opCode:    4741
+command:   03721760
+
+longName : GetIsCrashLandRequest
+shortName: 
+opCode:    4742
+command:   037217B0
+
+longName : GetIsHastyLandRequest
+shortName: 
+opCode:    4743
+command:   03721800
+
+longName : UpdateQuestInstanceGlobal
+shortName: 
+opCode:    4744
+command:   03721850
+
+longName : SetAllowFlying
+shortName: 
+opCode:    4745
+command:   037218A0
+
+longName : IsLinkedTo
+shortName: 
+opCode:    4746
+command:   037218F0
+
+longName : GetKeywordDataForCurrentLocation
+shortName: 
+opCode:    4747
+command:   03721940
+
+longName : GetInSharedCrimeFaction
+shortName: 
+opCode:    4748
+command:   03721990
+
+longName : GetBribeAmount
+shortName: 
+opCode:    4749
+command:   037219E0
+
+longName : GetBribeSuccess
+shortName: 
+opCode:    4750
+command:   03721A30
+
+longName : GetIntimidateSuccess
+shortName: 
+opCode:    4751
+command:   03721A80
+
+longName : GetArrestedState
+shortName: 
+opCode:    4752
+command:   03721AD0
+
+longName : GetArrestingActor
+shortName: 
+opCode:    4753
+command:   03721B20
+
+longName : ClearArrestState
+shortName: 
+opCode:    4754
+command:   03721B70
+
+longName : HasVMScript
+shortName: 
+opCode:    4755
+command:   03721BC0
+
+longName : GetVMScriptVariable
+shortName: 
+opCode:    4756
+command:   03721C10
+
+longName : GetWorkshopResourceDamage
+shortName: 
+opCode:    4757
+command:   03721C60
+
+longName : ForceLocationIntoAlias
+shortName: 
+opCode:    4759
+command:   03721D00
+
+longName : HasValidRumorTopic
+shortName: 
+opCode:    4760
+command:   03721D50
+
+longName : SetHorseActor
+shortName: 
+opCode:    4761
+command:   03721DA0
+
+longName : PlayReferenceEffect
+shortName: pre
+opCode:    4762
+command:   03721DF0
+
+longName : StopReferenceEffect
+shortName: sre
+opCode:    4763
+command:   03721E40
+
+longName : PlayShaderParticleGeometry
+shortName: pspg
+opCode:    4764
+command:   03721E90
+
+longName : StopShaderParticleGeometry
+shortName: sspg
+opCode:    4765
+command:   03721EE0
+
+longName : ApplyImageSpaceModifierCrossFade
+shortName: imodcf
+opCode:    4766
+command:   03721F30
+
+longName : RemoveImageSpaceModifierCrossFade
+shortName: rimodcf
+opCode:    4767
+command:   03721F80
+
+longName : IsAttacking
+shortName: 
+opCode:    4768
+command:   03721FD0
+
+longName : IsPowerAttacking
+shortName: 
+opCode:    4769
+command:   03722020
+
+longName : IsLastHostileActor
+shortName: 
+opCode:    4770
+command:   03722070
+
+longName : GetGraphVariableInt
+shortName: 
+opCode:    4771
+command:   037220C0
+
+longName : PlayImpactEffect
+shortName: pie
+opCode:    4773
+command:   03722160
+
+longName : ShouldAttackKill
+shortName: 
+opCode:    4774
+command:   037221B0
+
+longName : SendStealAlarm
+shortName: steal
+opCode:    4775
+command:   03722200
+
+longName : GetActivationHeight
+shortName: 
+opCode:    4776
+command:   03722250
+
+longName : WornHasKeyword
+shortName: 
+opCode:    4778
+command:   037222F0
+
+longName : GetPathingCurrentSpeed
+shortName: 
+opCode:    4779
+command:   03722340
+
+longName : GetPathingCurrentSpeedAngle
+shortName: 
+opCode:    4780
+command:   03722390
+
+longName : KnockAreaEffect
+shortName: kae
+opCode:    4781
+command:   037223E0
+
+longName : InterruptCast
+shortName: 
+opCode:    4782
+command:   03722430
+
+longName : AddFormToFormList
+shortName: 
+opCode:    4783
+command:   03722480
+
+longName : RevertFormList
+shortName: 
+opCode:    4784
+command:   037224D0
+
+longName : AddFormToLeveledList
+shortName: 
+opCode:    4785
+command:   03722520
+
+longName : RevertLeveledList
+shortName: 
+opCode:    4786
+command:   03722570
+
+longName : GetWorkshopObjectCount
+shortName: 
+opCode:    4787
+command:   037225C0
+
+longName : EPMagic_SpellHasKeyword
+shortName: 
+opCode:    4789
+command:   03722660
+
+longName : GetNoBleedoutRecovery
+shortName: 
+opCode:    4790
+command:   037226B0
+
+longName : SetNoBleedoutRecovery
+shortName: 
+opCode:    4791
+command:   03722700
+
+longName : EPMagic_SpellHasSkill
+shortName: 
+opCode:    4792
+command:   03722750
+
+longName : IsAttackType
+shortName: 
+opCode:    4793
+command:   037227A0
+
+longName : IsAllowedToFly
+shortName: 
+opCode:    4794
+command:   037227F0
+
+longName : HasMagicEffectKeyword
+shortName: 
+opCode:    4795
+command:   03722840
+
+longName : IsCommandedActor
+shortName: 
+opCode:    4796
+command:   03722890
+
+longName : IsStaggered
+shortName: 
+opCode:    4797
+command:   037228E0
+
+longName : IsRecoiling
+shortName: 
+opCode:    4798
+command:   03722930
+
+longName : HasScopeWeaponEquipped
+shortName: 
+opCode:    4799
+command:   03722980
+
+longName : IsPathing
+shortName: 
+opCode:    4800
+command:   037229D0
+
+longName : GetShouldHelp
+shortName: 
+opCode:    4801
+command:   03722A20
+
+longName : HasBoundWeaponEquipped
+shortName: 
+opCode:    4802
+command:   03722A70
+
+longName : GetCombatTargetHasKeyword
+shortName: gcthk
+opCode:    4803
+command:   03722AC0
+
+longName : UpdateLevel
+shortName: 
+opCode:    4804
+command:   03722B10
+
+longName : GetCombatGroupMemberCount
+shortName: gcgmc
+opCode:    4805
+command:   03722B60
+
+longName : IsIgnoringCombat
+shortName: 
+opCode:    4806
+command:   03722BB0
+
+longName : GetLightLevel
+shortName: gll
+opCode:    4807
+command:   03722C00
+
+longName : SavePCFace
+shortName: spf
+opCode:    4808
+command:   03722C50
+
+longName : SpellHasCastingPerk
+shortName: 
+opCode:    4809
+command:   03722CA0
+
+longName : IsBeingRidden
+shortName: 
+opCode:    4810
+command:   03722CF0
+
+longName : IsUndead
+shortName: 
+opCode:    4811
+command:   03722D40
+
+longName : GetRealHoursPassed
+shortName: 
+opCode:    4812
+command:   03722D90
+
+longName : UnequipAll
+shortName: 
+opCode:    4813
+command:   03722DE0
+
+longName : IsUnlockedDoor
+shortName: 
+opCode:    4814
+command:   03722E30
+
+longName : IsHostileToActor
+shortName: 
+opCode:    4815
+command:   03722E80
+
+longName : GetTargetHeight
+shortName: 
+opCode:    4816
+command:   03722ED0
+
+longName : IsPoison
+shortName: 
+opCode:    4817
+command:   03722F20
+
+longName : WornApparelHasKeywordCount
+shortName: 
+opCode:    4818
+command:   03722F70
+
+longName : GetItemHealthPercent
+shortName: 
+opCode:    4819
+command:   03722FC0
+
+longName : EffectWasDualCast
+shortName: 
+opCode:    4820
+command:   03723010
+
+longName : GetKnockStateEnum
+shortName: 
+opCode:    4821
+command:   03723060
+
+longName : DoesNotExist
+shortName: 
+opCode:    4822
+command:   037230B0
+
+longName : ShowGenericMenu
+shortName: sgm
+opCode:    4823
+command:   03723100
+
+longName : GetPlayerWalkAwayFromDialogueScene
+shortName: 
+opCode:    4824
+command:   03723150
+
+longName : GetActorStance
+shortName: 
+opCode:    4825
+command:   037231A0
+
+longName : Unused24
+shortName: 
+opCode:    4826
+command:   037231F0
+
+longName : UnequipItemSlot
+shortName: 
+opCode:    4827
+command:   03723240
+
+longName : MountActor
+shortName: 
+opCode:    4828
+command:   03723290
+
+longName : DismountActor
+shortName: 
+opCode:    4829
+command:   037232E0
+
+longName : CanProduceForWorkshop
+shortName: 
+opCode:    4830
+command:   03723330
+
+longName : CanFlyHere
+shortName: 
+opCode:    4831
+command:   03723380
+
+longName : EPIsDamageType
+shortName: 
+opCode:    4832
+command:   037233D0
+
+longName : Unused15
+shortName: 
+opCode:    4833
+command:   03723420
+
+longName : GetActorGunState
+shortName: 
+opCode:    4834
+command:   03723470
+
+longName : GetVoiceLineLength
+shortName: 
+opCode:    4835
+command:   037234C0
+
+longName : ModPos
+shortName: 
+opCode:    4836
+command:   03723510
+
+longName : ObjectTemplateItem_HasKeyword
+shortName: 
+opCode:    4837
+command:   03723560
+
+longName : ObjectTemplateItem_HasUniqueKeyword
+shortName: 
+opCode:    4838
+command:   037235B0
+
+longName : ObjectTemplateItem_GetLevel
+shortName: 
+opCode:    4839
+command:   03723600
+
+longName : MovementIdleMatches
+shortName: 
+opCode:    4840
+command:   03723650
+
+longName : GetActionData
+shortName: 
+opCode:    4841
+command:   037236A0
+
+longName : GetActionDataShort
+shortName: 
+opCode:    4842
+command:   037236F0
+
+longName : GetActionDataByte
+shortName: 
+opCode:    4843
+command:   03723740
+
+longName : GetActionDataFlag
+shortName: 
+opCode:    4844
+command:   03723790
+
+longName : ModdedItemHasKeyword
+shortName: 
+opCode:    4845
+command:   037237E0
+
+longName : GetAngryWithPlayer
+shortName: gawp
+opCode:    4846
+command:   03723830
+
+longName : IsCameraUnderWater
+shortName: 
+opCode:    4847
+command:   03723880
+
+longName : ModAngle
+shortName: 
+opCode:    4848
+command:   037238D0
+
+longName : IsActorRefOwner
+shortName: 
+opCode:    4849
+command:   03723920
+
+longName : HasActorRefOwner
+shortName: 
+opCode:    4850
+command:   03723970
+
+longName : PlaceThere
+shortName: pt
+opCode:    4851
+command:   037239C0
+
+longName : GetLoadedAmmoCount
+shortName: 
+opCode:    4852
+command:   03723A10
+
+longName : IsTimeSpanSunrise
+shortName: 
+opCode:    4853
+command:   03723A60
+
+longName : IsTimeSpanMorning
+shortName: 
+opCode:    4854
+command:   03723AB0
+
+longName : IsTimeSpanAfternoon
+shortName: 
+opCode:    4855
+command:   03723B00
+
+longName : IsTimeSpanEvening
+shortName: 
+opCode:    4856
+command:   03723B50
+
+longName : IsTimeSpanSunset
+shortName: 
+opCode:    4857
+command:   03723BA0
+
+longName : IsTimeSpanNight
+shortName: 
+opCode:    4858
+command:   03723BF0
+
+longName : IsTimeSpanMidnight
+shortName: 
+opCode:    4859
+command:   03723C40
+
+longName : IsTimeSpanAnyDay
+shortName: 
+opCode:    4860
+command:   03723C90
+
+longName : IsTimeSpanAnyNight
+shortName: 
+opCode:    4861
+command:   03723CE0
+
+longName : CurrentFurnitureHasKeyword
+shortName: 
+opCode:    4862
+command:   03723D30
+
+longName : GetWeaponEquipIndex
+shortName: 
+opCode:    4863
+command:   03723D80
+
+longName : KillAllHostile
+shortName: kah
+opCode:    4864
+command:   03723DD0
+
+longName : IsOverEncumbered
+shortName: 
+opCode:    4865
+command:   03723E20
+
+longName : IsPackageRequestingBlockedIdles
+shortName: 
+opCode:    4866
+command:   03723E70
+
+longName : GetActionDataInt
+shortName: 
+opCode:    4867
+command:   03723EC0
+
+longName : GetVATSRightMinusLeftAreaFree
+shortName: 
+opCode:    4868
+command:   03723F10
+
+longName : GetInIronSights
+shortName: 
+opCode:    4869
+command:   03723F60
+
+longName : GetActorStaggerDirection
+shortName: 
+opCode:    4870
+command:   03723FB0
+
+longName : GetActorStaggerMagnitude
+shortName: 
+opCode:    4871
+command:   03724000
+
+longName : WornCoversBipedSlot
+shortName: 
+opCode:    4872
+command:   03724050
+
+longName : GetInventoryValue
+shortName: 
+opCode:    4873
+command:   037240A0
+
+longName : IsPlayerInConversation
+shortName: 
+opCode:    4874
+command:   037240F0
+
+longName : IsInDialogueCamera
+shortName: 
+opCode:    4875
+command:   03724140
+
+longName : IsMyDialogueTargetPlayer
+shortName: 
+opCode:    4876
+command:   03724190
+
+longName : IsMyDialogueTargetActor
+shortName: 
+opCode:    4877
+command:   037241E0
+
+longName : GetMyDialogueTargetDistance
+shortName: 
+opCode:    4878
+command:   03724230
+
+longName : IsSeatOccupied
+shortName: 
+opCode:    4879
+command:   03724280
+
+longName : IsPlayerRiding
+shortName: 
+opCode:    4880
+command:   037242D0
+
+longName : IsTryingEventCamera
+shortName: 
+opCode:    4881
+command:   03724320
+
+longName : UseLeftSideCamera
+shortName: 
+opCode:    4882
+command:   03724370
+
+longName : GetNoteType
+shortName: 
+opCode:    4883
+command:   037243C0
+
+longName : LocationHasPlayerOwnedWorkshop
+shortName: 
+opCode:    4884
+command:   03724410
+
+longName : IsStartingAction
+shortName: 
+opCode:    4885
+command:   03724460
+
+longName : IsMidAction
+shortName: 
+opCode:    4886
+command:   037244B0
+
+longName : IsWeaponChargeAttack
+shortName: 
+opCode:    4887
+command:   03724500
+
+longName : IsInWorkshopMode
+shortName: 
+opCode:    4888
+command:   03724550
+
+longName : IsWeaponChargingHoldAttack
+shortName: 
+opCode:    4889
+command:   037245A0
+
+longName : IsEncounterAbovePlayerLevel
+shortName: 
+opCode:    4890
+command:   037245F0
+
+longName : IsMeleeAttacking
+shortName: 
+opCode:    4891
+command:   03724640
+
+longName : GetVATSQueuedTargetsUnique
+shortName: 
+opCode:    4892
+command:   03724690
+
+longName : GetCurrentLocationCleared
+shortName: 
+opCode:    4893
+command:   037246E0
+
+longName : IsPowered
+shortName: 
+opCode:    4894
+command:   03724730
+
+longName : GetTransmitterDistance
+shortName: 
+opCode:    4895
+command:   03724780
+
+longName : GetCameraPlaybackTime
+shortName: 
+opCode:    4896
+command:   037247D0
+
+longName : IsInWater
+shortName: 
+opCode:    4897
+command:   03724820
+
+longName : GetWithinActivateDistance
+shortName: 
+opCode:    4898
+command:   03724870
+
+longName : IsUnderWater
+shortName: 
+opCode:    4899
+command:   037248C0
+
+longName : IsInSameSpace
+shortName: 
+opCode:    4900
+command:   03724910
+
+longName : LocationAllowsReset
+shortName: 
+opCode:    4901
+command:   03724960
+
+longName : GetVATSBackRightAreaFree
+shortName: 
+opCode:    4902
+command:   037249B0
+
+longName : GetVATSBackLeftAreaFree
+shortName: 
+opCode:    4903
+command:   03724A00
+
+longName : GetVATSBackRightTargetVisible
+shortName: 
+opCode:    4904
+command:   03724A50
+
+longName : GetVATSBackLeftTargetVisible
+shortName: 
+opCode:    4905
+command:   03724AA0
+
+longName : GetVATSTargetLimbVisible
+shortName: 
+opCode:    4906
+command:   03724AF0
+
+longName : IsPlayerListening
+shortName: 
+opCode:    4907
+command:   03724B40
+
+longName : GetPathingRequestedQuickTurn
+shortName: 
+opCode:    4908
+command:   03724B90
+
+longName : EPIsCalculatingBaseDamage
+shortName: 
+opCode:    4909
+command:   03724BE0
+
+longName : GetReanimating
+shortName: 
+opCode:    4910
+command:   03724C30
+
+longName : MatlockCapture
+shortName: matlock
+opCode:    4911
+command:   03724C80
+
+longName : SetVoiceType
+shortName: svt
+opCode:    4912
+command:   03724CD0
+
+longName : IsInRobotWorkbench
+shortName: 
+opCode:    4913
+command:   03724D20

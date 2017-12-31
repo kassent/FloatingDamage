@@ -1,0 +1,526 @@
+
+//
+//#include "f4se/GameMenus.h"
+//class UIStringHolder
+//{
+//	struct StringItem
+//	{
+//		BSFixedString    name;
+//		UInt32			 isInit;
+//	};
+//	StringItem		barterMenu; //BarterMenu
+//	StringItem		bookMenu;
+//	StringItem		BSOverlayMenu;
+//	StringItem		buttonBarMenu;
+//	StringItem		buttonBarWidget;
+//	StringItem		closeMenu;
+//	StringItem		closingAllMenus;
+//	StringItem		console;
+//	StringItem		consoleNativeUIMenu;
+//	StringItem		containerMenu;
+//	StringItem		cookingMenu;
+//	StringItem		craftingMenu;
+//	StringItem		creditsMenu;
+//	StringItem		cursorMenu;
+//	StringItem		debugTextMenu;
+//	StringItem		dialogueHideButtons;
+//	StringItem		dialogueInDialogueCamera;
+//	StringItem		dialogueLookingAtSpeaker;
+//	StringItem		dialogueMenu;
+//	StringItem		dialogueSetButtonText;
+//	StringItem		dialogueShowButtons;
+//	StringItem		dialogueShowSpeechChallenge;
+//	StringItem		examineConfirmMenu;
+//	StringItem		examineMenu;
+//	StringItem		examineMenuItem3D;
+//	StringItem		faderMenu;
+//	StringItem		favoritesMenu;
+//	StringItem		flatScreenModel;
+//	StringItem		floatingQuestMarkers;
+//	StringItem		genericMenu;
+//	StringItem		graphWidget;
+//	StringItem		hudCamData;
+//	StringItem		hudMenu;
+//	StringItem		hudScreenModel;
+//	StringItem		inventoryMenu;
+//	StringItem		journalSettingsSaved;
+//	StringItem		kinectMenu;
+//	StringItem		levelUpMenu;
+//	StringItem		loadingMenu;
+//	StringItem		loadingMenuFadeIn;
+//	StringItem		loadingMenuNewLocation;
+//	StringItem		lockpickingMenu;
+//	StringItem		lockpickingMenu3D;
+//	StringItem		looksMenu;
+//	StringItem		magicMenu;
+//	StringItem		mainMenu;
+//	StringItem		mapMenu;
+//	StringItem		menuTextureDegradeEvent;
+//	StringItem		messageBoxMenu;
+//	StringItem		multiActiveMenu;
+//	StringItem		noMenu;
+//	StringItem		onPipboyOpening;
+//	StringItem		pauseMenu;
+//	StringItem		pauseMenuBackOutFromLoadGame;
+//	StringItem		pipboyHolotapeMenu;
+//	StringItem		pipboyMenu;
+//	StringItem		pipboyOpeningSequenceMenu;
+//	StringItem		playBinkMenu;
+//	StringItem		powerArmorHUDMenu;
+//	StringItem		powerArmorModMenu;
+//	StringItem		previousMod;
+//	StringItem		previousSelect;
+//	StringItem		promptMenu;
+//	StringItem		quantityData;
+//	StringItem		quantityMenu;
+//	StringItem		raseSexMenu;
+//	StringItem		refreshMenu;
+//	StringItem		scopeMenu;
+//	StringItem		showJournal;
+//	StringItem		sitWaitMenu;
+//	StringItem		sleepWaitMenu;
+//	StringItem		soundMenuCancel;
+//	StringItem		soundMenuOK;
+//	StringItem		specialMenu;//SPECIALMenu
+//	StringItem		statsMenu;
+//	StringItem		streamingInstallMenu;
+//	StringItem		terminalHolotapeMenu;
+//	StringItem		terminalMenu;
+//	StringItem		terminalRenderOverride;
+//	StringItem		textureWidght;
+//	StringItem		textWidget;
+//	StringItem		titleSequenceMenu;
+//	StringItem		topMenu;
+//	StringItem		tutorialMenu;
+//	StringItem		tweenMenu;
+//	StringItem		vatsMenu;
+//	StringItem		vertibirdMenu;
+//	StringItem		vignetteMenu;
+//	StringItem		voiceHolotape;
+//	StringItem		workshopCaravanMenu;
+//	StringItem		workshopMeScreenModel;
+//	float			unk;
+//	//64F8670 - 64F8C30
+//	//sub_2027800(v24, 3i64, v25); CloseMenu;
+//	//sub_2027340	scaleform
+//	//    LODWORD(v4) = sub_B67220(off_585BD48, v9, v8, &v13); AddMessage  flexMakeShapeFlags
+//int __fastcall sub_D263F0(__int64 a1, unsigned int a2, __int64 a3, __int64 a4) WNDPROC
+
+
+//sub_2024830   CloseMenu
+//};
+/*
+
+*/
+
+
+/*
+1>  IDXGISwapChain::$vftable@:
+1>  	| &IDXGISwapChain_meta
+1>  	|  0
+1>   0	| &IUnknown::QueryInterface
+1>   1	| &IUnknown::AddRef
+1>   2	| &IUnknown::Release
+1>   3	| &IDXGIObject::SetPrivateData
+1>   4	| &IDXGIObject::SetPrivateDataInterface
+1>   5	| &IDXGIObject::GetPrivateData
+1>   6	| &IDXGIObject::GetParent
+1>   7	| &IDXGIDeviceSubObject::GetDevice
+1>   8	| &IDXGISwapChain::Present
+1>   9	| &IDXGISwapChain::GetBuffer
+1>  10	| &IDXGISwapChain::SetFullscreenState
+1>  11	| &IDXGISwapChain::GetFullscreenState
+1>  12	| &IDXGISwapChain::GetDesc
+1>  13	| &IDXGISwapChain::ResizeBuffers
+1>  14	| &IDXGISwapChain::ResizeTarget
+1>  15	| &IDXGISwapChain::GetContainingOutput
+1>  16	| &IDXGISwapChain::GetFrameStatistics
+1>  17	| &IDXGISwapChain::GetLastPresentCount
+
+1>  ID3D11Device::$vftable@:
+1>  	| &ID3D11Device_meta
+1>  	|  0
+1>   0	| &IUnknown::QueryInterface
+1>   1	| &IUnknown::AddRef
+1>   2	| &IUnknown::Release
+1>   3	| &ID3D11Device::CreateBuffer
+1>   4	| &ID3D11Device::CreateTexture1D
+1>   5	| &ID3D11Device::CreateTexture2D
+1>   6	| &ID3D11Device::CreateTexture3D
+1>   7	| &ID3D11Device::CreateShaderResourceView
+1>   8	| &ID3D11Device::CreateUnorderedAccessView
+1>   9	| &ID3D11Device::CreateRenderTargetView
+1>  10	| &ID3D11Device::CreateDepthStencilView
+1>  11	| &ID3D11Device::CreateInputLayout
+1>  12	| &ID3D11Device::CreateVertexShader
+1>  13	| &ID3D11Device::CreateGeometryShader
+1>  14	| &ID3D11Device::CreateGeometryShaderWithStreamOutput
+1>  15	| &ID3D11Device::CreatePixelShader
+1>  16	| &ID3D11Device::CreateHullShader
+1>  17	| &ID3D11Device::CreateDomainShader
+1>  18	| &ID3D11Device::CreateComputeShader
+1>  19	| &ID3D11Device::CreateClassLinkage
+1>  20	| &ID3D11Device::CreateBlendState
+1>  21	| &ID3D11Device::CreateDepthStencilState
+1>  22	| &ID3D11Device::CreateRasterizerState
+1>  23	| &ID3D11Device::CreateSamplerState
+1>  24	| &ID3D11Device::CreateQuery
+1>  25	| &ID3D11Device::CreatePredicate
+1>  26	| &ID3D11Device::CreateCounter
+1>  27	| &ID3D11Device::CreateDeferredContext
+1>  28	| &ID3D11Device::OpenSharedResource
+1>  29	| &ID3D11Device::CheckFormatSupport
+1>  30	| &ID3D11Device::CheckMultisampleQualityLevels
+1>  31	| &ID3D11Device::CheckCounterInfo
+1>  32	| &ID3D11Device::CheckCounter
+1>  33	| &ID3D11Device::CheckFeatureSupport
+1>  34	| &ID3D11Device::GetPrivateData
+1>  35	| &ID3D11Device::SetPrivateData
+1>  36	| &ID3D11Device::SetPrivateDataInterface
+1>  37	| &ID3D11Device::GetFeatureLevel
+1>  38	| &ID3D11Device::GetCreationFlags
+1>  39	| &ID3D11Device::GetDeviceRemovedReason
+1>  40	| &ID3D11Device::GetImmediateContext
+1>  41	| &ID3D11Device::SetExceptionMode
+1>  42	| &ID3D11Device::GetExceptionMode
+
+1>  ID3D11DeviceContext::$vftable@:
+1>  	| &ID3D11DeviceContext_meta
+1>  	|  0
+1>   0	| &IUnknown::QueryInterface
+1>   1	| &IUnknown::AddRef
+1>   2	| &IUnknown::Release
+1>   3	| &ID3D11DeviceChild::GetDevice
+1>   4	| &ID3D11DeviceChild::GetPrivateData
+1>   5	| &ID3D11DeviceChild::SetPrivateData
+1>   6	| &ID3D11DeviceChild::SetPrivateDataInterface
+1>   7	| &ID3D11DeviceContext::VSSetConstantBuffers
+1>   8	| &ID3D11DeviceContext::PSSetShaderResources
+1>   9	| &ID3D11DeviceContext::PSSetShader
+1>  10	| &ID3D11DeviceContext::PSSetSamplers
+1>  11	| &ID3D11DeviceContext::VSSetShader
+1>  12	| &ID3D11DeviceContext::DrawIndexed
+1>  13	| &ID3D11DeviceContext::Draw
+1>  14	| &ID3D11DeviceContext::Map
+1>  15	| &ID3D11DeviceContext::Unmap
+1>  16	| &ID3D11DeviceContext::PSSetConstantBuffers
+1>  17	| &ID3D11DeviceContext::IASetInputLayout
+1>  18	| &ID3D11DeviceContext::IASetVertexBuffers
+1>  19	| &ID3D11DeviceContext::IASetIndexBuffer
+1>  20	| &ID3D11DeviceContext::DrawIndexedInstanced
+1>  21	| &ID3D11DeviceContext::DrawInstanced
+1>  22	| &ID3D11DeviceContext::GSSetConstantBuffers
+1>  23	| &ID3D11DeviceContext::GSSetShader
+1>  24	| &ID3D11DeviceContext::IASetPrimitiveTopology
+1>  25	| &ID3D11DeviceContext::VSSetShaderResources
+1>  26	| &ID3D11DeviceContext::VSSetSamplers
+1>  27	| &ID3D11DeviceContext::Begin
+1>  28	| &ID3D11DeviceContext::End
+1>  29	| &ID3D11DeviceContext::GetData
+1>  30	| &ID3D11DeviceContext::SetPredication
+1>  31	| &ID3D11DeviceContext::GSSetShaderResources
+1>  32	| &ID3D11DeviceContext::GSSetSamplers
+1>  33	| &ID3D11DeviceContext::OMSetRenderTargets
+1>  34	| &ID3D11DeviceContext::OMSetRenderTargetsAndUnorderedAccessViews
+1>  35	| &ID3D11DeviceContext::OMSetBlendState
+1>  36	| &ID3D11DeviceContext::OMSetDepthStencilState
+1>  37	| &ID3D11DeviceContext::SOSetTargets
+1>  38	| &ID3D11DeviceContext::DrawAuto
+1>  39	| &ID3D11DeviceContext::DrawIndexedInstancedIndirect
+1>  40	| &ID3D11DeviceContext::DrawInstancedIndirect
+1>  41	| &ID3D11DeviceContext::Dispatch
+1>  42	| &ID3D11DeviceContext::DispatchIndirect
+1>  43	| &ID3D11DeviceContext::RSSetState
+1>  44	| &ID3D11DeviceContext::RSSetViewports
+1>  45	| &ID3D11DeviceContext::RSSetScissorRects
+1>  46	| &ID3D11DeviceContext::CopySubresourceRegion
+1>  47	| &ID3D11DeviceContext::CopyResource
+1>  48	| &ID3D11DeviceContext::UpdateSubresource
+1>  49	| &ID3D11DeviceContext::CopyStructureCount
+1>  50	| &ID3D11DeviceContext::ClearRenderTargetView
+1>  51	| &ID3D11DeviceContext::ClearUnorderedAccessViewUint
+1>  52	| &ID3D11DeviceContext::ClearUnorderedAccessViewFloat
+1>  53	| &ID3D11DeviceContext::ClearDepthStencilView
+1>  54	| &ID3D11DeviceContext::GenerateMips
+1>  55	| &ID3D11DeviceContext::SetResourceMinLOD
+1>  56	| &ID3D11DeviceContext::GetResourceMinLOD
+1>  57	| &ID3D11DeviceContext::ResolveSubresource
+1>  58	| &ID3D11DeviceContext::ExecuteCommandList
+1>  59	| &ID3D11DeviceContext::HSSetShaderResources
+1>  60	| &ID3D11DeviceContext::HSSetShader
+1>  61	| &ID3D11DeviceContext::HSSetSamplers
+1>  62	| &ID3D11DeviceContext::HSSetConstantBuffers
+1>  63	| &ID3D11DeviceContext::DSSetShaderResources
+1>  64	| &ID3D11DeviceContext::DSSetShader
+1>  65	| &ID3D11DeviceContext::DSSetSamplers
+1>  66	| &ID3D11DeviceContext::DSSetConstantBuffers
+1>  67	| &ID3D11DeviceContext::CSSetShaderResources
+1>  68	| &ID3D11DeviceContext::CSSetUnorderedAccessViews
+1>  69	| &ID3D11DeviceContext::CSSetShader
+1>  70	| &ID3D11DeviceContext::CSSetSamplers
+1>  71	| &ID3D11DeviceContext::CSSetConstantBuffers
+1>  72	| &ID3D11DeviceContext::VSGetConstantBuffers
+1>  73	| &ID3D11DeviceContext::PSGetShaderResources
+1>  74	| &ID3D11DeviceContext::PSGetShader
+1>  75	| &ID3D11DeviceContext::PSGetSamplers
+1>  76	| &ID3D11DeviceContext::VSGetShader
+1>  77	| &ID3D11DeviceContext::PSGetConstantBuffers
+1>  78	| &ID3D11DeviceContext::IAGetInputLayout
+1>  79	| &ID3D11DeviceContext::IAGetVertexBuffers
+1>  80	| &ID3D11DeviceContext::IAGetIndexBuffer
+1>  81	| &ID3D11DeviceContext::GSGetConstantBuffers
+1>  82	| &ID3D11DeviceContext::GSGetShader
+1>  83	| &ID3D11DeviceContext::IAGetPrimitiveTopology
+1>  84	| &ID3D11DeviceContext::VSGetShaderResources
+1>  85	| &ID3D11DeviceContext::VSGetSamplers
+1>  86	| &ID3D11DeviceContext::GetPredication
+1>  87	| &ID3D11DeviceContext::GSGetShaderResources
+1>  88	| &ID3D11DeviceContext::GSGetSamplers
+1>  89	| &ID3D11DeviceContext::OMGetRenderTargets
+1>  90	| &ID3D11DeviceContext::OMGetRenderTargetsAndUnorderedAccessViews
+1>  91	| &ID3D11DeviceContext::OMGetBlendState
+1>  92	| &ID3D11DeviceContext::OMGetDepthStencilState
+1>  93	| &ID3D11DeviceContext::SOGetTargets
+1>  94	| &ID3D11DeviceContext::RSGetState
+1>  95	| &ID3D11DeviceContext::RSGetViewports
+1>  96	| &ID3D11DeviceContext::RSGetScissorRects
+1>  97	| &ID3D11DeviceContext::HSGetShaderResources
+1>  98	| &ID3D11DeviceContext::HSGetShader
+1>  99	| &ID3D11DeviceContext::HSGetSamplers
+1>  100	| &ID3D11DeviceContext::HSGetConstantBuffers
+1>  101	| &ID3D11DeviceContext::DSGetShaderResources
+1>  102	| &ID3D11DeviceContext::DSGetShader
+1>  103	| &ID3D11DeviceContext::DSGetSamplers
+1>  104	| &ID3D11DeviceContext::DSGetConstantBuffers
+1>  105	| &ID3D11DeviceContext::CSGetShaderResources
+1>  106	| &ID3D11DeviceContext::CSGetUnorderedAccessViews
+1>  107	| &ID3D11DeviceContext::CSGetShader
+1>  108	| &ID3D11DeviceContext::CSGetSamplers
+1>  109	| &ID3D11DeviceContext::CSGetConstantBuffers
+1>  110	| &ID3D11DeviceContext::ClearState
+1>  111	| &ID3D11DeviceContext::Flush
+1>  112	| &ID3D11DeviceContext::GetType
+1>  113	| &ID3D11DeviceContext::GetContextFlags
+1>  114	| &ID3D11DeviceContext::FinishCommandList
+
+*/
+
+			//WPARAM param = wParam;
+			//RelocAddr<bool*>  isInputEnabled = 0x371E5E8;
+			//if (*isInputEnabled && *g_inputDeviceMgr)
+			//{
+			//	char sName[8] = { 0x0 };
+			//	if (GetKeyboardLayoutName(sName))
+			//	{
+			//		char* pTerminal = sName + 8;
+			//		long iName = strtol(sName, &pTerminal, 0x10);
+			//		char sResult[0x8] = { 0x0 };
+			//		GetLocaleInfo(iName, 0x1004, sResult, 8);//Singopore
+			//		int codePage = atoi(sResult);
+			//		UInt8  code = static_cast<UInt8>(wParam);
+			//		wchar_t sWChar[1];
+			//		MultiByteToWideChar(codePage, MB_ERR_INVALID_CHARS, (char*)&code, 1, sWChar, 1);
+			//		param = *reinterpret_cast<UInt16*>(sWChar);
+			//	}
+			//}
+			RelocAddr<bool*>  isInputEnabled = 0x371E5E8;
+			if (*g_inputDeviceMgr && *isInputEnabled)
+			{
+#ifdef _DEBUG
+				_MESSAGE("[CHAR] wParam: %016I64X  lParam: %016I64X", wParam, lParam);
+#endif // _DEBUG
+				RelocAddr<void(*)(BSPCKeyboardDevice*, WPARAM, LPARAM)> fnProcessCharEvent = 0x01B11760;
+				fnProcessCharEvent((*g_inputDeviceMgr)->keyboardDevice, wParam, 0);
+			}
+
+
+
+		case WM_CREATE:
+			pWinHook = SetWindowsHookEx(WH_KEYBOARD_LL, [](int nCode, WPARAM wParam, LPARAM lParam)->LRESULT
+			{
+				if (nCode < 0 || nCode != HC_ACTION)  // do not process message 
+					return CallNextHookEx(pWinHook, nCode, wParam, lParam);
+				KBDLLHOOKSTRUCT* p = (KBDLLHOOKSTRUCT*)lParam;
+				switch (wParam)
+				{
+				case WM_KEYDOWN:
+				case WM_SYSKEYDOWN:
+				case WM_KEYUP:
+				case WM_SYSKEYUP:
+					switch (p->vkCode)
+					{
+					case VK_LWIN:
+					case VK_RWIN:
+						{
+
+						}
+					}
+					break;
+				}
+				return CallNextHookEx(pWinHook, nCode, wParam, lParam);
+			
+			}, ((LPCREATESTRUCT)lParam)->hInstance, 0);
+			break;
+		case WM_DESTROY:
+			if (pWinHook != nullptr)
+			{
+				UnhookWindowsHookEx(pWinHook);
+			}
+			break;
+
+
+
+		//g_criticalSection.Enter();
+		//pFontWrapper->DrawString
+		//(
+		//	pImmediateContext,
+		//	pInputMenu->inputStateInfo.c_str(),// String
+		//	24.0f,// Font size
+		//	1280 / 2.0f,// X offset
+		//	300 / 2.0f,// Y offset
+		//	0x800099FF,// Text color, 0xAaBbGgRr
+		//	FW1_LEFT | FW1_TOP// Flags
+		//);
+		//FW1_RECTF textRect = { 640, 350, 1040, 400};
+		////FW1_RECTF sizeRect = pFontWrapper->MeasureString(pInputMenu->tempContent.c_str(), L"Arial", 64.0f, &textRect, FW1_LEFT | FW1_VCENTER | FW1_NOWORDWRAP | FW1_CLIPRECT);
+		//pRectDrawer->DrawRect(pImmediateContext, textRect.Left, textRect.Top, textRect.Right, textRect.Bottom, 0xFFFF9911);
+		//pFontWrapper->DrawString(pImmediateContext, pInputMenu->compositionContent.c_str(), L"Arial", 24.0f, &textRect, 0xFFFFFFFF, &textRect, NULL, FW1_LEFT | FW1_VCENTER | FW1_NOWORDWRAP | FW1_CLIPRECT);
+
+		//g_criticalSection.Leave();
+
+
+		#include <fstream>
+#include <sstream>
+
+int __do_write(std::stringstream& ss, uintptr_t addr, uintptr_t * skip, bool full, bool& wrote)
+{
+	char buf[64];
+	int failed = 0;
+
+	__try
+	{
+		uintptr_t val = *((uintptr_t*)addr);
+		if (full || (addr >= ((uintptr_t)GetModuleHandle(NULL) + 0x1000) && addr <= ((uintptr_t)GetModuleHandle(NULL) + 0x2BC2000)))
+		{
+			if (skip)
+			{
+				for (int i = 0; skip[i] != 0; i++)
+				{
+					if (val == skip[i])
+					{
+						failed = -1;
+						break;
+					}
+				}
+			}
+
+			if (failed >= 0)
+			{
+				if (wrote)
+					_snprintf_s(buf, 64, " %016I64X", (uintptr_t)val);
+				else
+					_snprintf_s(buf, 64, "%016I64X", (uintptr_t)val);
+				ss << buf;
+				wrote = true;
+				failed = 1;
+			}
+		}
+	}
+	__except (1)
+	{
+		failed = -1;
+	}
+	return failed;
+}
+
+std::string get_stack_string(uintptr_t address, uintptr_t * skip = NULL, bool full = false)
+{
+	std::stringstream ss;
+
+	uintptr_t idx = 0;
+	bool wrote = false;
+	while (idx < 256)
+	{
+		int failed = __do_write(ss, address + 8 * idx, skip, full, wrote);
+
+		if (failed < 0)
+			break;
+
+		if (failed > 0)
+			skip = NULL;
+
+		idx++;
+	}
+
+	return ss.str();
+}
+
+void try_write_crash_info(EXCEPTION_POINTERS * info)
+{
+	constexpr char * logPath = "./Data/F4SE/Plugins/CrashLog";
+	time_t rawtime;
+	struct tm timeinfo;
+
+	time(&rawtime);
+	errno_t err = localtime_s(&timeinfo, &rawtime);
+
+	static char fileNameBuf[MAX_PATH];
+	static char fileTimeBuf[80];
+
+	if (err == 0)
+		strftime(fileTimeBuf, 80, "%Y_%m_%d_%H-%M-%S", &timeinfo);
+	else
+		_snprintf_s(fileTimeBuf, 80, "%d", 0);
+
+	_snprintf_s(fileNameBuf, MAX_PATH, "%s/crash_%s.txt", logPath, fileTimeBuf);
+
+
+	std::ofstream file = (true) ? std::ofstream(fileNameBuf) : std::ofstream(fileNameBuf, std::ios_base::app);
+	if (!file.good())
+	{
+		_MESSAGE("[CI] failed to open file for writing: \"%s\"", fileNameBuf);
+		return;
+	}
+
+	file << "===================================\n";
+
+	file << "Crash info:\n";
+	file << fileTimeBuf << " - ";
+
+	file << std::hex << std::uppercase;
+
+	file << info->ContextRecord->Rip;
+	file << ": ";
+
+	file << "V(1); ";
+
+	_MESSAGE("CRASHLOG:");
+	_MESSAGE("RIP(%016I64X)", info->ContextRecord->Rip);
+	_MESSAGE("RAX(%016I64X)", info->ContextRecord->Rax);
+	_MESSAGE("RBX(%016I64X)", info->ContextRecord->Rbx);
+	_MESSAGE("RCX(%016I64X)", info->ContextRecord->Rcx);
+	_MESSAGE("RDX(%016I64X)", info->ContextRecord->Rdx);
+	_MESSAGE("RSI(%016I64X)", info->ContextRecord->Rsi);
+	_MESSAGE("RDI(%016I64X)", info->ContextRecord->Rdi);
+	_MESSAGE("RBP(%016I64X)", info->ContextRecord->Rbp);
+	_MESSAGE("RSP(%016I64X)", info->ContextRecord->Rsp);
+
+	file << "RAX(" << info->ContextRecord->Rax << "); ";
+	file << "RBX(" << info->ContextRecord->Rbx << "); ";
+	file << "RCX(" << info->ContextRecord->Rcx << "); ";
+	file << "RDX(" << info->ContextRecord->Rdx << "); ";
+	file << "RSI(" << info->ContextRecord->Rsi << "); ";
+	file << "RDI(" << info->ContextRecord->Rdi << "); ";
+	file << "RBP(" << info->ContextRecord->Rbp << "); ";
+	file << "RSP(" << info->ContextRecord->Rsp << "); ";
+
+	std::string stackStr = get_stack_string(info->ContextRecord->Rsp, nullptr, false);
+	file << "STACK(" << stackStr.c_str() << ");";
+
+	file << "\n\nNot so useful info (don't post unless asked):\n";
+
+	stackStr = get_stack_string(info->ContextRecord->Rsp, nullptr, true);
+	file << "STACK_FULL(" << stackStr.c_str() << ");\n";
+
+	file.close();
+}

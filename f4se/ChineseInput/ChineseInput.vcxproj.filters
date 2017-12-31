@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Cicero.cpp" />
+    <ClCompile Include="Hooks.cpp" />
+    <ClCompile Include="HookUtil.cpp" />
+    <ClCompile Include="InputMenu.cpp" />
+    <ClCompile Include="InputUtil.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="RectDrawer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Async.h" />
+    <ClInclude Include="Cicero.h" />
+    <ClInclude Include="Hooks.h" />
+    <ClInclude Include="HookUtil.h" />
+    <ClInclude Include="InputMenu.h" />
+    <ClInclude Include="InputUtil.h" />
+    <ClInclude Include="RectDrawer.h" />
+    <ClInclude Include="resource.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{025bb86a-0c3a-4c6a-8860-7ecd243d5755}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="archive.txt">
+      <Filter>Resources</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc">
+      <Filter>Resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="exports.def">
+      <Filter>Resources</Filter>
+    </None>
+  </ItemGroup>
+</Project>
