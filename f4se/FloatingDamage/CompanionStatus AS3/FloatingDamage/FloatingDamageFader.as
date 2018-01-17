@@ -9,25 +9,31 @@
 	public class FloatingDamageFader extends MovieClip {
 		
 		public var widget:FloatingDamageWidget;
-
-		public var damageReceived: uint = 0;
+		public var pathingSettings: FloatingDamagePathingSettings;
+		
+		private var codeObj: Object;
+		
 		public var screenData: Array;
 		public var worldData: Array;
 		public var isBuff: Boolean;
 		//public var canFollow: Boolean = true;
 		
-		private var frameCount: uint = 0;
-		private var step: Number;
-		private var speed: Number;
-		private var direction: int;
-		private var fallDist: Number;
-		private var codeObj: Object;
-		private var graveFactor: Number = 0.1;
-		
-		private var fadeOut: Boolean = false;
+		private var iHorizontalDirection: int;
+		private var fHorizontalSpeed: Number;
+		private var fVerticalRisingSpeed: Number;
+		private var fVerticalFallDist: Number;
+		private var fVerticalRisingDist: Number;
 
-		public function FloatingDamageFader()
+		private var frameCount: uint = 0;	
+		private var isFadeOut: Boolean = false;
+
+		public function FloatingDamageFader(dmg: uint, screenPoint: Array, worldPoint: Array, buff: Boolean, showShadow: Boolean, settings: FloatingDamagePathingSettings)
 		{
+			this.screenData = screenPoint;
+			this.worldData = worldPoint;
+			this.isBuff = buff;
+			this.pathingSettings = settings;
+			widget.SetDamageText(dmg, showShadow);
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 		}		
 		
@@ -35,12 +41,15 @@
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 			
-			codeObj = stage.getChildAt(0)["f4se"].plugins.FloatingDamage;
+			codeObj = stage.getChildAt(0)["Menu_mc"]["BGSCodeObj"];
 
-			step = range(2.5, 4, false);
-			fallDist = range(80, 120, false);
-			speed = range(1, 4, true);
-			direction = wave;
+			fVerticalFallDist = range(pathingSettings.fMinVerticalFallDist, pathingSettings.fMaxVerticalFallDist, false);
+			fHorizontalSpeed = range(pathingSettings.fMinHorizontalSpeed, pathingSettings.fMaxHorizontalSpeed, false);
+
+			fVerticalRisingDist = range(pathingSettings.fMinVerticalRisingDist, pathingSettings.fMaxVerticalRisingDist, false);
+			fVerticalRisingSpeed = range(pathingSettings.fMinVerticalRisingSpeed, pathingSettings.fMaxVerticalRisingSpeed, false);
+			
+			iHorizontalDirection = wave;
 			
 			var screenPos: Point = parent.globalToLocal(new Point(stage.stageWidth * screenData[0], stage.stageHeight * screenData[1]));
 			this.x = screenPos.x;
@@ -50,16 +59,6 @@
 			this.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
 		}		
 		
-		public function get damage(): uint 
-		{
-			return damageReceived;
-		}
-		
-		public function set damage(val: uint):void 
-		{
-			damageReceived = val;
-			widget.damage = val;
-		}
 		
 		private function enterFrameHandler(e:Event):void 
 		{
@@ -85,36 +84,35 @@
 		private function UpdateSelf(): void
 		{
 			++frameCount;
-			var newScreenPosArr: Array = null;
-			var newScreenPos: Point = null;
-			var offsetY: Number = 0;
-			if(isBuff)
+			var newScreenPosArr : Array = null;
+			var newScreenPos : Point = null;
+			var offsetY : Number = 0;
+			if (isBuff)
 			{
 				newScreenPosArr = codeObj.WorldtoScreen(worldData[0], worldData[1], worldData[2]);
 				newScreenPos = parent.globalToLocal(new Point(stage.stageWidth * newScreenPosArr[0], stage.stageHeight * newScreenPosArr[1]));
 				this.x = newScreenPos.x;
-				offsetY = 3 * frameCount;
+				offsetY = pathingSettings.fEffectDamageRisingSpeed * frameCount;
 
-				if(!fadeOut && offsetY > fallDist)
+				if (!isFadeOut && (offsetY > fVerticalRisingDist || frameCount >= 300))
 				{
-					fadeOut = true;
+					isFadeOut = true;
 					gotoAndPlay("fadeOut");
 				}
-				this.y = newScreenPos.y - offsetY;					
+				this.y = newScreenPos.y - offsetY;
 			}
 			else
 			{
 				newScreenPosArr = codeObj.WorldtoScreen(worldData[0], worldData[1], worldData[2]);
 				newScreenPos = parent.globalToLocal(new Point(stage.stageWidth * newScreenPosArr[0], stage.stageHeight * newScreenPosArr[1]));
-				this.x = newScreenPos.x + step * frameCount * direction;
-				offsetY = graveFactor * frameCount * frameCount - speed * frameCount;
-
-				if(!fadeOut && offsetY > fallDist)
+				this.x = newScreenPos.x + fHorizontalSpeed * frameCount * iHorizontalDirection;
+				offsetY = pathingSettings.fGravitationalConstant * frameCount * frameCount - fVerticalRisingSpeed * frameCount;
+				if (!isFadeOut && (offsetY > fVerticalFallDist || frameCount >= 300))
 				{
-					fadeOut = true;
+					isFadeOut = true;
 					gotoAndPlay("fadeOut");
 				}
-				this.y = newScreenPos.y + offsetY;			
+				this.y = newScreenPos.y + offsetY;
 			}
 		}
 		
@@ -137,5 +135,10 @@
 			}
 			return num;
 		}
+		
+        private function log(str:String):void 
+		{
+            trace("[FloatingDamage]" + str);
+        }
 	}	
 }

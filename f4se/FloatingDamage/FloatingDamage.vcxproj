@@ -126,6 +126,7 @@
   <ItemGroup>
     <ClCompile Include="HookUtil.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\common\common_vc11.vcxproj">
@@ -144,6 +145,7 @@
   <ItemGroup>
     <ClInclude Include="HookUtil.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc" />

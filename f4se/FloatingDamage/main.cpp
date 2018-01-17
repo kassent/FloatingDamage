@@ -18,8 +18,12 @@
 #include <queue>
 
 #include "HookUtil.h"
+#include "UI.h"
 
-#define PLUGIN_VERSION	MAKE_EXE_VERSION(1, 0, 3)
+
+#include <thread>
+
+#define PLUGIN_VERSION	MAKE_EXE_VERSION(1, 1, 0)
 #define PLUGIN_NAME		"FloatingDamage"
 
 IDebugLog						gLog;
@@ -27,66 +31,82 @@ PluginHandle					g_pluginHandle = kPluginHandle_Invalid;
 F4SEScaleformInterface			* g_scaleform = nullptr;
 F4SEMessagingInterface			* g_messaging = nullptr;
 
-ICriticalSection					s_uiQueueLock;
-std::queue<ITaskDelegate*>			s_uiQueue;
+#define GetPrivateProfileFloat(settingName, defalutValue)	\
+		GetPrivateProfileStringA(settingsSection, #settingName, #defalutValue, sResult.get(), MAX_PATH, configFile);\
+		settingName = std::stof(sResult.get());
 
-class FloatingDamageDelegate : public ITaskDelegate
+struct Settings
 {
-public:
-	FloatingDamageDelegate(UInt32 dmg, float x, float y, float z, bool isEffect) : damage(dmg), hitPoint(x, y, z), isDebuff(isEffect) {}
+	static	bool			bShowEffectDamage;
+	static	bool			bUseDefaultHUDColor;
+	static	bool			bApplyShaderQuad;
 
-	virtual ~FloatingDamageDelegate() {}
+	static	UInt32			iWidgetColorR;
+	static	UInt32			iWidgetColorG;
+	static	UInt32			iWidgetColorB;
+	static	UInt32			iWidgetScale;
+	static	UInt32			iWidgetOpacity;
 
-	virtual void Run()
+	static	float			fMinHorizontalSpeed;
+	static	float			fMaxHorizontalSpeed;
+	static	float			fMinVerticalRisingSpeed;
+	static	float			fMaxVerticalRisingSpeed;
+	static	float			fMaxVerticalRisingDist;
+	static	float			fMinVerticalRisingDist;
+	static	float			fMaxVerticalFallDist;
+	static	float			fMinVerticalFallDist;
+	static	float			fGravitationalConstant;
+	static	float			fEffectDamageRisingSpeed;
+
+	static void LoadSettings()
 	{
-		NiPoint3 screenPoint{};
-		WorldToScreen_Internal(&hitPoint, &screenPoint);
-		screenPoint.y = 1.0f - screenPoint.y;//from bottom to top.
-		HUDMenu * pHUD = nullptr;
-		static BSFixedString menuName("HUDMenu");
-		if ((*g_ui) != nullptr && (pHUD = static_cast<HUDMenu*>((*g_ui)->GetMenu(&menuName)), pHUD))
-		{
-			GFxMovieRoot * movieRoot = pHUD->movie->movieRoot;
-			GFxValue params[4];
-			params[0].SetUInt(damage);
+		constexpr char * configFile = ".\\Data\\MCM\\Settings\\FloatingDamage.ini";
+		constexpr char * settingsSection = "Settings";
 
-			movieRoot->CreateArray(&params[1]);
-			GFxValue x(screenPoint.x);
-			params[1].PushBack(&x);
-			GFxValue y(screenPoint.y);
-			params[1].PushBack(&y);
-			GFxValue z(screenPoint.z);
-			params[1].PushBack(&z);
+		bShowEffectDamage = GetPrivateProfileIntA(settingsSection, "bShowEffectDamage", 1, configFile) != 0;
+		bUseDefaultHUDColor = GetPrivateProfileIntA(settingsSection, "bUseDefaultHUDColor", 1, configFile) != 0;
+		bApplyShaderQuad = GetPrivateProfileIntA(settingsSection, "bApplyShaderQuad", 1, configFile) != 0;
 
-			movieRoot->CreateArray(&params[2]);
-			x.SetNumber(hitPoint.x);
-			params[2].PushBack(&x);
-			y.SetNumber(hitPoint.y);
-			params[2].PushBack(&y);
-			z.SetNumber(hitPoint.z);
-			params[2].PushBack(&z);
+		iWidgetColorR = GetPrivateProfileIntA(settingsSection, "iWidgetColorR", 0xFF, configFile);
+		iWidgetColorG = GetPrivateProfileIntA(settingsSection, "iWidgetColorG", 0xFF, configFile);
+		iWidgetColorB = GetPrivateProfileIntA(settingsSection, "iWidgetColorB", 0xFF, configFile);
+		iWidgetScale = GetPrivateProfileIntA(settingsSection, "iWidgetScale", 100, configFile);
+		iWidgetOpacity = GetPrivateProfileIntA(settingsSection, "iWidgetOpacity", 100, configFile);
 
-			params[3].SetBool(isDebuff);
-			movieRoot->Invoke("root.floatingDamageLoader.content.onDamageReceived", nullptr, params, 4);
-		}
+		std::unique_ptr<char[]> sResult(new char[MAX_PATH]);
+		GetPrivateProfileFloat(fMinHorizontalSpeed, 2.5);
+		GetPrivateProfileFloat(fMaxHorizontalSpeed, 4.0);
+		GetPrivateProfileFloat(fMinVerticalRisingSpeed, 1.5);
+		GetPrivateProfileFloat(fMaxVerticalRisingSpeed, 4.5);
+		GetPrivateProfileFloat(fMinVerticalRisingDist, 90);
+		GetPrivateProfileFloat(fMaxVerticalRisingDist, 105);
+		GetPrivateProfileFloat(fMinVerticalFallDist, 80);
+		GetPrivateProfileFloat(fMaxVerticalFallDist, 120);
+		GetPrivateProfileFloat(fGravitationalConstant, 0.08);
+		GetPrivateProfileFloat(fEffectDamageRisingSpeed, 1.5);
 	}
-
-	static void Register(float dmg, NiPoint3 & location, bool isEffect)
-	{
-		s_uiQueueLock.Enter();
-		auto * pDelegate = new FloatingDamageDelegate(static_cast<UInt32>(dmg), location.x, location.y, location.z, isEffect);
-		s_uiQueue.push(pDelegate);
-		s_uiQueueLock.Leave();
-	}
-
-private:
-	UInt32					damage;
-	NiPoint3				hitPoint;
-	bool					isDebuff;
 };
 
+bool	Settings::bShowEffectDamage = false;
+bool	Settings::bUseDefaultHUDColor = true;
+bool	Settings::bApplyShaderQuad = true;
 
+UInt32	Settings::iWidgetColorR = 0xFF;
+UInt32	Settings::iWidgetColorG = 0xFF;
+UInt32	Settings::iWidgetColorB = 0xFF;
+UInt32	Settings::iWidgetScale = 100;
+UInt32	Settings::iWidgetOpacity = 100;
 
+float	Settings::fMinHorizontalSpeed = 2.5f;
+float	Settings::fMaxHorizontalSpeed = 4.0f;
+float	Settings::fMinVerticalRisingSpeed = 1.5f;
+float	Settings::fMaxVerticalRisingSpeed = 4.5f;
+float	Settings::fGravitationalConstant = 0.08f;
+float	Settings::fEffectDamageRisingSpeed = 1.5f;
+float	Settings::fMaxVerticalRisingDist = 105.0f;
+float	Settings::fMinVerticalRisingDist = 90.0f;
+float	Settings::fMaxVerticalFallDist = 120.0f;
+float	Settings::fMinVerticalFallDist = 80.0f;
 
 class BGSAttackData;
 
@@ -112,142 +132,349 @@ struct DamageFrame
 };
 STATIC_ASSERT(sizeof(DamageFrame) == 0xA0);
 
-struct Settings
+
+namespace UIFramework
 {
-	static	UInt32			iWidgetColor;
-	static	UInt32			iWidgetScale;
-	static	UInt32			iWidgetOpacity;
-	static	bool			bCanFollowObj;
-	static	bool			bShowEffectDamage;
-};
-UInt32	Settings::iWidgetColor = 0xFFFFFF;
-UInt32	Settings::iWidgetScale = 100;
-UInt32	Settings::iWidgetOpacity = 100;
-bool	Settings::bCanFollowObj = true;
-bool	Settings::bShowEffectDamage = false;
+	class FloatingDamageDelegate;
+	class FloatingDamageMenu;
 
-//A4F720
-//using _GetTopLevelContext = HUDContextArray<BSFixedString> * (*)();
-//RelocAddr<_GetTopLevelContext> GetTopLevelContext(0xA4F720);
-//
-//using _RegisterFloatingQuestMarker = void(*)(HUDMenu *, const char *);
-//RelocAddr<_RegisterFloatingQuestMarker> RegisterFloatingQuestMarker(0x127F080);
+	ICriticalSection							s_uiQueueLock;
+	std::queue<FloatingDamageDelegate*>			s_uiQueue;
 
-typedef void(*_UpdateHUDComponents)(HUDMenu * menu);
-RelocAddr<_UpdateHUDComponents> UpdateHUDComponents(0x01278A70);
-//48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC 20 48 8B F1 48 8B 0D ? ? ? ? E8 ? ? ? ?
-
-class HUDFloatingQuestMarkersEx : public HUDComponentBase
-{
-public:
-	class ApplyColorUpdateHandler : public BSTEventSink<ApplyColorUpdateEvent>
+	class FloatingDamageDelegate
 	{
 	public:
-		virtual	EventResult	ReceiveEvent(ApplyColorUpdateEvent * evn, void * dispatcher) override
+		FloatingDamageDelegate(UInt32 dmg, float x, float y, float z, bool isEffect) : damage(dmg), hitPoint(x, y, z), isDebuff(isEffect) {}
+
+		virtual ~FloatingDamageDelegate() {}
+
+		virtual void Run(IMenu * pMenu)
 		{
-			if (evn != nullptr)
-			{
-				componentThreadLock.Lock();
-				if (pWidgetContainer != nullptr)
-				{
-					if (Settings::iWidgetColor != -1)
-					{
-						FilterColor color; // RRGGBB
-						color.r = float((Settings::iWidgetColor >> 16) & 0xFF) / 255.0f;
-						color.g = float((Settings::iWidgetColor >> 8) & 0xFF) / 255.0f;
-						color.b = float(Settings::iWidgetColor & 0xFF) / 255.0f;
-						ApplyColorFilter(pWidgetContainer, &color, 1.0f);
-					}
-					else
-					{
-						pWidgetContainer->SetFilterColor(false);//crash here.
-					}
-				}
-				componentThreadLock.Release();
-			}
-			return kEvent_Continue;
+			NiPoint3 screenPoint{};
+			WorldToScreen_Internal(&hitPoint, &screenPoint);
+			screenPoint.y = 1.0f - screenPoint.y;//from bottom to top.
+
+			GFxMovieRoot * movieRoot = pMenu->movie->movieRoot;
+			GFxValue params[4];
+			params[0].SetUInt(damage);
+
+			movieRoot->CreateArray(&params[1]);
+			GFxValue x(screenPoint.x);
+			params[1].PushBack(&x);
+			GFxValue y(screenPoint.y);
+			params[1].PushBack(&y);
+			GFxValue z(screenPoint.z);
+			params[1].PushBack(&z);
+
+			movieRoot->CreateArray(&params[2]);
+			x.SetNumber(hitPoint.x);
+			params[2].PushBack(&x);
+			y.SetNumber(hitPoint.y);
+			params[2].PushBack(&y);
+			z.SetNumber(hitPoint.z);
+			params[2].PushBack(&z);
+
+			params[3].SetBool(isDebuff);
+			pMenu->stage.Invoke("onDamageReceived", nullptr, params, 4);
 		}
 
-		static void Register()
+		static void Register(float dmg, NiPoint3 & location, bool isEffect)
 		{
-			if (g_colorUpdateDispatcher.GetPtr() && (*g_colorUpdateDispatcher))
+			s_uiQueueLock.Enter();
+			if (s_uiQueue.size() <= 0x64)
 			{
-				static auto * pHandler = new ApplyColorUpdateHandler();
-				(*g_colorUpdateDispatcher)->dispatcher.AddEventSink(pHandler);
+				auto * pDelegate = new FloatingDamageDelegate(static_cast<UInt32>(dmg), location.x, location.y, location.z, isEffect);
+				s_uiQueue.push(pDelegate);
+			}
+			s_uiQueueLock.Leave();
+		}
+
+	private:
+		UInt32					damage;
+		NiPoint3				hitPoint;
+		bool					isDebuff;
+	};
+
+	class FloatingDamageMenu : public GameMenuBase
+	{
+	public:
+
+		enum
+		{
+			kMessage_UpdateModSettings = 0x10,
+			kMessage_UpdateColorSettings
+		};
+
+		FloatingDamageMenu() : GameMenuBase()
+		{
+			//default menu depth is 6.
+			flags = kFlag_DoNotPreventGameSave | kFlag_DisableInteractive | kFlag_Unk800000;
+			if ((*g_scaleformManager)->LoadMovie(this, this->movie, "FloatingDamageMenu", "root1.Menu_mc", 2))
+			{
+				if (Settings::bApplyShaderQuad)
+					flags |= kFlag_ApplyDropDownFilter;
+				else
+					stage.SetMember("showShadowEffect", &GFxValue(true));
+				CreateBaseShaderTarget(this->shaderTarget, this->stage);
+				if (Settings::bUseDefaultHUDColor)
+				{
+					SetFilterColorType(this->shaderTarget, 2, 1.0f);
+				}
+				else
+				{
+					this->shaderTarget->colorType = BSGFxShaderFXTarget::kColorNoChange;
+					FilterColor color; // RRGGBB
+					color.r = float(Settings::iWidgetColorR & 0xFF) / 255.0f;
+					color.g = float(Settings::iWidgetColorG & 0xFF) / 255.0f;
+					color.b = float(Settings::iWidgetColorB & 0xFF) / 255.0f;
+					ApplyColorFilter(this->shaderTarget, &color, 1.0f);
+				}
+				if (this->flags & kFlag_ApplyDropDownFilter)
+				{
+					this->subcomponents.Push(this->shaderTarget);
+				}
+			}
+		}
+
+		virtual void *	ReleaseThis(bool releaseMem) final
+		{
+			return this->GameMenuBase::ReleaseThis(releaseMem);
+		};
+
+		virtual void	Invoke(Args * args) final 
+		{
+			switch (args->optionID)
+			{
+			case 0:
+			{
+				NiPoint3 worldPos{};
+				worldPos.x = static_cast<float>(args->args[0].GetNumber());
+				worldPos.y = static_cast<float>(args->args[1].GetNumber());
+				worldPos.z = static_cast<float>(args->args[2].GetNumber());
+				NiPoint3 screenPos;
+				WorldToScreen_Internal(&worldPos, &screenPos);
+				screenPos.y = 1.0f - screenPos.y;//from bottom to top.
+				args->movie->movieRoot->CreateArray(args->result);
+				GFxValue x(screenPos.x);
+				args->result->PushBack(&x);
+				GFxValue y(screenPos.y);
+				args->result->PushBack(&y);
+				GFxValue z(screenPos.z);
+				args->result->PushBack(&z);
+				break;
+			}
+			case 1:
+			{
+				if (g_ui && (*g_ui) != nullptr)
+					args->result->SetBool((*g_ui)->numPauseGame);
+				else
+					args->result->SetBool(false);
+				break;
+			}
+			case 2:
+			{
+				auto * movieRoot = args->movie->movieRoot;
+				auto * settings = args->result;
+				movieRoot->CreateObject(settings);
+				Register<double>(settings, "fWidgetScale", static_cast<float>(Settings::iWidgetScale) / 100);
+				Register<double>(settings, "fWidgetOpacity", static_cast<float>(Settings::iWidgetOpacity) / 100);
+				Register<double>(settings, "fMinHorizontalSpeed", Settings::fMinHorizontalSpeed);
+				Register<double>(settings, "fMaxHorizontalSpeed", Settings::fMaxHorizontalSpeed);
+				Register<double>(settings, "fMinVerticalRisingSpeed", Settings::fMinVerticalRisingSpeed);
+				Register<double>(settings, "fMaxVerticalRisingSpeed", Settings::fMaxVerticalRisingSpeed);
+				Register<double>(settings, "fGravitationalConstant", Settings::fGravitationalConstant);
+				Register<double>(settings, "fEffectDamageRisingSpeed", Settings::fEffectDamageRisingSpeed);
+				Register<double>(settings, "fMaxVerticalRisingDist", Settings::fMaxVerticalRisingDist);
+				Register<double>(settings, "fMinVerticalRisingDist", Settings::fMinVerticalRisingDist);
+				Register<double>(settings, "fMaxVerticalFallDist", Settings::fMaxVerticalFallDist);
+				Register<double>(settings, "fMinVerticalFallDist", Settings::fMinVerticalFallDist);
+				break;
+			}
+			default:
+				break;
+			}
+		}
+
+		virtual void	RegisterFunctions() final 
+		{
+			this->RegisterFunction("WorldtoScreen", 0);
+			this->RegisterFunction("IsInMenuMode", 1);
+			this->RegisterFunction("GetModSettings", 2);
+		}
+
+		virtual UInt32	ProcessMessage(UIMessage * msg) final 
+		{ 
+			switch (msg->type)
+			{
+			case kMessage_Open:
+			case kMessage_Close:
+			{
+				s_uiQueueLock.Enter();
+				while (!s_uiQueue.empty())
+				{
+					FloatingDamageDelegate * cmd = s_uiQueue.front();
+					s_uiQueue.pop();
+					delete cmd;
+				}
+				s_uiQueueLock.Leave();
+				break;
+			}
+			case kMessage_UpdateModSettings:
+			{
+				GFxMovieRoot * movieRoot = movie->movieRoot;
+				GFxValue settings;
+				movieRoot->CreateObject(&settings);
+				Register<double>(&settings, "fWidgetScale", static_cast<float>(Settings::iWidgetScale) / 100);
+				Register<double>(&settings, "fWidgetOpacity", static_cast<float>(Settings::iWidgetOpacity) / 100);
+				Register<double>(&settings, "fMinHorizontalSpeed", Settings::fMinHorizontalSpeed);
+				Register<double>(&settings, "fMaxHorizontalSpeed", Settings::fMaxHorizontalSpeed);
+				Register<double>(&settings, "fMinVerticalRisingSpeed", Settings::fMinVerticalRisingSpeed);
+				Register<double>(&settings, "fMaxVerticalRisingSpeed", Settings::fMaxVerticalRisingSpeed);
+				Register<double>(&settings, "fGravitationalConstant", Settings::fGravitationalConstant);
+				Register<double>(&settings, "fEffectDamageRisingSpeed", Settings::fEffectDamageRisingSpeed);
+				Register<double>(&settings, "fMaxVerticalRisingDist", Settings::fMaxVerticalRisingDist);
+				Register<double>(&settings, "fMinVerticalRisingDist", Settings::fMinVerticalRisingDist);
+				Register<double>(&settings, "fMaxVerticalFallDist", Settings::fMaxVerticalFallDist);
+				Register<double>(&settings, "fMinVerticalFallDist", Settings::fMinVerticalFallDist);
+				stage.Invoke("onModSettingChanged", nullptr, &settings, 1);
+				break;
+			}
+			case kMessage_UpdateColorSettings:
+			{
+				if (Settings::bUseDefaultHUDColor)
+					this->shaderTarget->SetFilterColor(false);
+				else
+				{
+					this->shaderTarget->colorType = BSGFxShaderFXTarget::kColorNoChange;
+					FilterColor color; // RRGGBB
+					color.r = float(Settings::iWidgetColorR & 0xFF) / 255.0f;
+					color.g = float(Settings::iWidgetColorG & 0xFF) / 255.0f;
+					color.b = float(Settings::iWidgetColorB & 0xFF) / 255.0f;
+					ApplyColorFilter(this->shaderTarget, &color, 1.0f);
+				}
+				break;
+			}
+			default:
+				break;
+			}
+			return this->GameMenuBase::ProcessMessage(msg); 
+		};
+
+		virtual void	DrawNextFrame(float unk0, void * unk1) final
+		{
+			if (stage.IsDisplayObject())
+			{
+				s_uiQueueLock.Enter();
+				while (!s_uiQueue.empty())
+				{
+					FloatingDamageDelegate * cmd = s_uiQueue.front();
+					s_uiQueue.pop();
+					cmd->Run(this);
+					delete cmd;
+				}
+				s_uiQueueLock.Leave();
+			}
+			return this->GameMenuBase::DrawNextFrame(unk0, unk1);
+		}; 
+
+		static IMenu * CreateFloatingDamageMenu()
+		{
+			void * ptr = (*g_scaleformHeap)->Allocate(sizeof(FloatingDamageMenu));
+			return (ptr != nullptr) ? new (ptr) FloatingDamageMenu() : nullptr;
+		}
+
+		static void UpdateModSettings()
+		{
+			static BSFixedString menuName("FloatingDamageMenu");
+			(*g_uiMessageManager)->SendUIMessage(menuName, kMessage_UpdateModSettings);
+		}
+
+		static void UpdateColorSettings()
+		{
+			static BSFixedString menuName("FloatingDamageMenu");
+			(*g_uiMessageManager)->SendUIMessage(menuName, kMessage_UpdateColorSettings);
+		}
+
+		static void OpenMenu()
+		{
+			static BSFixedString menuName("FloatingDamageMenu");
+			(*g_uiMessageManager)->SendUIMessage(menuName, kMessage_Open);
+		}
+
+		static void CloseMenu()
+		{
+			static BSFixedString menuName("FloatingDamageMenu");
+			(*g_uiMessageManager)->SendUIMessage(menuName, kMessage_Close);
+		}
+
+		static void RegisterMenu()
+		{
+			static BSFixedString menuName("FloatingDamageMenu");
+			if ((*g_ui) != nullptr && !(*g_ui)->menuTable.Find(&menuName))
+			{
+				(*g_ui)->RegisterMenu("FloatingDamageMenu", CreateFloatingDamageMenu, 0);
 			}
 		}
 	};
 
-	static BSGFxShaderFXTarget		* pWidgetContainer;
-	static SimpleLock				componentThreadLock;
 
-	using _ReleaseThis = HUDFloatingQuestMarkersEx*(__thiscall HUDFloatingQuestMarkersEx::*)(bool releaseMem);
-	static _ReleaseThis				ReleaseThis;
-
-	using _UpdateWidget = void(__thiscall HUDFloatingQuestMarkersEx::*)();
-	static _UpdateWidget			UpdateWidget;
-
-	HUDFloatingQuestMarkersEx * ReleaseThis_Hook(bool releaseMem)
+	class MenuOpenCloseHandler : public BSTEventSink<MenuOpenCloseEvent>
 	{
-		componentThreadLock.Lock();
-		if (pWidgetContainer != nullptr)
+	public:
+		virtual ~MenuOpenCloseHandler() { };
+		virtual	EventResult	ReceiveEvent(MenuOpenCloseEvent * evn, void * dispatcher) override
 		{
-			delete pWidgetContainer;
-			pWidgetContainer = nullptr;
-		}
-		componentThreadLock.Release();
-		return (this->*ReleaseThis)(releaseMem);
-	}
-
-	void UpdateWidget_Hook()
-	{
-		s_uiQueueLock.Enter();
-		while (!s_uiQueue.empty())
-		{
-			ITaskDelegate * cmd = s_uiQueue.front();
-			s_uiQueue.pop();
-			cmd->Run();
-			delete cmd;
-		}
-		s_uiQueueLock.Leave();
-		return (this->*UpdateWidget)();
-	}
-
-	static void RegisterComponent(GFxValue * pComponent)
-	{
-		componentThreadLock.Lock();
-		if (pComponent->IsDisplayObject() && !pWidgetContainer)
-		{
-			pWidgetContainer = new BSGFxShaderFXTarget(pComponent);
-			if (Settings::iWidgetColor != -1)
+			static BSFixedString HUDMenu("HUDMenu");
+			static BSFixedString faderMenu("FaderMenu");
+			static BSFixedString floatingDamageMenu("FloatingDamageMenu");
+			if (evn->menuName == HUDMenu)
 			{
-				FilterColor color; // RRGGBB
-				color.r = float((Settings::iWidgetColor >> 16) & 0xFF) / 255.0f;
-				color.g = float((Settings::iWidgetColor >> 8) & 0xFF) / 255.0f;
-				color.b = float(Settings::iWidgetColor & 0xFF) / 255.0f;
-				ApplyColorFilter(pWidgetContainer, &color, 1.0f);
+				if (evn->isOpen)
+					FloatingDamageMenu::OpenMenu();
+				else
+					FloatingDamageMenu::CloseMenu();
 			}
-			else
+			if (!evn->isOpen && evn->menuName == faderMenu && (*g_ui) != nullptr\
+				&& (*g_ui)->IsMenuOpen(HUDMenu) && !(*g_ui)->IsMenuOpen(floatingDamageMenu))
 			{
-				pWidgetContainer->SetFilterColor(false);
+				FloatingDamageMenu::OpenMenu();
+			}
+			//_MESSAGE("%s=%d", evn->menuName.c_str(), evn->isOpen);
+			return kEvent_Continue;
+		};
+
+		static void Register()
+		{
+			if ((*g_ui) != nullptr)
+			{
+				static auto * pHandler = new MenuOpenCloseHandler();
+				RegisterMenuOpenCloseEvent((*g_ui)->menuOpenCloseEventSource, pHandler);
 			}
 		}
-		componentThreadLock.Release();
-	}
+	};
+}
 
-	static void InitHooks()
+class FloatingDamage_OnModSettingChanged : public GFxFunctionHandler
+{
+public:
+	virtual void Invoke(Args * args) override
 	{
-		ReleaseThis = HookUtil::SafeWrite64(RelocAddr<uintptr_t>(0x02D3ECB8), &ReleaseThis_Hook);
-		UpdateWidget = HookUtil::SafeWrite64(RelocAddr<uintptr_t>(0x02D3ECB8) + 4 * 0x8, &UpdateWidget_Hook);
+		Settings::LoadSettings();
+		UIFramework::FloatingDamageMenu::UpdateModSettings();
 	}
 };
-SimpleLock									HUDFloatingQuestMarkersEx::componentThreadLock;
-BSGFxShaderFXTarget	*						HUDFloatingQuestMarkersEx::pWidgetContainer = nullptr;
-HUDFloatingQuestMarkersEx::_ReleaseThis		HUDFloatingQuestMarkersEx::ReleaseThis = nullptr;
-HUDFloatingQuestMarkersEx::_UpdateWidget	HUDFloatingQuestMarkersEx::UpdateWidget = nullptr;
 
+class FloatingDamage_OnColorSettingChanged : public GFxFunctionHandler
+{
+public:
+	virtual void Invoke(Args * args) override
+	{
+		Settings::LoadSettings();
+		UIFramework::FloatingDamageMenu::UpdateColorSettings();
+	}
+};
 
-SimpleLock			globalComponentLock;
+SimpleLock			globalDamageLock;
 class ActorEx : public Actor
 {
 public:
@@ -271,8 +498,8 @@ public:
 		damageReceived = std::round(damageReceived);
 		if (damageReceived >= 1.0f && this->formID != 0x14 && (*g_player)->HasLOS(this) && !this->IsDead(true))
 		{
-			globalComponentLock.Lock();
-			if (globalComponentLock.lockCount == 1)
+			globalDamageLock.Lock();
+			if (globalDamageLock.lockCount == 1)
 			{
 				NiPoint3 hitPoint{}, screenPoint{};
 				this->GetMarkerPosition(&hitPoint);
@@ -283,204 +510,104 @@ public:
 					hitPoint.x = pRootNode->m_worldTransform.pos.x;
 					hitPoint.y = pRootNode->m_worldTransform.pos.y;
 				}
-				FloatingDamageDelegate::Register(damageReceived, hitPoint, true);
+				UIFramework::FloatingDamageDelegate::Register(damageReceived, hitPoint, true);
 			}
-			globalComponentLock.Release();
+			globalDamageLock.Release();
 		}
 		return (this->*DamageHealth)(attacker, damage);
 	}
+
+	static void ProcessDamageFrame(Actor * pObj, DamageFrame * pDamageFrame)
+	{
+		using _Process = void(*)(void *, DamageFrame *);
+		RelocAddr<_Process>	Process = 0xE01090; //48 8B C4 48 89 50 10 55 56 41 56 41 57
+
+		using _GetActorValueHolder = ActorValueInfo **(*)();
+		RelocAddr<_GetActorValueHolder> GetActorValueHolder = 0x006B1F0; //E8 ? ? ? ? 48 8B C8 E8 ? ? ? ? 48 8B 0D ? ? ? ? E8 ? ? ? ? E8 ? ? ? ?
+
+		TESObjectREFR * pRef = nullptr;
+
+		if (pDamageFrame != nullptr && (LookupREFRByHandle(&pDamageFrame->victimHandle, &pRef), pRef != nullptr) \
+			&& pRef->formType == FormType::kFormType_ACHR && pRef->formID != 0x14 && (*g_player)->HasLOS(pRef) && !pRef->IsDead(true))
+		{
+			globalDamageLock.Lock();
+			float healthA = 0.0f, healthB = 0.0f;
+			ActorValueInfo*	pHealth = *reinterpret_cast<ActorValueInfo**>(GetActorValueHolder() + 0x1B);
+			healthA = pRef->actorValueOwner.GetValue(pHealth);
+			Process(pObj, pDamageFrame);
+			healthB = pRef->actorValueOwner.GetValue(pHealth);
+			float damageReceived = std::round(healthA - healthB);
+			if (damageReceived > 0.0f)
+			{
+				NiPoint3 hitPoint{}, screenPoint{};
+				auto & hitLocation = pDamageFrame->hitLocation;
+				if (hitLocation.x || hitLocation.y || hitLocation.z)
+				{
+					hitPoint.x = hitLocation.x;
+					hitPoint.y = hitLocation.y;
+					hitPoint.z = hitLocation.z;
+				}
+				else
+				{
+					pRef->GetMarkerPosition(&hitPoint);
+					hitPoint.z -= 5;
+					NiNode * pRootNode = pRef->GetObjectRootNode();
+					if (pRootNode != nullptr)
+					{
+						hitPoint.x = pRootNode->m_worldTransform.pos.x;
+						hitPoint.y = pRootNode->m_worldTransform.pos.y;
+					}
+				}
+				UIFramework::FloatingDamageDelegate::Register(damageReceived, hitPoint, false);
+			}
+			globalDamageLock.Release();
+		}
+		else
+		{
+			Process(pObj, pDamageFrame);
+		}
+		if (pRef != nullptr)
+		{
+			pRef->handleRefObject.DecRefHandle();
+		}
+	}
+
 	static void InitHooks()
 	{
+		if (!g_branchTrampoline.Create(1024 * 64))
+		{
+			_FATALERROR("couldn't create branch trampoline. this is fatal. skipping remainder of init process.");
+			return;
+		}
+		g_branchTrampoline.Write5Call(RelocAddr<uintptr_t>(0x0D607C1), (uintptr_t)ProcessDamageFrame); //E8 ? ? ? ? 48 85 FF 74 36 48 8B CF
 		DamageHealth = HookUtil::SafeWrite64(RelocAddr<uintptr_t>(0x02D68398) + 0x880, &DamageHealth_Hook);
 	}
+
+
+
+
 };
 ActorEx::_DamageHealth	ActorEx::DamageHealth = nullptr;
 
-void ProcessDamageFrame(Actor * pObj, DamageFrame * pDamageFrame)
-{
-	//_MESSAGE(">>>> %s", pObj->GetReferenceName());
-	//DumpClass(pDamageFrame, 0x100 >> 3);
-
-	using _Process = void(*)(void *, DamageFrame *);
-	RelocAddr<_Process>	Process = 0xE01090; //48 8B C4 48 89 50 10 55 56 41 56 41 57
-
-	using _GetActorValueHolder = ActorValueInfo **(*)();
-	RelocAddr<_GetActorValueHolder> GetActorValueHolder = 0x006B1F0; //E8 ? ? ? ? 48 8B C8 E8 ? ? ? ? 48 8B 0D ? ? ? ? E8 ? ? ? ? E8 ? ? ? ?
-
-	TESObjectREFR * pRef = nullptr;
-
-	if (pDamageFrame != nullptr && (LookupREFRByHandle(&pDamageFrame->victimHandle, &pRef), pRef != nullptr) \
-		&& pRef->formType == FormType::kFormType_ACHR && pRef->formID != 0x14 && (*g_player)->HasLOS(pRef) && !pRef->IsDead(true))
-	{
-		globalComponentLock.Lock();
-		float healthA = 0.0f, healthB = 0.0f;
-		ActorValueInfo*	pHealth = *reinterpret_cast<ActorValueInfo**>(GetActorValueHolder() + 0x1B);
-		healthA = pRef->actorValueOwner.GetValue(pHealth);
-		Process(pObj, pDamageFrame);
-		healthB = pRef->actorValueOwner.GetValue(pHealth);
-		float damageReceived = std::round(healthA - healthB);
-		if (damageReceived != 0.0f)
-		{
-			NiPoint3 hitPoint{}, screenPoint{};
-			auto & hitLocation = pDamageFrame->hitLocation;
-			if (hitLocation.x || hitLocation.y || hitLocation.z)
-			{
-				hitPoint.x = hitLocation.x;
-				hitPoint.y = hitLocation.y;
-				hitPoint.z = hitLocation.z;
-			}
-			else
-			{
-				pRef->GetMarkerPosition(&hitPoint);
-				hitPoint.z -= 5;
-				NiNode * pRootNode = pRef->GetObjectRootNode();
-				if (pRootNode != nullptr)
-				{
-					hitPoint.x = pRootNode->m_worldTransform.pos.x;
-					hitPoint.y = pRootNode->m_worldTransform.pos.y;
-				}
-			}
-			FloatingDamageDelegate::Register(damageReceived, hitPoint, false);
-		}
-		globalComponentLock.Release();
-	}
-	else
-	{
-		Process(pObj, pDamageFrame);
-	}
-	if (pRef != nullptr)
-	{
-		pRef->handleRefObject.DecRefHandle();
-	}
-}
-
-class FloatingDamage_WorldtoScreen : public GFxFunctionHandler
-{
-public:
-	virtual void Invoke(Args * args) override
-	{
-		NiPoint3 worldPos{};
-		worldPos.x = static_cast<float>(args->args[0].GetNumber());
-		worldPos.y = static_cast<float>(args->args[1].GetNumber());
-		worldPos.z = static_cast<float>(args->args[2].GetNumber());
-		NiPoint3 screenPos;
-		WorldToScreen_Internal(&worldPos, &screenPos);
-		screenPos.y = 1.0f - screenPos.y;//from bottom to top.
-		args->movie->movieRoot->CreateArray(args->result);
-		GFxValue x(screenPos.x);
-		args->result->PushBack(&x);
-		GFxValue y(screenPos.y);
-		args->result->PushBack(&y);
-		GFxValue z(screenPos.z);
-		args->result->PushBack(&z);
-	}
-};
-
-class FloatingDamage_IsInMenuMode : public GFxFunctionHandler
-{
-public:
-	virtual void Invoke(Args * args) override
-	{
-		if (g_ui && (*g_ui) != nullptr)
-			args->result->SetBool((*g_ui)->menuMode);
-		else
-			args->result->SetBool(false);
-	}
-};
-
-class FloatingDamage_GetModSettings : public GFxFunctionHandler
-{
-public:
-	virtual void Invoke(Args * args) override
-	{
-		auto * movieRoot = args->movie->movieRoot;
-		auto * settings = args->result;
-		movieRoot->CreateObject(settings);
-		GFxValue	scale;
-		scale.SetNumber(static_cast<float>(Settings::iWidgetScale) / 100);
-		settings->SetMember("scale", &scale);
-		GFxValue	opacity;
-		opacity.SetNumber(static_cast<float>(Settings::iWidgetOpacity) / 100);
-		settings->SetMember("opacity", &opacity);
-		GFxValue	canFollow;
-		canFollow.SetBool(Settings::bCanFollowObj);
-		settings->SetMember("canFollow", &canFollow);
-	}
-};
-
-class FloatingDamage_RegisterComponent : public GFxFunctionHandler
-{
-public:
-	virtual void Invoke(Args * args) override
-	{
-		HUDFloatingQuestMarkersEx::RegisterComponent(args->args);
-	}
-};
 
 
 void MessageCallback(F4SEMessagingInterface::Message* msg)
 {
-	if (msg->type == F4SEMessagingInterface::kMessage_GameDataReady)
+	if (msg->type == F4SEMessagingInterface::kMessage_GameLoaded)
 	{
-		HUDFloatingQuestMarkersEx::ApplyColorUpdateHandler::Register();
+		UIFramework::FloatingDamageMenu::RegisterMenu();
+		UIFramework::MenuOpenCloseHandler::Register();
 	}
 }
 
 
 bool ScaleformCallback(GFxMovieView * view, GFxValue * value)
 {
-	GFxMovieRoot * movieRoot = view->movieRoot;
-	if (movieRoot)
-	{
-		GFxValue result;
-		GFxValue stage;
-		movieRoot->GetVariable(&stage, "stage");
-		GFxValue firstChild;
-		stage.Invoke("getChildAt", &firstChild, &GFxValue((SInt32)0), 1);
-		movieRoot->Invoke("flash.utils.getQualifiedClassName", &result, &firstChild, 1);
-		if (result.IsString())
-		{
-			const char * clipName = result.GetString();
-			if (strcmp("HUDMenu", clipName) == 0)
-			{
-				//GFxValue root;
-				//movieRoot->GetVariable(&root, "root");
-				RegisterFunction<FloatingDamage_WorldtoScreen>(value, view->movieRoot, "WorldtoScreen");
-				RegisterFunction<FloatingDamage_IsInMenuMode>(value, view->movieRoot, "IsInMenuMode");
-				RegisterFunction<FloatingDamage_RegisterComponent>(value, view->movieRoot, "RegisterComponent");
-				RegisterFunction<FloatingDamage_GetModSettings>(value, view->movieRoot, "GetModSettings");
-
-				GFxValue loader;
-				movieRoot->CreateObject(&loader, "flash.display.Loader");
-				firstChild.SetMember("floatingDamageLoader", &loader);
-
-				GFxValue loadArgs[2];
-				movieRoot->CreateObject(&loadArgs[0], "flash.net.URLRequest", &GFxValue("FloatingDamage.swf"), 1);
-				loadArgs[1].SetNull();
-				//movieRoot->Invoke("root.addChild", nullptr, &loader, 1);
-
-				firstChild.Invoke("addChild", nullptr, &loader, 1);
-
-				if (!loader.Invoke("load", nullptr, loadArgs, 2))
-				{
-					_MESSAGE("%s >> failed to inject flash widget...", __FUNCTION__);
-				}
-			}
-		}
-	}
+	RegisterFunction<FloatingDamage_OnModSettingChanged>(value, view->movieRoot, "onModSettingChanged");
+	RegisterFunction<FloatingDamage_OnColorSettingChanged>(value, view->movieRoot, "onColorSettingChanged");
 	return true;
 }
-void LoadSettings()
-{
-	constexpr char* configFile = "Data\\F4se\\Plugins\\FloatingDamage.ini";
-	constexpr char* settingsSection = "Settings";
 
-	Settings::iWidgetColor = GetPrivateProfileIntA(settingsSection, "iWidgetColor", 0xFFFFFF, configFile);
-	Settings::iWidgetScale = GetPrivateProfileIntA(settingsSection, "iWidgetScale", 100, configFile);
-	Settings::iWidgetOpacity = GetPrivateProfileIntA(settingsSection, "iWidgetOpacity", 100, configFile);
-	Settings::bCanFollowObj = GetPrivateProfileIntA(settingsSection, "bCanFollowObj", 1, configFile) != 0;
-	Settings::bShowEffectDamage = GetPrivateProfileIntA(settingsSection, "bShowEffectDamage", 1, configFile) != 0;
-}
 
 
 extern "C"
@@ -530,16 +657,7 @@ extern "C"
 
 	bool F4SEPlugin_Load(const F4SEInterface * f4se)
 	{
-		if (!g_branchTrampoline.Create(1024 * 64))
-		{
-			_ERROR("couldn't create branch trampoline. this is fatal. skipping remainder of init process.");
-			return false;
-		}
-		LoadSettings();
-
-		g_branchTrampoline.Write5Call(RelocAddr<uintptr_t>(0x0D607C1), (uintptr_t)ProcessDamageFrame); //E8 ? ? ? ? 48 85 FF 74 36 48 8B CF
-		//g_branchTrampoline.Write5Call(RelocAddr<uintptr_t>(0x12786F1), (uintptr_t)RegisterFloatingQuestMarker_Hook);//E8 ? ? ? ? 48 8B 0D ? ? ? ? 48 8D 97 ? ? ? ? E8 ? ? ? ? 48 8B 0D ? ? ? ?
-		HUDFloatingQuestMarkersEx::InitHooks();
+		Settings::LoadSettings();
 		ActorEx::InitHooks();
 
 		if (g_scaleform)

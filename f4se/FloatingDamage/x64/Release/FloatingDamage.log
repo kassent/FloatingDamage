@@ -1,0 +1,8 @@
+﻿  HookUtil.cpp
+  main.cpp
+  UI.cpp
+     Creating library E:\SteamLibrary\steamapps\common\Fallout 4\Data\F4SE\Plugins\FloatingDamage.lib and object E:\SteamLibrary\steamapps\common\Fallout 4\Data\F4SE\Plugins\FloatingDamage.exp
+  Generating code
+  All 719 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  FloatingDamage.vcxproj -> E:\SteamLibrary\steamapps\common\Fallout 4\Data\F4SE\Plugins\FloatingDamage.dll

@@ -6,27 +6,33 @@
 	
 	import flash.events.Event;
 	
+	import flash.filters.DropShadowFilter;
+	
+	import Shared.GlobalFunc;
+	
 	public class FloatingDamageWidget extends MovieClip
 	{
 		// Instances
 		public var DisplayText_tf:TextField;
 		
-		private var _damage: uint = 0;
-		
 		public function FloatingDamageWidget() 
 		{
 			//this.DisplayText_tf.text = String(FloatingDamageFader.range(1, 70, true));
+			//var shadow:DropShadowFilter = new DropShadowFilter(0.3, 45, 0, 0.6, 1, 1, 10, 1, false, false);
+			//var filtersArray:Array = new Array(shadow);
+			//DisplayText_tf.filters = filtersArray;
 		}
 		
-		public function get damage(): uint 
+		public function SetDamageText(dmg: uint, showShadow: Boolean) : void
 		{
-			return _damage;
-		}
-		
-		public function set damage(val: uint):void 
-		{
-			_damage = val;
-			this.DisplayText_tf.text = String(val);
+			if(showShadow)
+			{
+				this.DisplayText_tf.text = String(FloatingDamageFader.range(1, 70, true));
+				var shadow:DropShadowFilter = new DropShadowFilter(0.3, 45, 0, 0.6, 1, 1, 10, 1, false, false);
+				var filtersArray:Array = new Array(shadow);
+				DisplayText_tf.filters = filtersArray;			
+			}
+			GlobalFunc.SetText(this.DisplayText_tf, String(dmg),false);
 		}
 	}
 	

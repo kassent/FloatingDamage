@@ -17,93 +17,92 @@
 	import flash.ui.Keyboard;
 	import flash.geom.Matrix;
 	import flash.geom.Point;
-	import flash.display.DisplayObjectContainer;	
-	import Shared.AS3.BSUIComponent;
+	import flash.display.DisplayObjectContainer;
+    import flash.geom.ColorTransform;	
+	import Shared.IMenu;
 	import FloatingDamage.FloatingDamageFader;
+	import FloatingDamage.FloatingDamagePathingSettings;
 	
-	public class FloatingDamage extends MovieClip {
+	public class FloatingDamage extends IMenu {
+		//elements
+		public  var WidgetContainer : MovieClip;
+	    public  var BGSCodeObj:Object;
 		
-		private var targetSurface : DisplayObjectContainer;
-		private var widgetContainer : MovieClip = new MovieClip();
-		private var codeObj: Object;
-		private var HUDMenu: MovieClip;
-		
-		public var buffDamageCounter: uint = 0;
+		//conditions
+		private var isInit: Boolean = false;
 		
 		//settings
-		//private var canFollow: Boolean = true;
-		private var scaleFactor: Number = 1.0;
-		private var opacityFactor: Number = 1.0;
+		private var pathingSettings: FloatingDamagePathingSettings;
+		private var fWidgetScale: Number = 1.0;
+		private var fWidgetOpacity: Number = 1.0;
 		
 		public function FloatingDamage() 
 		{
-			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
+			log("aaaaaaaaaaaa");
+			super();
+			this.BGSCodeObj = new Object();
+			//Extensions.enabled = true;
+			//this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
+			log("bbbbbbbbbbbbbbb");
 		}
-		
-		private function addedToStageHandler(e:Event):void 
+	
+		public function onCodeObjCreate() : *
 		{
-			this.removeEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
-			HUDMenu = stage.getChildAt(0);
-			//HUDMenu["FloatingDamageController"] = this;
-			codeObj = HUDMenu["f4se"].plugins.FloatingDamage;
-			targetSurface = HUDMenu.CenterGroup_mc.HUDCrosshair_mc.CrosshairBase_mc;
-
-			CreateTargetSurface(targetSurface.CrosshairTicks_mc.Up);
-			CreateTargetSurface(targetSurface.CrosshairClips_mc);
-			HUDMenu.addChild(widgetContainer);
-			
-			var settings: Object = codeObj.GetModSettings();
-			scaleFactor = settings["scale"];
-			opacityFactor = settings["opacity"];
-			//canFollow = settings["canFollow"];
-			
-			codeObj.RegisterComponent(widgetContainer);
-
-			log("Init complete...");
-		}	
+			isInit = true;
+			var settings: Object = BGSCodeObj.GetModSettings();
+			onModSettingChanged(settings);
+		}
+      
+		public function onCodeObjDestruction() : *
+		{
+			isInit = false;
+			this.BGSCodeObj = null;
+		}
 
 		public function onDamageReceived(damage: uint, screenPoint: Array, worldPoint: Array, isBuff: Boolean) : void
 		{
-			//var classRef: Class = getDefinitionByName("FloatingDamageFader") as Class;
-			var fader: FloatingDamageFader = new FloatingDamageFader();
-			fader.damage = damage;
-			fader.screenData = screenPoint;
-			fader.worldData = worldPoint;
-			fader.isBuff = isBuff;
-			//fader.canFollow = this.canFollow;
-			fader.scaleX = fader.scaleY = this.scaleFactor;
-			if(opacityFactor != 1.0)
+			if(this.isInit)
 			{
-				fader.alpha = this.opacityFactor;
+				var fader: FloatingDamageFader = new FloatingDamageFader();
+				fader.damage = damage;
+				fader.screenData = screenPoint;
+				fader.worldData = worldPoint;
+				fader.isBuff = isBuff;
+				fader.pathingSettings = this.pathingSettings;
+				fader.scaleX = fader.scaleY = this.fWidgetScale;
+				if(fWidgetOpacity != 1.0)
+				{
+					fader.alpha = this.fWidgetOpacity;
+				}
+				WidgetContainer.addChild(fader);				
 			}
-			widgetContainer.addChild(fader);
+		}
+		
+		public function setTransfromColor(color: uint) : void
+		{
+			if(color >> 24)
+			{
+				
+			}
+			else
+			{
+				this.transform.colorTransform = new ColorTransform(0, 0, 0, 1, (color >> 16) & 0xFF, (color >> 8) & 0xFF, color & 0xFF, 0);
+			}
+		}
+		
+		public function onModSettingChanged(settings: Object) : void
+		{
+			if(settings is Object)
+			{
+				this.fWidgetScale = settings["fWidgetScale"];
+				this.fWidgetOpacity = settings["fWidgetOpacity"];
+				this.pathingSettings = new FloatingDamagePathingSettings(settings);		
+			}
 		}
 		
         private function log(str:String):void 
 		{
-            trace("[FloatingDamage]" + str)
+            trace("[FloatingDamage]" + str);
         }
-
-		public function CreateTargetSurface(targetSurface : MovieClip) : void
-		{
-			var bgRC = new Sprite();
-			bgRC.name = "FloatingDamageSurface";
-			bgRC.graphics.beginFill(0x00FF00, 0.0);
-			bgRC.graphics.drawRect(0, 0, stage.stageWidth, stage.stageHeight * 1.25);
-			bgRC.graphics.endFill();
-			
-			targetSurface.addChild(bgRC);
-			
-			var targetSurfaceMatrix:Matrix = targetSurface.transform.concatenatedMatrix.clone();
-			// a and d properties of the matrix affects the positioning of pixels along the x and y axis respectively when scaling or rotating an object.
-			if (targetSurfaceMatrix.a != 1 || targetSurfaceMatrix.d != 1 || widgetContainer.transform.matrix.a != 1 || widgetContainer.transform.matrix.d != 1) {
-				targetSurfaceMatrix.invert();
-				bgRC.transform.matrix = targetSurfaceMatrix;
-			}
-			var globalCoords = targetSurface.globalToLocal(new Point(0, 0));
-			bgRC.x = globalCoords.x;
-			bgRC.y = globalCoords.y;
-		}
-	}
-	
+	}	
 }
