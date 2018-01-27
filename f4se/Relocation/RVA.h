@@ -119,6 +119,12 @@ public:
 		{
 			settingName = iniName;
 		}
+		else if (sig)
+		{
+			std::hash<std::string> hash_fn;
+			size_t hash = hash_fn(sig);
+			settingName = std::string("SIG_") + (sprintf_s(sResult.get(), MAX_PATH, "%016I64X", hash), sResult.get()); //only sig...
+		}
 		if (versionData.count(plugin_info.runtime_version))
 		{
 			m_result = versionData[plugin_info.runtime_version] + RelocationManager::s_baseAddr;
@@ -126,21 +132,7 @@ public:
 		else /*if (iniName && plugin_info.plugin_name)*/
 		{
 			uint32_t relMem = 0;
-			if (plugin_info.plugin_name)
-			{
-				if (iniName)
-				{
-					relMem = GetPrivateProfileIntA(sectionName.c_str(), iniName, 0, fileName.c_str());
-				}
-				else if (sig)
-				{
-					std::hash<std::string> hash_fn;
-					size_t hash = hash_fn(sig);
-					settingName = std::string("SIG_") + (sprintf_s(sResult.get(), MAX_PATH, "%016I64X", hash), sResult.get()); //only sig...
-					relMem = GetPrivateProfileIntA(sectionName.c_str(), settingName.c_str(), 0, fileName.c_str());
-				}
-			}
-			if (relMem)
+			if (plugin_info.plugin_name && (relMem = GetPrivateProfileIntA(sectionName.c_str(), settingName.c_str(), 0, fileName.c_str()), relMem))
 			{
 				m_result = relMem + RelocationManager::s_baseAddr;
 			}
@@ -165,8 +157,11 @@ public:
 		{
 			throw no_result_exception();
 		}
-		sprintf_s(sResult.get(), MAX_PATH, "0x%08X", GetOffset());
-		WritePrivateProfileStringA(sectionName.c_str(), settingName.c_str(), sResult.get(), fileName.c_str());
+		if (plugin_info.plugin_name && settingName.size())
+		{
+			sprintf_s(sResult.get(), MAX_PATH, "0x%08X", GetOffset());
+			WritePrivateProfileStringA(sectionName.c_str(), settingName.c_str(), sResult.get(), fileName.c_str());
+		}
 	}
 
 	sig_scan_processor(const char * iniName, const char * sig = nullptr, int relOffset = 0, int dataOffset = 0, int instructionLen = 0) \
