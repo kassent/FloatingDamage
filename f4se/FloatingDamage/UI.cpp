@@ -19,6 +19,10 @@ namespace UIFramework
 	RelocAddr <_RegisterMenuOpenCloseEvent>	RegisterMenuOpenCloseEvent(0x5D1120);//call E8 ? ? ? ? 4C 8B AC 24 ? ? ? ? 4C 8B A4 24 ? ? ? ? 48 8B B4 24 ? ? ? ? 48 8D 5D D0
 
 	RelocAddr<_UnregisterMenuOpenCloseEvent>	UnregisterMenuOpenCloseEvent(0x5D3950);
+
+	RelocPtr <SimpleLock>		globalMenuStackLock(0x65AF4B0);
+
+	RelocPtr <SimpleLock>		globalMenuTableLock(0x65AF4B8);
 	//5D3950
 	DelegateArgs::DelegateArgs(IMenu * menu, ScaleformArgs * args)
 	{
@@ -53,6 +57,17 @@ namespace UIFramework
 			return NULL;
 
 		return menu;
+	}
+
+	bool UI::IsMenuRegistered(BSFixedString & menuName)
+	{
+		SimpleLocker locker(globalMenuTableLock);
+		MenuTableItem * item = menuTable.Find(&menuName);
+		if (item) {
+			return true;
+		}
+
+		return false;
 	}
 
 	IMenu * UI::GetMenuByMovie(GFxMovieView * movie)

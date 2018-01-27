@@ -244,7 +244,6 @@ public:
 };
 
 // 20?
-#include "GameForms.h"
 class ExtraDataList : public BSIntrusiveRefCounted
 {
 public:
@@ -269,17 +268,7 @@ public:
 	void				* unk10;		// 10
 	PresenceBitfield	* m_presence;	// 18
 	SimpleLock			m_lock;			// 20
-
-
-	DEFINE_MEMBER_FUNCTION(GetExtraData, BSExtraData *, 0x436A0, UInt8 type); //48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC 20 48 8D 59 20 48 8B F9 0F B6 F2 48 8B CB E8 ? ? ? ? 48 8D 4F 08 40 0F B6 D6 E8 ? ? ? ? 48 8B F8
-	DEFINE_MEMBER_FUNCTION(GetExtraInstanceData, TBO_InstanceData *, 0x8A430); //48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC 20 48 8D 59 20 48 8B F1 48 8B CB E8 ? ? ? ? 48 8B 4E 18
-	DEFINE_MEMBER_FUNCTION(GetCurrentHealth, float, 0x8B2B0, TESForm*); //48 89 5C 24 ? 57 48 83 EC 20 48 8B DA 48 8B F9 E8 ? ? ? ? 48 8B D0 48 8B CB
-	DEFINE_MEMBER_FUNCTION(GetCharge, float, 0x8B320); //48 83 EC 28 B2 25 E8 ? ? ? ? 48 85 C0
-	DEFINE_MEMBER_FUNCTION(GetEffectiveMod, BGSMod::Attachment::Mod *, 0x89F10); //48 83 EC 48 B2 35
-	DEFINE_MEMBER_FUNCTION(GetExtraEnchantmentItem, EnchantmentItem*, 0x98FD0); //48 83 EC 28 B2 9B E8 ? ? ? ? 48 85 C0 74 09 48 8B 40 20
 };
-
-
 STATIC_ASSERT(sizeof(ExtraDataList) == 0x28);
 
 // 28

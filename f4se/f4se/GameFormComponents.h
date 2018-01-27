@@ -35,8 +35,7 @@ class BGSDamageType;
 typedef bool (* _EvaluationConditions)(Condition ** condition, TESObjectREFR * ref1, TESObjectREFR * ref2);
 extern RelocAddr <_EvaluationConditions> EvaluationConditions; // Evaluates whole condition LinkedList
 
-															   // 10
-															   // 10
+// 10
 class TBO_InstanceData : public BSIntrusiveRefCounted
 {
 public:
@@ -48,7 +47,7 @@ public:
 	virtual void	Unk_04(void);
 	virtual void	Unk_05(void);
 	virtual void	Unk_06(void);
-	virtual tArray<EnchantmentItem*> *	GetEnchantmentItems(void);
+	virtual void	Unk_07(void);
 	virtual void	Unk_08(void);
 	virtual void	Unk_09(void);
 	virtual void	Unk_0A(void);
@@ -61,8 +60,8 @@ public:
 	virtual void	Unk_11(void);
 	virtual void	Unk_12(void);
 
-	//	void	** _vtbl;	// 00
-	//  BSIntrusiveRefCounted refCount; // 08
+//	void	** _vtbl;	// 00
+//  BSIntrusiveRefCounted refCount; // 08
 
 	struct DamageTypes
 	{
@@ -75,15 +74,6 @@ public:
 		ActorValueInfo * avInfo;	// 00
 		UInt32			unk08;		// 08
 	};
-
-	inline void DecRefHandle()
-	{
-		if (InterlockedDecrement(&m_refCount) == 0)
-		{
-			auto DeleteThis = (void(*)(TBO_InstanceData*, UInt32))(**(uintptr_t**)this);
-			DeleteThis(this, 1);
-		}
-	}
 };
 
 // 08
@@ -147,18 +137,12 @@ public:
 	virtual void	Unk_02(void);
 
 //	void	** _vtbl;
-	bool	HasKeyword(BGSKeyword * keyword)
-	{
-		auto fn = (bool(**)(IKeywordFormBase*, BGSKeyword *, bool))(*(uintptr_t*)this + 0x8);
-		return (*fn)(this, keyword, false);
-	}
 };
 
 // 08
 class ActorValueOwner
 {
 public:
-	//02D68E98
 	virtual ~ActorValueOwner();
 
 	virtual float	GetValue(ActorValueInfo * actorValueInfo);
@@ -182,7 +166,7 @@ public:
 	virtual ~TESFullName();
 
 	virtual void	Unk_07(void);
-	virtual const char *	GetFullName(void);
+	virtual void	Unk_08(void);
 
 	BSFixedString name;	// 08
 };
@@ -204,8 +188,6 @@ public:
 };
 
 
-
-class TESFaction;
 // 68
 class TESActorBaseData : public BaseFormComponent
 {
@@ -215,11 +197,7 @@ public:
 	virtual void	Unk_07(void);
 	virtual void	Unk_08(void);
 	virtual void	Unk_09(void);
-	struct FactionInfo
-	{
-		TESFaction		* faction;
-		SInt8			rank;
-	};
+
 	enum
 	{
 		kFlagFemale = 0x01,
@@ -233,64 +211,19 @@ public:
 		kFlagProtected = 0x800
 	};
 
-	struct
-	{
-		bool female : 1;				// 00
-		bool essential : 1;				// 01
-		bool unk02 : 1;					// 02
-		bool respawn : 1;				// 03
-		bool autoCalc : 1;				// 04
-		bool unique : 1;				// 05
-		bool dontAffectStealth : 1;		// 06
-		bool pcLevelMult : 1;			// 07
-		bool unk08 : 1;					// 08
-		bool unk09 : 1;					// 09 not used
-		bool unk0A : 1;					// 0A not used
-		bool protect : 1;				// 0B
-		bool unk0C : 1;					// 0C not used
-		bool unk0D : 1;					// 0D not used
-		bool summonable : 1;			// 0E
-		bool unk0F : 1;					// 0F not used
-		bool doesntBleed : 1;			// 10
-		bool unk11 : 1;					// 11 FormID=00013475, 00013479, 0001347A, 02003361, 02003362, 02003363, 02011E5E
-		bool bleedoutOverride : 1;		// 12
-		bool oppositeGenderAnims : 1;	// 13
-		bool simpleActor : 1;			// 14
-		bool unk15 : 1;					// 15 ???
-		bool unk16 : 1;					// 16 not used
-		bool unk17 : 1;					// 17 not used
-		bool unk18 : 1;					// 18 not used
-		bool unk19 : 1;					// 19 000132A1, 0003BB85, 00075C7F, 000D0573
-		bool unk1A : 1;					// 1A not used
-		bool unk1B : 1;					// 1B not used
-		bool unk1C : 1;					// 1C not used
-		bool ghost : 1;					// 1D 
-		bool unk1E : 1;					// 1E not used
-		bool invulnerable : 1;			// 1F
-	} flags;							// 04 - init'd to 0
-
-	UInt16					unk0C;			// 0C
-	UInt16					level;			// 0E (CK Multiplier * 1000 if PCLevelMult is true)
-	UInt16					minLevel;		// 10
-	UInt16					maxLevel;		// 12
-	UInt32					unk14;			// 14
-	UInt64					unk18;			// 18
-	UInt64					unk20;			// 20
-	BGSVoiceType			* voiceType;	// 28
-	UInt64					unk30;			// 30
-	UInt64					unk38;			// 38
-	UInt64					unk40;			// 40
-	UInt64					unk48;			// 48
-
-	tArray<FactionInfo>		factions;       // 50
-
+	UInt64			flags;			// 08
+	UInt64			unk10;			// 10
+	UInt64			unk18;			// 18
+	UInt64			unk20;			// 20
+	BGSVoiceType	* voiceType;	// 28
+	UInt64			unk30[7];		// 30
 
 	MEMBER_FN_PREFIX(TESActorBaseData);
 	DEFINE_MEMBER_FN(SetSex, void, 0x00149720, UInt32 unk1, bool isFemale, UInt32 unk2); // unk1 = 1, unk2 = 1
 	DEFINE_MEMBER_FN(GetLevel, UInt16, 0x001497F0);
-	DEFINE_MEMBER_FUNCTION(GetLevel, UInt16, 0x001497F0);
 };
 STATIC_ASSERT(sizeof(TESActorBaseData) == 0x68);
+
 // 18
 class TESContainer : public BaseFormComponent
 {
@@ -501,8 +434,6 @@ public:
 
 	MEMBER_FN_PREFIX(TESDescription);
 	DEFINE_MEMBER_FN(Get, void, 0x0014FAF0, BSString * out, TESForm * parent);
-
-	DEFINE_MEMBER_FUNCTION(Get, void, 0x0014FAF0, BSString & out, TESForm * parent);
 };
 
 // 10

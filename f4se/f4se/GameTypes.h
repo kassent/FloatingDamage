@@ -21,16 +21,15 @@ public:
 
 class SimpleLock
 {
-public:
 	enum
 	{
 		kFastSpinThreshold = 10000
 	};
-
-	volatile SInt32	threadID;	// 00
-	UInt32			lockCount;	// 04
-
 public:
+	volatile SInt32	threadID;	// 00
+	volatile SInt32	lockCount;	// 04
+
+
 	SimpleLock() : threadID(0), lockCount(0) {}
 
 	void Lock(void);
@@ -98,13 +97,15 @@ public:
 		Entry	* data;
 
 		MEMBER_FN_PREFIX(Ref);
-		DEFINE_MEMBER_FN(ctor, Ref *, 0x01B417A0, const char * buf);	// D3703E13297FD78BE317E0223C90DAB9021465DD+6F
-		DEFINE_MEMBER_FN(ctor_w, Ref *, 0x01B425C0, const wchar_t * buf); // 34CA732E6B3C7BCD20DEFC8B3711427E5285FF82+AA
+		// D3703E13297FD78BE317E0223C90DAB9021465DD+6F
+		DEFINE_MEMBER_FN(ctor, Ref *, 0x01B41BC0, const char * buf);
+		// 34CA732E6B3C7BCD20DEFC8B3711427E5285FF82+AA
+		DEFINE_MEMBER_FN(ctor_w, Ref *, 0x01B429E0, const wchar_t * buf);
+		// 489C5F60950D108691FCB6CB0026101275BE474A+79
+		DEFINE_MEMBER_FN(Set, Ref *, 0x01B41CF0, const char * buf);
+		DEFINE_MEMBER_FN(Set_w, Ref *, 0x01B44240, const wchar_t * buf);
 
-		DEFINE_MEMBER_FN(Set, Ref *, 0x01B418D0, const char * buf);		// 489C5F60950D108691FCB6CB0026101275BE474A+79
-		DEFINE_MEMBER_FN(Set_w, Ref *, 0x01B43E20, const wchar_t * buf);
-
-		DEFINE_MEMBER_FN(Release, void, 0x01B42A30);
+		DEFINE_MEMBER_FN(Release_Imp, void, 0x01B42E50);
 
 		Ref();
 		Ref(const char * buf);
@@ -158,7 +159,7 @@ public:
 	BSString() :m_data(NULL), m_dataLen(0), m_bufLen(0) { }
 	~BSString()
 	{
-		if (m_data) {
+		if(m_data) {
 			Heap_Free(m_data);
 			m_data = nullptr;
 			m_dataLen = 0;
@@ -168,7 +169,7 @@ public:
 
 	const char *	Get(void);
 
-public:
+private:
 	char	* m_data;	// 00
 	UInt16	m_dataLen;	// 08
 	UInt16	m_bufLen;	// 0A
@@ -437,7 +438,7 @@ class tList
 
 	_Node m_listHead;	// 00
 
-public:
+private:
 
 	_Node * Head() const { return const_cast<_Node*>(&m_listHead); }
 

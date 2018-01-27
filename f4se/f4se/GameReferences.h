@@ -243,13 +243,7 @@ public:
 	DEFINE_MEMBER_FN(GetReferenceName, const char *, 0x0040B5E0);
 	DEFINE_MEMBER_FN(GetWorldspace, TESWorldSpace*, 0x0040F110);
 	DEFINE_MEMBER_FN(GetInventoryWeight, float, 0x004002F0);
-	DEFINE_MEMBER_FN(GetCarryWeight, float, 0x00D86C50);
-
-
-	//DEFINE_MEMBER_FUNCTION(GetReferenceName, const char *, 0x0040B5E0);
-	DEFINE_MEMBER_FUNCTION(GetCurrentLocation, BGSLocation*, 0x40EE70); //40 53 48 83 EC 20 83 79 14 14
-	DEFINE_MEMBER_FUNCTION(GetEncounterZone, BGSEncounterZone*, 0x47F2A0); //48 89 5C 24 ? 57 48 83 EC 20 48 8B F9 48 8B 89 ? ? ? ? E8 ? ? ? ? 48 8B D8 48 85 C0 0F 85 ? ? ? ?
-	DEFINE_MEMBER_FUNCTION(GetReferenceName, const char *, 0x040B5E0); //40 53 55 57 41 55 48 81 EC ? ? ? ?
+	DEFINE_MEMBER_FN(GetCarryWeight, float, 0x00D87070);
 };
 STATIC_ASSERT(offsetof(TESObjectREFR, parentCell) == 0xB8);
 STATIC_ASSERT(offsetof(TESObjectREFR, baseForm) == 0xE0);
@@ -317,7 +311,7 @@ public:
 	virtual void	Unk_FB();
 	virtual void	Unk_FC();
 	virtual void	Unk_FD();
-	virtual void	Unk_FE();
+	virtual bool	IsInCombat(UInt64 unk1 = 0, UInt64 unk2 = 0);
 	virtual void	Unk_FF();
 	virtual void	Unk_100();
 	virtual void	Unk_101();
@@ -335,7 +329,7 @@ public:
 	virtual void	Unk_10D();
 	virtual void	Unk_10E();
 	virtual void	Unk_10F();
-	virtual void	DamageHP(Actor * attacker, float damage);
+	virtual void	Unk_110();
 	virtual void	Unk_111();
 	virtual void	Unk_112();
 	virtual void	Unk_113();
@@ -433,7 +427,7 @@ public:
 		Data08 * unk08;	// 08
 
 		MEMBER_FN_PREFIX(MiddleProcess);
-		DEFINE_MEMBER_FN(UpdateEquipment, void, 0x00E602C0, Actor * actor, UInt32 flags); 
+		DEFINE_MEMBER_FN(UpdateEquipment, void, 0x00E606E0, Actor * actor, UInt32 flags); 
 	};
 	MiddleProcess * middleProcess;					// 300
 	UInt64	unk308[(0x338-0x308)/8];
@@ -465,26 +459,15 @@ public:
 		return (actorFlags & kFlag_Teammate) == kFlag_Teammate;
 	}
 
-	inline float CalcFormWeight(TESForm * item, BGSInventoryItem::Stack * stack, float weight, bool * health)
-	{
-		auto fn = (float(**)(Actor*, TESForm*, BGSInventoryItem::Stack*, float, bool*))(*(uintptr_t*)this + 0x3C8);
-		return (*fn)(this, item, stack, weight, health);
-	}
-
 	MEMBER_FN_PREFIX(Actor);
-	DEFINE_MEMBER_FN(QueueUpdate, void, 0x00D89C50, bool bDoFaceGen, UInt32 unk2, bool DoQueue, UInt32 flags); // 0, 0, 1, 0
-	DEFINE_MEMBER_FN(IsHostileToActor, bool, 0x00D90AE0, Actor * actor);
+	DEFINE_MEMBER_FN(QueueUpdate, void, 0x00D8A070, bool bDoFaceGen, UInt32 unk2, bool DoQueue, UInt32 flags); // 0, 0, 1, 0
+	DEFINE_MEMBER_FN(IsHostileToActor, bool, 0x00D90F00, Actor * actor);
 	DEFINE_MEMBER_FN(UpdateEquipment, void, 0x004080F0); 
-
-	DEFINE_MEMBER_FUNCTION(GetLevel, UInt16, 0x00D798F0); //48 8B 89 ? ? ? ? 48 83 C1 68 E9 ? ? ? ?       //first
-	DEFINE_MEMBER_FUNCTION(GetItemCount, UInt32, 0x3FB300, TESForm *); //40 53 48 83 EC 20 48 8B DA 48 85 D2 74 44
-	DEFINE_MEMBER_FUNCTION(HasPerk, bool, 0xDA6060, BGSPerk *); //48 83 EC 28 48 8B 81 ? ? ? ? 48 85 C0 74 16 4C 8B C2
 };
 STATIC_ASSERT(offsetof(Actor, equipData) == 0x428);
 STATIC_ASSERT(offsetof(Actor::MiddleProcess::Data08, equipData) == 0x288);
 
 // E10
-class BGSNote;
 class PlayerCharacter : public Actor
 {
 public:
@@ -502,29 +485,14 @@ public:
 	BSTEventSink<PerkEntryUpdatedEvent::PerkValueEvents>	perkValueEvents;	// 4B0
 	IMovementPlayerControlsFilter		movementControlsFilter;	// 4B8
 
-	UInt64	unk458[(0xA40 - 0x4C0) / 8];	// 4C0
-	BGSNote			* note;			// A40 which holotape to play...
-	UInt64	unkA48[(0xB70 - 0xA48) / 8];	// 4C0
+	UInt64	unk458[(0xB70-0x4C0)/8];	// 4C0
 	ActorEquipData	* playerEquipData;	// B70 - First person?
 	NiNode			* firstPersonSkeleton;	// B78
-	UInt64	unkB68[(0xD00 - 0xB80) / 8];	// B78
+	UInt64	unkB68[(0xD00-0xB80)/8];	// B78
 	tArray<BGSCharacterTint::Entry*> * tints;	// D00
-	UInt64	unkD18[(0xD80 - 0xD08) / 8];	// D08
-	UInt64								unkD80;	// D80												//D18 -D80
-	UInt64	unkC90[(0xE10 - 0xD88) >> 3];	// CF8
+	UInt64	unkC90[(0xE10-0xCF8)/8];	// CF8
 
-	DEFINE_MEMBER_FUNCTION(IsOverBurden, bool, 0xD86CA0); //40 53 48 83 EC 20 48 3B 0D ? ? ? ? 48 8B D9 75 4B
-	DEFINE_MEMBER_FUNCTION(GetCarryWeight, float, 0xD86C50); //40 53 48 83 EC 20 48 8B D9 E8 ? ? ? ? 4C 8B 43 58 48 8B 90 ? ? ? ? 48 8D 4B 58 41 FF 50 08 4C 8D 44 24 ?
-	DEFINE_MEMBER_FUNCTION(GetInventoryWeight, float, 0x04002F0); //40 57 48 83 EC 60 48 8B F9 48 8B 89 ? ? ? ? 48 85 C9 0F 84 ? ? ? ? F3 0F 10 05 ? ? ? ?
-	DEFINE_MEMBER_FUNCTION(PlayHolotape, void, 0x0EB9490, BGSNote *); //without animation 48 89 5C 24 ? 57 48 83 EC 30 48 8B DA 48 8B F9 48 85 D2 75 10
-
-
-	DEFINE_MEMBER_FUNCTION(ClearHolotapeState, void, 0x0EB97F0, bool); //StopPlayHolotape  48 83 EC 38 84 D2 74 6C
-	DEFINE_MEMBER_FUNCTION(StopPlayHolotape, void, 0x0EB9730, bool); //false 48 89 5C 24 ? 57 48 83 EC 20 48 8B DA 48 8B F9 48 85 D2 75 0C
-
-	DEFINE_MEMBER_FUNCTION(IsInPowerArmorMode, bool, 0x09CC800); //48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC 20 48 8B B9 ? ? ? ? 48 8B F1 48 8D 5F 20 48 8B CB E8 ? ? ? ? 48 8D 4F 08 B2 BB
-
-	DEFINE_MEMBER_FUNCTION(HasDetectionLOS, bool, 0x0135B0E0, TESObjectREFR*, bool *);//41 C6 00 00 48 85 C9
+	DEF_MEMBER_FN(HasDetectionLOS, bool, 0x0135B0E0, TESObjectREFR*, bool *);//41 C6 00 00 48 85 C9
 
 	inline bool HasLOS(TESObjectREFR * pRef)
 	{

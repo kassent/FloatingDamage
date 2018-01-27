@@ -476,9 +476,6 @@ public:
 	UInt8	formType;	// 1A
 	UInt8	unk1B;		// 1B
 	UInt32	pad1C;		// 1C
-
-	DEFINE_MEMBER_FUNCTION(GetWeight, float, 0x016A290, TBO_InstanceData *); //40 53 48 83 EC 30 0F 29 74 24 ? 48 8B D9 48 85 D2 74 1B
-	DEFINE_MEMBER_FUNCTION(GetValue, UInt32, 0x01A8830, ExtraDataList *); //48 89 5C 24 ? 48 89 6C 24 ? 48 89 74 24 ? 48 89 7C 24 ? 41 56 48 83 EC 40 0F 29 74 24 ?
 };
 
 // 38
@@ -722,51 +719,47 @@ class ActorValueInfo : public TESForm
 public:
 	enum { kTypeID = kFormType_AVIF };
 
-
-	enum Type
-	{
-		kType_DerivedAttriburte = 0,
-		kType_Special = 1,
-		kType_Skill = 2,
-		kType_AIAttribute = 3,
-		kType_Resistance = 4,
-		kType_Condition = 5,
-		kType_Unknown = 6,
-		kType_IntValue = 7,
-		kType_Varialbe = 8,
-		kType_Resource = 9
-	};
-
-	enum AVFlags
-	{
-		kFlag_DefaultBase_0 = (1 << 10),    // 10 | Default Base: 0
-		kFlag_DefaultBase_1 = (1 << 11),    // 11 | Default Base: 1
-		kFlag_DefaultBase_100 = (1 << 12),    // 12 | Default Base: 100
-		kFlag_DefaultBase_UserDefined = (1 << 13),    // 13 | Default Base: User Defined
-		kFlag_DefaultBase_Derived = (1 << 15),    // 15 | Default Base: Derived (bits 10-13 must not be set)
-		kFlag_DamageIsPositive = (1 << 26),    // 26 | Damage is Positive
-		kFlag_GodModeImmune = (1 << 27),    // 27 | God Mode Immune
-		kFlag_Hardcoded = (1 << 31),     // 31 | Hardcoded
-		kFlag_Minimum1 = (1 << 20)
-};
-
 	TESFullName       fullName;             // 20
 	TESDescription    description;          // 30
 
-	void	* func_impl;	// 48
-	void	* func;			// 50
-	void	* unk58;		// 58
-	void	* func_ptr;		// 60 - address of offset 48
+#if _MSC_VER == 1700
+	std::function<void(Actor *, ActorValueInfo&, float, float, Actor *)> calcFunction;	// 48
+#else
+	void            * func_vtable;			// 48 - vtable of the lambda function
+	void            * func;					// 50
+	UInt64            unk58;				// 58
+	void            * func_ptr;				// 60 - address of offset 48
+#endif
 
 	const char      * avName;               // 68
 	UInt64            unk70;                // 70
 	ActorValueInfo  * dependentAVs[0xF];    // 78
 
-	UInt32    unk110[(0x160 - 0xF0) / 4];  // 110
-	void	  *	abbreviation;				// 160
-	UInt32	  unk168;						// 168
+#if _MSC_VER == 1700
+	std::function<float(ActorValueOwner*, ActorValueInfo&)> derivedFunction;	// F0
+#else
+	void            * derived_func_vtable;	// F0 - vtable of the lambda function
+	void            * derived_func;			// F8
+	UInt64            unk100;				// 100
+	void            * derived_func_ptr;		// 108 - address of offset F0
+#endif
+
+	UInt32    unk110[(0x16C - 0x110) / 4];  // 110
+
 	UInt32    avFlags;                      // 16C
-	UInt32	  type;							// 170
+	enum AVFlags
+	{
+		kFlag_DefaultBase_0             = (1 << 10),    // 10 | Default Base: 0
+		kFlag_DefaultBase_1             = (1 << 11),    // 11 | Default Base: 1
+		kFlag_DefaultBase_100           = (1 << 12),    // 12 | Default Base: 100
+		kFlag_DefaultBase_UserDefined   = (1 << 13),    // 13 | Default Base: User Defined
+		kFlag_DefaultBase_Derived       = (1 << 15),    // 15 | Default Base: Derived (bits 10-13 must not be set)
+		kFlag_DamageIsPositive          = (1 << 26),    // 26 | Damage is Positive
+		kFlag_GodModeImmune             = (1 << 27),    // 27 | God Mode Immune
+		kFlag_Hardcoded                 = (1 << 31)     // 31 | Hardcoded
+	};
+
+	UInt32    unk170;                       // 170
 	UInt32    numDependentAVs;              // 174
 	UInt32    unk178;                       // 178
 	UInt32    unk17C;                       // 17C
@@ -774,16 +767,7 @@ public:
 	float     defaultBase;                  // 184
 	UInt32    unk188;                       // 188
 	UInt32    unk18C;                       // 18C
-
-	DEFINE_MEMBER_FUNCTION(GetDisplayName, const char *, 0x69F670); //In-game name V1.10.26 //E8 ? ? ? ? 4C 8B F0 48 85 C0 0F 84 ? ? ? ? 66 39 7E 18
-
-	inline const char * GetAbbreviation()		//V1.10.40
-	{
-		RelocAddr<const char*(*)(void *)> fnGetCRCString = 0x1B2E10; ///V1.10.26 			//E8 ? ? ? ? 45 33 C0 48 8B CF 48 8B D0 E8 ? ? ? ? 48 8D 54 24 ? 48 8B CF E8 ? ? ? ? 48 8B 7C 24 ? 48 85 FF 74 2E 83 3D ? ? ? ? ? 74 13 48 8D 15 ? ? ? ? 48 8D 0D ? ? ? ? small
-		return fnGetCRCString(&abbreviation);
-	}
 };
-STATIC_ASSERT(offsetof(ActorValueInfo, type) == 0x170);
 STATIC_ASSERT(offsetof(ActorValueInfo, avName) == 0x68);
 
 // 80
@@ -1008,91 +992,12 @@ class EffectSetting : public TESForm
 {
 public:
 	enum { kTypeID = kFormType_MGEF };
-	enum
-	{
-		kEffectType_Hostile = 0x00000001,  //0
-		kEffectType_Recover = 0x00000002, //1
-		kEffectType_Detrimental = 0x00000004,//2
-		kEffectType_NoHitEvent = 0x00000010,//4
-		kEffectType_DispelKeywords = 0x00000100,//8
-		kEffectType_NoDuration = 0x00000200,//9
-		kEffectType_NoMagnitude = 0x00000400,//10
-		kEffectType_NoArea = 0x00000800,//11
-		kEffectType_FXPersist = 0x00001000,//12
-		kEffectType_GloryVisuals = 0x00004000,//14
-		kEffectType_HideInUI = 0x00008000,//15
-		kEffectType_NoRecast = 0x00020000,//17
-		kEffectType_Magnitude = 0x00200000,//21
-		kEffectType_Duration = 0x00400000,//22
-		kEffectType_Painless = 0x04000000,//26
-		kEffectType_NoHitEffect = 0x08000000,//27
-		kEffectType_NoDeathDispel = 0x10000000//28
-	};
-	enum {
-		kArchetype_ValueMod = 0,
-		kArchetype_Script,
-		kArchetype_Dispel,
-		kArchetype_CureDisease,
-		kArchetype_Absorb,
-		kArchetype_DualValueMod,
-		kArchetype_Calm,
-		kArchetype_Demoralize,
-		kArchetype_Frenzy,
-		kArchetype_Disarm,
-		kArchetype_CommandSummoned,
-		kArchetype_Invisibility,
-		kArchetype_Light,
-		kArchetype_Lock = 15,
-		kArchetype_Open,
-		kArchetype_BoundWeapon,
-		kArchetype_SummonCreature,
-		kArchetype_DetectLife,
-		kArchetype_Telekinesis,
-		kArchetype_Paralysis,
-		kArchetype_Reanimate,
-		kArchetype_SoulTrap,
-		kArchetype_TurnUndead,
-		kArchetype_Guide,
-		kArchetype_WerewolfFeed,
-		kArchetype_CureParalysis,
-		kArchetype_CureAddiction,
-		kArchetype_CurePoison,
-		kArchetype_Concussion,
-		kArchetype_Stimpak,
-		kArchetype_AccumulateMagnitude,
-		kArchetype_Stagger,
-		kArchetype_PeakValueMod,
-		kArchetype_Cloak,
-		kArchetype_Werewolf,
-		kArchetype_SlowTime,
-		kArchetype_Rally,
-		kArchetype_EnhanceWeapon,
-		kArchetype_SpawnHazard,
-		kArchetype_Etherealize,
-		kArchetype_Banish,
-		kArchetype_Disguise = 44,
-		kArchetype_GrabActor,
-		kArchetype_VampireLord
-	};
 
-	enum {
-		kCastingType_ConstantEffect = 0,
-		kCastingType_FireAndForget,
-		kCastingType_Concentration
-	};
-
-	enum {
-		kDeliveryType_Self = 0,
-		kDeliveryType_Contact,
-		kDeliveryType_Aimed,
-		kDeliveryType_TargetActor,
-		kDeliveryType_TargetLocation
-	};
 	TESFullName				fullName;		// 20
 	BGSMenuDisplayObject	menuObject;		// 30
 	BGSKeywordForm			keywordForm;	// 40
 	UInt64					unk060[2]; // 60
-	UInt32					effectType; // 70
+	UInt32					unk070; // 70
 	float					unk074;
 	TESForm*				unk078;	// primary object? (SpellItem, TESObjectLIGH, BGSDamageType, BGSHazard)
 	UInt64					unk080;
@@ -1109,7 +1014,7 @@ public:
 	float					unkC4;
 	float					unkC8;
 	float					unkCC;
-	UInt32					archetype;
+	UInt32					unk0D0; 
 	UInt32					pad0D4;
 	ActorValueInfo*			actorValInfoD8;
 	BGSProjectile*			projectileE0;
@@ -1134,9 +1039,9 @@ public:
 	UInt32					unk188;
 	UInt32					unk18C;
 	UInt64					unk190;
-	UInt64					crcString;	// pointer to something  description
+	void*					unk198;	// pointer to something
 	UInt64					unk1A0;
-	Condition*				conditions;
+	void*					unk1A8;
 };
 STATIC_ASSERT(offsetof(EffectSetting, unk160) == 0x160);
 STATIC_ASSERT(sizeof(EffectSetting) == 0x1B0);
@@ -1147,18 +1052,33 @@ class BGSMaterialSwap : public TESForm
 {
 public:
 	enum { kTypeID = kFormType_MSWP };
-							// 20
-	UInt32					unk20;
-	UInt32					unk24;
-	UInt32					unk28;
-	UInt32					unk2C;	// strange - written to in ctor as UInt64 as 0, but can't line up that way
-	UInt32					unk30;
-	UInt32					unk34;
-	UInt64					unk38; // init to a char[5]
-	UInt64					unk40;
-	UInt64					unk48;
+
+	struct MaterialSwap
+	{
+		BSFixedString		source;				// 00
+		BSFixedString		target;				// 08
+		float				colorRemapIndex;	// 10
+		UInt32				unk14;				// 14
+
+		operator BSFixedString() const						{ return source; }
+		bool operator==(const BSFixedString a_name) const	{ return source == a_name; }
+		static inline UInt32 GetHash(BSFixedString * key)
+		{
+			UInt32 hash;
+			CalculateCRC32_64(&hash, (UInt64)key->data, 0);
+			return hash;
+		}
+
+		void Dump(void)
+		{
+			_MESSAGE("\t\tname: %s", source.c_str());
+			_MESSAGE("\t\ttarget: %s", target.c_str());
+			_MESSAGE("\t\tremapIndex: %f", colorRemapIndex);
+		}
+	};
+
+	tHashSet<MaterialSwap, BSFixedString> materialSwaps; // 20
 };
-STATIC_ASSERT(offsetof(BGSMaterialSwap, unk38) == 0x38);
 STATIC_ASSERT(sizeof(BGSMaterialSwap) == 0x50);
 
 class BGSMod
@@ -1620,26 +1540,19 @@ public:
 	enum
 	{
 		kFlag_NeverResets = 1,
-		kFlag_MatchPCBelowMinimumLevel = 1 << 1,
-		kFlag_DisableCombatBoundary = 1 << 2,
-		kFlag_Workshop = 1 << 3
+		kFlag_Workshop = 8
 	};
 
-	TESFaction				* unk20;	// 20 NPC or Faction
-	BGSLocation				* location;	// 28
+	UInt64					unk20;		// 20
+	BGSLocation*			location;	// 28
 	SInt8					rank;		// 30
-	UInt8					minLevel;	// 31
+	UInt8					minLevel;	// 30
 	UInt8					flags;		// 32
 	UInt8					maxLevel;	// 33
 	UInt32					unk34;		// 34
-	UInt32					unk38;		// 38 0xFFFFFFFF
-	UInt32					unk3C;		// 3C
-	UInt32					unk40;		// 40
-	UInt16					curLevel;	// 44
-	DEFINE_MEMBER_FUNCTION(CalcEncounterZoneLevel, UInt16, 0x372C50); //40 53 48 83 EC 20 48 8B D9 48 8B 0D ? ? ? ? E8 ? ? ? ? 44 0F B7 C0
-	DEFINE_MEMBER_FUNCTION(SetEncounterZoneLevel, void, 0x372CD0); //40 53 48 83 EC 20 66 83 79 ? ? 48 8B D9 75 1D
+	UInt64					unk38;		// 38
+	UInt64					unk40;		// 40
 };
-STATIC_ASSERT(offsetof(BGSEncounterZone, curLevel) == 0x44);
 
 // 38
 class BGSOutfit : public TESForm
@@ -1656,8 +1569,8 @@ class BGSDamageType : public TESForm
 public:
 	enum { kTypeID = kFormType_DMGT };
 
-	ActorValueInfo		* unk20;
-	SpellItem			* unk28;
+	UInt64	unk20;
+	UInt64	unk28;
 };
 
 // 48

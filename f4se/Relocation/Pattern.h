@@ -3,17 +3,8 @@
 
 #include <stdint.h>
 #include <vector>
-#include <exception> 
 #include <intrin.h>  
 
-class no_result_exception :public std::exception
-{
-public:
-	virtual char const* what() const
-	{
-		return "Can't find memory signatures, failed to patch...";
-	}
-};
 
 // from boost someplace
 template <uint64_t FnvPrime, uint64_t OffsetBasis>

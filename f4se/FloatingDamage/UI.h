@@ -98,8 +98,8 @@ namespace UIFramework
 	class UIMessageManager
 	{
 	public:
-		DEFINE_MEMBER_FUNCTION(SendUIMessage, void, 0x204C580, BSFixedString& menuName, UInt32 type);//48 89 5C 24 ? 48 89 6C 24 ? 48 89 74 24 ? 48 89 7C 24 ? 41 54 41 56 41 57 48 83 EC 20 44 8B 0D ? ? ? ? 65 48 8B 04 25 ? ? ? ? 48 8B E9 4A 8B 34 C8
-		DEFINE_MEMBER_FUNCTION(SendUIMessageEx, void, 0x12BA470, BSFixedString& menuName, UInt32 type, UIMessage * pExtraData);//seems it's a template function,different menu has different ex function.
+		DEF_MEMBER_FN(SendUIMessage, void, 0x204C580, BSFixedString& menuName, UInt32 type);//48 89 5C 24 ? 48 89 6C 24 ? 48 89 74 24 ? 48 89 7C 24 ? 41 54 41 56 41 57 48 83 EC 20 44 8B 0D ? ? ? ? 65 48 8B 04 25 ? ? ? ? 48 8B E9 4A 8B 34 C8
+		DEF_MEMBER_FN(SendUIMessageEx, void, 0x12BA470, BSFixedString& menuName, UInt32 type, UIMessage * pExtraData);//seems it's a template function,different menu has different ex function.
 		//E8 ? ? ? ? 48 8B 4C 24 ? 48 85 C9 74 0A 48 8B 01 BA ? ? ? ? FF 10 48 8B 6C 24 ? 48 8B 7C 24 ?
 	};
 	extern RelocPtr<UIMessageManager*>	g_uiMessageManager;
@@ -117,7 +117,7 @@ namespace UIFramework
 		void					* unk20;		// 20
 		BSScaleformImageLoader	* imageLoader;	// 28
 
-		DEFINE_MEMBER_FUNCTION(LoadMovie, bool, 0x21104C0, IMenu * menu, GFxMovieView *&, const char * name, const char * stagePath, UInt32 flags); //48 8B C4 4C 89 40 18 48 89 48 08 55 56 57 41 54 41 57
+		DEF_MEMBER_FN(LoadMovie, bool, 0x21104C0, IMenu * menu, GFxMovieView *&, const char * name, const char * stagePath, UInt32 flags); //48 8B C4 4C 89 40 18 48 89 48 08 55 56 57 41 54 41 57
 	};
 	extern RelocPtr <BSScaleformManager *> g_scaleformManager;
 
@@ -166,7 +166,7 @@ namespace UIFramework
 	public:
 		virtual void	RegisterFunctions() = 0;	// 02
 
-		DEFINE_MEMBER_FUNCTION(RegisterFunction, void, 0x210FD80, const char * name, UInt32 index); //40 53 48 83 EC 50 48 8B DA 48 8B D1 48 8B 0D ? ? ? ? 48 85 C9
+		DEF_MEMBER_FN(RegisterFunction, void, 0x210FD80, const char * name, UInt32 index); //40 53 48 83 EC 50 48 8B DA 48 8B D1 48 8B 0D ? ? ? ? 48 85 C9
 	};
 
 	class IMenu : public SWFToCodeFunctionHandler, //02EDDBD8
@@ -297,23 +297,22 @@ namespace UIFramework
 		void							* unk90;						// 90
 		UInt64							unk98[(0xE0 - 0x98) >> 3];		// 98
 
-	private:
-		DEFINE_MEMBER_FUNCTION(DrawNextFrame_Imp, void, 0x210E8C0, float unk0, void * unk1); //40 53 48 83 EC 20 48 83 79 ? ? 48 8B D9 74 1E
-		DEFINE_MEMBER_FUNCTION(ProcessMessage_Imp, UInt32, 0x210E840, UIMessage * msg);//
-		DEFINE_MEMBER_FUNCTION(Unk07_Imp, bool, 0x210ED00, UInt32 unk0, void * unk1);
-		DEFINE_MEMBER_FUNCTION(Unk08_Imp, void, 0xB328D0, UInt8 unk0);
-		DEFINE_MEMBER_FUNCTION(Unk09_Imp, void, 0x210EF40, BSFixedString & menuName, bool unk1);
-		DEFINE_MEMBER_FUNCTION(Unk0A_Imp, void, 0xB32940);
-		DEFINE_MEMBER_FUNCTION(Unk0B_Imp, void, 0xB32A00);
-		DEFINE_MEMBER_FUNCTION(Unk0C_Imp, void, 0xB32A40);
-		DEFINE_MEMBER_FUNCTION(Unk0D_Imp, bool, 0x210F090, bool unk0);
-		DEFINE_MEMBER_FUNCTION(Unk10_Imp, bool, 0xB326F0);
-		DEFINE_MEMBER_FUNCTION(Unk11_Imp, void, 0xB32780);
-		DEFINE_MEMBER_FUNCTION(Unk12_Imp, void, 0xB327F0, void * unk0);
-		DEFINE_MEMBER_FUNCTION(Unk13_Imp, void, 0xB32840, void * unk0, void * unk1);
-		DEFINE_MEMBER_FUNCTION(InitializeThis, void *, 0xB32360);
-	protected:
-		DEFINE_MEMBER_FUNCTION(ReleaseParent, void *, 0xB32420);
+	public:
+		DEF_MEMBER_FN(DrawNextFrame_Imp, void, 0x210E8C0, float unk0, void * unk1); //40 53 48 83 EC 20 48 83 79 ? ? 48 8B D9 74 1E
+		DEF_MEMBER_FN(ProcessMessage_Imp, UInt32, 0x210E840, UIMessage * msg);//
+		DEF_MEMBER_FN(Unk07_Imp, bool, 0x210ED00, UInt32 unk0, void * unk1);
+		DEF_MEMBER_FN(Unk08_Imp, void, 0xB328D0, UInt8 unk0);
+		DEF_MEMBER_FN(Unk09_Imp, void, 0x210EF40, BSFixedString & menuName, bool unk1);
+		DEF_MEMBER_FN(Unk0A_Imp, void, 0xB32940);
+		DEF_MEMBER_FN(Unk0B_Imp, void, 0xB32A00);
+		DEF_MEMBER_FN(Unk0C_Imp, void, 0xB32A40);
+		DEF_MEMBER_FN(Unk0D_Imp, bool, 0x210F090, bool unk0);
+		DEF_MEMBER_FN(Unk10_Imp, bool, 0xB326F0);
+		DEF_MEMBER_FN(Unk11_Imp, void, 0xB32780);
+		DEF_MEMBER_FN(Unk12_Imp, void, 0xB327F0, void * unk0);
+		DEF_MEMBER_FN(Unk13_Imp, void, 0xB32840, void * unk0, void * unk1);
+		DEF_MEMBER_FN(InitializeThis, void *, 0xB32360);
+		DEF_MEMBER_FN(ReleaseParent, void *, 0xB32420);
 	};
 	STATIC_ASSERT(offsetof(GameMenuBase, shaderTarget) == 0x88);
 
@@ -346,6 +345,8 @@ namespace UIFramework
 		}
 	};
 
+	extern RelocPtr <SimpleLock>		globalMenuStackLock;
+	extern RelocPtr <SimpleLock>		globalMenuTableLock;
 	// 250 ?
 	class UI
 	{
@@ -357,6 +358,7 @@ namespace UIFramework
 		typedef IMenu*	(*CreateFunc)(void);
 		typedef tHashSet<MenuTableItem, BSFixedString> MenuTable;
 
+		bool IsMenuRegistered(BSFixedString & menuName);
 
 		IMenu * GetMenu(BSFixedString * menuName);
 		IMenu * GetMenuByMovie(GFxMovieView * movie);
@@ -390,9 +392,9 @@ namespace UIFramework
 		}
 
 
-		DEFINE_MEMBER_FUNCTION(RegisterMenu, void, 0x020436E0, const char * name, CreateFunc creator, UInt64 unk1); //40 53 56 57 41 56 41 57 48 83 EC 50 44 8B 15 ? ? ? ?
-		DEFINE_MEMBER_FUNCTION(IsMenuOpen, bool, 0x2041B50, BSFixedString & name); //E8 ? ? ? ? 84 C0 0F 85 ? ? ? ? 48 8B 3D ? ? ? ?
-		DEFINE_MEMBER_FUNCTION(ProcessMessage, void, 0x2041E20);//40 55 53 56 57 41 54 41 55 41 56 41 57 48 8D AC 24 ? ? ? ? 48 81 EC ? ? ? ? 8B 15 ? ? ? ? 65 48 8B 04 25 ? ? ? ? 4C 8B E9
+		DEF_MEMBER_FN(RegisterMenu, void, 0x020436E0, const char * name, CreateFunc creator, UInt64 unk1); //40 53 56 57 41 56 41 57 48 83 EC 50 44 8B 15 ? ? ? ?
+		DEF_MEMBER_FN(IsMenuOpen, bool, 0x2041B50, BSFixedString & name); //E8 ? ? ? ? 84 C0 0F 85 ? ? ? ? 48 8B 3D ? ? ? ?
+		DEF_MEMBER_FN(ProcessMessage, void, 0x2041E20);//40 55 53 56 57 41 54 41 55 41 56 41 57 48 8D AC 24 ? ? ? ? 48 81 EC ? ? ? ? 8B 15 ? ? ? ? 65 48 8B 04 25 ? ? ? ? 4C 8B E9
 	};
 	STATIC_ASSERT(sizeof(UI) == 0x1F0);
 	extern RelocPtr <UI*> g_ui;

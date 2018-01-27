@@ -26,6 +26,11 @@
   <ItemGroup>
     <ResourceCompile Include="f4se_version.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\common\common_vc11.vcxproj">
+      <Project>{d4c128a1-73dc-4941-a453-ce55af239ba8}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F1447A44-F26A-4680-8E20-2D9186766E51}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -93,6 +98,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\..</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <ForcedIncludeFiles>common/IPrefix.h</ForcedIncludeFiles>
+      <SDLCheck>false</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

@@ -135,6 +135,9 @@
     <ProjectReference Include="..\f4se\f4se.vcxproj">
       <Project>{a236f69d-8ff9-4491-ac5f-45bf49448bbe}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\f4se_common\f4se_common.vcxproj">
+      <Project>{f1447a44-f26a-4680-8e20-2d9186766e51}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\Relocation\Relocation.vcxproj">
       <Project>{83d27534-600c-47b8-8c39-05ba34c3224e}</Project>
     </ProjectReference>

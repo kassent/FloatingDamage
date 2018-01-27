@@ -23,7 +23,7 @@
 
 #include <thread>
 
-#define PLUGIN_VERSION	MAKE_EXE_VERSION(1, 1, 0)
+#define PLUGIN_VERSION	MAKE_EXE_VERSION(1, 2, 0)
 #define PLUGIN_NAME		"FloatingDamage"
 
 IDebugLog						gLog;
@@ -131,6 +131,12 @@ struct DamageFrame
 	float						damage;							// 98
 };
 STATIC_ASSERT(sizeof(DamageFrame) == 0xA0);
+
+using _Process = void(*)(void *, DamageFrame *);
+RelocAddr<_Process>	ProcessDamageFrame = 0xE01090; //48 8B C4 48 89 50 10 55 56 41 56 41 57
+
+using _GetActorValueHolder = ActorValueInfo **(*)();
+RelocAddr<_GetActorValueHolder> GetActorValueHolder = 0x006B1F0; //E8 ? ? ? ? 48 8B C8 E8 ? ? ? ? 48 8B 0D ? ? ? ? E8 ? ? ? ? E8 ? ? ? ?
 
 
 namespace UIFramework
@@ -410,7 +416,7 @@ namespace UIFramework
 		static void RegisterMenu()
 		{
 			static BSFixedString menuName("FloatingDamageMenu");
-			if ((*g_ui) != nullptr && !(*g_ui)->menuTable.Find(&menuName))
+			if ((*g_ui) != nullptr && !(*g_ui)->IsMenuRegistered(menuName))
 			{
 				(*g_ui)->RegisterMenu("FloatingDamageMenu", CreateFloatingDamageMenu, 0);
 			}
@@ -452,6 +458,76 @@ namespace UIFramework
 			}
 		}
 	};
+
+
+	void InitData()
+	{
+		// global
+		RELOC_MEMBER_FN(BSFixedString, ctor, "E8 ? ? ? ? 49 8B CF 48 8B D0 E8 ? ? ? ? 48 8D 8D ? ? ? ? 8B D8", 0, 1, 5);
+		RELOC_MEMBER_FN(BSFixedString, Set, "E8 ? ? ? ? 48 8D 4C 24 ? E8 ? ? ? ? 83 FB 02", 0, 1, 5);
+		RELOC_MEMBER_FN(BSFixedString, Release_Imp, "E8 ? ? ? ? 48 8B 0E E8 ? ? ? ? 48 C7 06 ? ? ? ?", 0, 1, 5);
+
+		RELOC_MEMBER_FN(Heap, Allocate, "E8 ? ? ? ? 48 85 C0 74 08 48 8B C8 E8 ? ? ? ? 49 8B 0E", 0, 1, 5);
+		RELOC_MEMBER_FN(Heap, Free, "E8 ? ? ? ? EB 1E 41 8D 46 FF 48 8B D3 83 E0 01", 0, 1, 5);
+
+		RELOC_MEMBER_FN(GFxValue::ObjectInterface, SetMember, "25 ? ? ? ? 4C 8D 4D F0 4C 8D 05 ? ? ? ? 3C 0A 0F 94 C0", 0x19, 1, 5);
+		RELOC_MEMBER_FN(GFxValue::ObjectInterface, ReleaseManaged_Internal, "E8 ? ? ? ? 48 8D 15 ? ? ? ? 45 33 C0 49 8B CE 41 C6 86 ? ? ? ? ?", 0, 1, 5);
+		RELOC_MEMBER_FN(GFxValue::ObjectInterface, Invoke, "E8 ? ? ? ? 49 8B CC E8 ? ? ? ? 49 8B 54 24 ?", 0, 1, 5);
+		RELOC_MEMBER_FN(GFxValue::ObjectInterface, AddManaged_Internal, "8B 42 08 25 ? ? ? ? 83 F8 06 74 2E");
+		RELOC_MEMBER_FN(GFxValue::ObjectInterface, PushBack, "40 53 48 83 EC 40 48 8B 41 08 4D 8B C8");
+
+		RELOC_GLOBAL_VAL(CalculateCRC32_64, "E8 ? ? ? ? 4C 8B 83 ? ? ? ? 4D 85 C0 74 51 8B 53 0C 8B 4C 24 50", 0, 1, 5);
+		RELOC_GLOBAL_VAL(WorldToScreen_Internal, "E8 ? ? ? ? F3 0F 10 17 F3 0F 10 6F ?", 0, 1, 5);
+		RELOC_GLOBAL_VAL(ProcessDamageFrame, "48 8B C4 48 89 50 10 55 56 41 56 41 57");
+		RELOC_GLOBAL_VAL(GetActorValueHolder, "E8 ? ? ? ? 48 8B C8 E8 ? ? ? ? 48 8B 0D ? ? ? ? E8 ? ? ? ? E8 ? ? ? ?", 0, 1, 5);
+		RELOC_GLOBAL_VAL(LookupREFRByHandle, "E8 ? ? ? ? 48 8B 5D 67 48 85 DB 0F 84 ? ? ? ?", 0, 1, 5);
+
+		RELOC_GLOBAL_VAL(g_player, "48 8B 05 ? ? ? ? 48 85 C0 74 0C F0 FF 40 28", 0, 3, 7);
+		RELOC_GLOBAL_VAL(g_mainHeap, "48 8D 0D ? ? ? ? E8 ? ? ? ? 48 8B 55 AF", 0, 3, 7);
+		RELOC_MEMBER_FN_EX(PlayerCharacter, HasDetectionLOS, "41 C6 00 00 48 85 C9");
+
+		// ui framework
+		RELOC_MEMBER_FN_EX(UIMessageManager, SendUIMessage, "E8 ? ? ? ? 48 8B 0D ? ? ? ? 89 1C 2E", 0, 1, 5);
+		RELOC_MEMBER_FN_EX(UIMessageManager, SendUIMessageEx, "E8 ? ? ? ? 48 8B 4C 24 ? 48 85 C9 74 0A 48 8B 01 BA ? ? ? ? FF 10 48 8B 6C 24 ? 48 8B 7C 24 ?", 0, 1, 5);
+		RELOC_MEMBER_FN_EX(BSScaleformManager, LoadMovie, "48 8B C4 4C 89 40 18 48 89 48 08 55 56 57 41 54 41 57");
+		RELOC_MEMBER_FN_EX(SWFToCodeFunctionHandler, RegisterFunction, "40 53 48 83 EC 50 48 8B DA 48 8B D1 48 8B 0D ? ? ? ? 48 85 C9");
+
+		RELOC_MEMBER_FN_EX(UI, IsMenuOpen, "E8 ? ? ? ? 84 C0 0F 85 ? ? ? ? 48 8B 3D ? ? ? ?", 0, 1, 5);
+		RELOC_MEMBER_FN_EX(UI, RegisterMenu, "40 53 56 57 41 56 41 57 48 83 EC 50 44 8B 15 ? ? ? ?");
+		RELOC_MEMBER_FN_EX(UI, ProcessMessage, "E8 ? ? ? ? B1 01 E8 ? ? ? ? 48 8B 0D ? ? ? ? 33 D2 C6 05 ? ? ? ? ? C6 05 ? ? ? ? ?", 0, 1, 5);
+
+		RELOC_MEMBER_FN_EX(GameMenuBase, DrawNextFrame_Imp, "40 53 48 83 EC 20 48 83 79 ? ? 48 8B D9 74 1E");
+		RELOC_MEMBER_FN_EX(GameMenuBase, ProcessMessage_Imp, "40 57 48 83 EC 20 44 8B 42 10");
+		RELOC_MEMBER_FN_EX(GameMenuBase, InitializeThis, "E8 ? ? ? ? 33 FF 48 8D 05 ? ? ? ? 48 89 06 48 8D 05 ? ? ? ?", 0, 1, 5);
+		RELOC_MEMBER_FN_EX(GameMenuBase, ReleaseParent, "48 89 5C 24 ? 57 48 83 EC 20 48 8D 05 ? ? ? ? 48 8B D9 48 89 01 48 8D 05 ? ? ? ? 48 89 41 10 80 B9 ? ? ? ? ?");
+		uintptr_t * location = reinterpret_cast<uintptr_t*>(RELOC_RUNTIME_ADDR("48 8D 05 ? ? ? ? 49 83 CD FF", 0, 3, 7));
+		RELOC_MEMBER_FN_EX(GameMenuBase, Unk07_Imp, { { plugin_info.runtime_version, location[7] - RelocationManager::s_baseAddr } });
+		RELOC_MEMBER_FN_EX(GameMenuBase, Unk08_Imp, { { plugin_info.runtime_version, location[8] - RelocationManager::s_baseAddr } });
+		RELOC_MEMBER_FN_EX(GameMenuBase, Unk09_Imp, { { plugin_info.runtime_version, location[9] - RelocationManager::s_baseAddr } });
+		RELOC_MEMBER_FN_EX(GameMenuBase, Unk0A_Imp, { { plugin_info.runtime_version, location[0xA] - RelocationManager::s_baseAddr } });
+		RELOC_MEMBER_FN_EX(GameMenuBase, Unk0B_Imp, { { plugin_info.runtime_version, location[0xB] - RelocationManager::s_baseAddr } });
+		RELOC_MEMBER_FN_EX(GameMenuBase, Unk0C_Imp, { { plugin_info.runtime_version, location[0xC] - RelocationManager::s_baseAddr } });
+		RELOC_MEMBER_FN_EX(GameMenuBase, Unk0D_Imp, { { plugin_info.runtime_version, location[0xD] - RelocationManager::s_baseAddr } });
+		RELOC_MEMBER_FN_EX(GameMenuBase, Unk10_Imp, { { plugin_info.runtime_version, location[0x10] - RelocationManager::s_baseAddr } });
+		RELOC_MEMBER_FN_EX(GameMenuBase, Unk11_Imp, { { plugin_info.runtime_version, location[0x11] - RelocationManager::s_baseAddr } });
+		RELOC_MEMBER_FN_EX(GameMenuBase, Unk12_Imp, { { plugin_info.runtime_version, location[0x12] - RelocationManager::s_baseAddr } });
+		RELOC_MEMBER_FN_EX(GameMenuBase, Unk13_Imp, { { plugin_info.runtime_version, location[0x13] - RelocationManager::s_baseAddr } });
+
+		RELOC_GLOBAL_VAL(RegisterMenuOpenCloseEvent, "E8 ? ? ? ? E9 ? ? ? ? 4D 85 E4 0F 84 ? ? ? ? 4C 8D 0D ? ? ? ?", 0, 1, 5);
+		RELOC_GLOBAL_VAL(UnregisterMenuOpenCloseEvent, "E8 ? ? ? ? 80 BE ? ? ? ? ? 74 07 C6 86 ? ? ? ? ? 4C 8D B6 ? ? ? ?", 0, 1, 5);
+		RELOC_GLOBAL_VAL(CreateBaseShaderTarget, "E8 ? ? ? ? 49 8B 9E ? ? ? ? 4C 8D 05 ? ? ? ?", 0, 1, 5);
+		RELOC_GLOBAL_VAL(SetFilterColorType, "40 53 48 83 EC 40 89 91 ? ? ? ?");
+		RELOC_GLOBAL_VAL(ApplyColorFilter, "E8 ? ? ? ? 48 8B 5C 24 ? F6 47 3C 01", 0, 1, 5);
+		RELOC_GLOBAL_VAL(GetFilterColorByType, "33 C0 48 89 02 89 42 08 48 63 81 ? ? ? ?");
+
+		RELOC_GLOBAL_VAL(g_ui, "48 8B 3D ? ? ? ? E8 ? ? ? ? 48 8B CF 48 8B D0 E8 ? ? ? ? 84 C0 0F 85 ? ? ? ?", 0, 3, 7);
+		RELOC_GLOBAL_VAL(g_scaleformHeap, "48 8B 0D ? ? ? ? 48 8B 01 FF 50 60 48 83 EF 28 48 FF CE 75 BA 48 8B 55 58", 0, 3, 7);
+		RELOC_GLOBAL_VAL(g_scaleformManager, "48 8B 0D ? ? ? ? 48 8B 49 18 E8 ? ? ? ? 48 8B 44 24 ?", 0, 3, 7);
+		RELOC_GLOBAL_VAL(g_uiMessageManager, "48 8B 3D ? ? ? ? E8 ? ? ? ? 41 B8 ? ? ? ? 48 8B CF", 0, 3, 7);
+
+		RELOC_GLOBAL_VAL(globalMenuStackLock, "48 8D 0D ? ? ? ? 4C 89 74 24 ? 41 8B FC", 0, 3, 7);
+		RELOC_GLOBAL_VAL(globalMenuTableLock, "48 8D 0D ? ? ? ? E8 ? ? ? ? 48 8B 96 ? ? ? ? 4C 8B 7C 24 ?", 0, 3, 7);
+	}
 }
 
 class FloatingDamage_OnModSettingChanged : public GFxFunctionHandler
@@ -517,13 +593,8 @@ public:
 		return (this->*DamageHealth)(attacker, damage);
 	}
 
-	static void ProcessDamageFrame(Actor * pObj, DamageFrame * pDamageFrame)
+	static void ProcessDamageFrame_Hook(Actor * pObj, DamageFrame * pDamageFrame)
 	{
-		using _Process = void(*)(void *, DamageFrame *);
-		RelocAddr<_Process>	Process = 0xE01090; //48 8B C4 48 89 50 10 55 56 41 56 41 57
-
-		using _GetActorValueHolder = ActorValueInfo **(*)();
-		RelocAddr<_GetActorValueHolder> GetActorValueHolder = 0x006B1F0; //E8 ? ? ? ? 48 8B C8 E8 ? ? ? ? 48 8B 0D ? ? ? ? E8 ? ? ? ? E8 ? ? ? ?
 
 		TESObjectREFR * pRef = nullptr;
 
@@ -534,7 +605,7 @@ public:
 			float healthA = 0.0f, healthB = 0.0f;
 			ActorValueInfo*	pHealth = *reinterpret_cast<ActorValueInfo**>(GetActorValueHolder() + 0x1B);
 			healthA = pRef->actorValueOwner.GetValue(pHealth);
-			Process(pObj, pDamageFrame);
+			ProcessDamageFrame(pObj, pDamageFrame);
 			healthB = pRef->actorValueOwner.GetValue(pHealth);
 			float damageReceived = std::round(healthA - healthB);
 			if (damageReceived > 0.0f)
@@ -564,7 +635,7 @@ public:
 		}
 		else
 		{
-			Process(pObj, pDamageFrame);
+			ProcessDamageFrame(pObj, pDamageFrame);
 		}
 		if (pRef != nullptr)
 		{
@@ -574,17 +645,11 @@ public:
 
 	static void InitHooks()
 	{
-		if (!g_branchTrampoline.Create(1024 * 64))
-		{
-			_FATALERROR("couldn't create branch trampoline. this is fatal. skipping remainder of init process.");
-			return;
-		}
-		g_branchTrampoline.Write5Call(RelocAddr<uintptr_t>(0x0D607C1), (uintptr_t)ProcessDamageFrame); //E8 ? ? ? ? 48 85 FF 74 36 48 8B CF
-		DamageHealth = HookUtil::SafeWrite64(RelocAddr<uintptr_t>(0x02D68398) + 0x880, &DamageHealth_Hook);
+		UIFramework::InitData();
+
+		g_branchTrampoline.Write5Call(RELOC_RUNTIME_ADDR("E8 ? ? ? ? 48 85 FF 74 36 48 8B CF"), (uintptr_t)ProcessDamageFrame_Hook);
+		DamageHealth = HookUtil::SafeWrite64(RELOC_RUNTIME_ADDR("41 56 41 57 48 83 EC 20 80 B9 ? ? ? ? ? 48 8D 05 ? ? ? ? 48 8B D9", 0xF, 3, 7) + 0x880, &DamageHealth_Hook);
 	}
-
-
-
 
 };
 ActorEx::_DamageHealth	ActorEx::DamageHealth = nullptr;
@@ -626,11 +691,15 @@ extern "C"
 
 		g_pluginHandle = f4se->GetPluginHandle();
 
-		if (f4se->runtimeVersion != RUNTIME_VERSION_1_10_50)
-		{
-			MessageBoxA(nullptr, "UNSUPPORTED GAME VERSION. REQUIRED VERSION IS: V1.10.50", PLUGIN_NAME, MB_OK);
-			return false;
-		}
+
+		plugin_info.plugin_name = PLUGIN_NAME;
+		plugin_info.runtime_version = f4se->runtimeVersion;
+
+		//if (f4se->runtimeVersion != RUNTIME_VERSION_1_10_50)
+		//{
+		//	MessageBoxA(nullptr, "UNSUPPORTED GAME VERSION. REQUIRED VERSION IS: V1.10.50", PLUGIN_NAME, MB_OK);
+		//	return false;
+		//}
 
 		if (f4se->isEditor)
 		{
@@ -657,15 +726,30 @@ extern "C"
 
 	bool F4SEPlugin_Load(const F4SEInterface * f4se)
 	{
+		if (!g_branchTrampoline.Create(1024 * 64))
+		{
+			_FATALERROR("couldn't create branch trampoline. this is fatal. skipping remainder of init process.");
+			return false;
+		}
 		Settings::LoadSettings();
-		ActorEx::InitHooks();
+
+		try
+		{
+			sig_scan_timer timer;
+			ActorEx::InitHooks();
+		}
+		catch (const no_result_exception & exception)
+		{
+			_MESSAGE(exception.what());
+			MessageBoxA(nullptr, "Signature scan failed, please deactive FloatingDamage and download newer version from Nexus.", "FloatingDamage", MB_OK);
+			return false;
+		}
 
 		if (g_scaleform)
 			g_scaleform->Register("FloatingDamage", ScaleformCallback);
 
 		if (g_messaging != nullptr)
 			g_messaging->RegisterListener(g_pluginHandle, "F4SE", MessageCallback);
-
 		return true;
 	}
 };

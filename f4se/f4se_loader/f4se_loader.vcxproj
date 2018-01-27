@@ -14,14 +14,10 @@
     <ProjectGuid>{4229A810-8CB3-4C31-A0F5-8E73D89C0379}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>f4se_loader</RootNamespace>
-    <SccProjectName>
-    </SccProjectName>
-    <SccAuxPath>
-    </SccAuxPath>
-    <SccLocalPath>
-    </SccLocalPath>
-    <SccProvider>
-    </SccProvider>
+    <SccProjectName>SAK</SccProjectName>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccProvider>SAK</SccProvider>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -107,9 +103,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\common\common_vc11.vcxproj">
       <Project>{d4c128a1-73dc-4941-a453-ce55af239ba8}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\f4se_common\f4se_common.vcxproj">
-      <Project>{f1447a44-f26a-4680-8e20-2d9186766e51}</Project>
     </ProjectReference>
     <ProjectReference Include="..\f4se_loader_common\f4se_loader_common.vcxproj">
       <Project>{be858737-949e-48cf-adf9-079389049b57}</Project>

@@ -22,11 +22,13 @@ public:
 
 	operator T *() const
 	{
+		//_MESSAGE(__FUNCTION__);
 		return GetPtr();
 	}
 
 	T * operator->() const
 	{
+		//_MESSAGE(__FUNCTION__);
 		return GetPtr();
 	}
 
@@ -84,6 +86,7 @@ public:
 
 	operator T()
 	{
+		//_MESSAGE(__FUNCTION__);
 		return reinterpret_cast <T>(m_offset);
 	}
 

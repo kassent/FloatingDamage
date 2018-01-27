@@ -22,34 +22,36 @@ StringCache::Ref::Ref(const wchar_t * buf)
 
 void StringCache::Ref::Release()
 {
-	CALL_MEMBER_FN(this, Release)();
+	CALL_MEMBER_FN(this, Release_Imp)();
 }
 
 bool StringCache::Ref::operator==(const char * lhs) const
 {
 	Ref tmp(lhs);
 	bool res = data == tmp.data;
-	CALL_MEMBER_FN(&tmp, Release)();
+	CALL_MEMBER_FN(&tmp, Release_Imp)();
 	return res;
 }
 
 void SimpleLock::Lock(void)
 {
 	SInt32 myThreadID = GetCurrentThreadId();
-	if (threadID == myThreadID) {
-		lockCount++;
-		return;
+	if (threadID == myThreadID)
+	{
+		InterlockedIncrement(&lockCount);
 	}
+	else
+	{
+		UInt32 spinCount = 0;
+		while (InterlockedCompareExchange(&lockCount, 1, 0))
+			Sleep(++spinCount > kFastSpinThreshold);
 
-	UInt32 spinCount = 0;
-	while (InterlockedCompareExchange(&threadID, myThreadID, 0))
-		Sleep(++spinCount > kFastSpinThreshold);
-
-    lockCount = 1;
+		threadID = myThreadID;
+	}
 }
 
 void SimpleLock::Release(void)
 {
-	if (--lockCount == 0)
-		InterlockedCompareExchange(&threadID, 0, threadID);
+	if(InterlockedDecrement(&lockCount) == 0)
+		threadID = 0;
 }

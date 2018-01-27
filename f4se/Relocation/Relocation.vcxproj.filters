@@ -24,6 +24,9 @@
     <ClCompile Include="Relocation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RVA.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Pattern.h">

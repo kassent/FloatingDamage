@@ -263,13 +263,8 @@ public:
 	TESDescription				description;		// 118
 	BGSKeywordForm				keywordForm;		// 130
 	TESWeightForm				weight;				// 150
-	UInt64						unk160[3];			// 160
-	UInt64						crcString;			// 178
-													//1B2E20
-	UInt64		unk180[(0x1B0 - 0x180) / 8];			// 180
 
-
-	DEFINE_MEMBER_FUNCTION(IsJunk, bool, 0x30D100); //48 85 C9 74 15 48 3B 0D ? ? ? ?
+	UInt64		unk160[(0x1B0 - 0x160)/8];			// 160
 };
 
 // 300
@@ -278,7 +273,6 @@ class TESObjectWEAP : public TESBoundObject
 public:
 	enum { kTypeID = kFormType_WEAP };
 
-	// 138
 	// 138
 	struct InstanceData : public TBO_InstanceData
 	{
@@ -344,43 +338,24 @@ public:
 
 		enum WeaponFlags
 		{
-			kFlag_IgnoresNormalResist = 0x0000002,
-			kFlag_MinorCrime = 0x0000004,
-			kFlag_ChargingReload = 0x0000008,
-			kFlag_HideBackpack = 0x0000010,
-			kFlag_NonHostile = 0x0000040,
-			kFlag_NPCsUseAmmo = 0x0000200,
-			kFlag_RepeatableSingleFire = 0x0000800,
-			kFlag_HasScope = 0x0001000,
-			kFlag_HoldInputToPower = 0x0002000,
-			kFlag_Automatic = 0x0004000,
-			kFlag_CantDrop = 0x0008000,
-			kFlag_ChargingAttack = 0x0010000,
-			kFlag_NotUsedInNormalCombat = 0x0020000,
-			kFlag_BoundWeapon = 0x0040000,
-			kFlag_SecondaryWeapon = 0x0200000,
-			kFlag_BoltAction = 0x0400000,
-			kFlag_NoJamAfterReload = 0x0800000,
-			kFlag_DisableShells = 0x1000000,
-		};
-
-		enum
-		{
-			kWeaponType_HandtoHand = 0,
-			kWeaponType_OneHandedSword,
-			kWeaponType_OneHandedDagger,
-			kWeaponType_OneHandedAxe,
-			kWeaponType_OneHandedMace,
-			kWeaponType_TwoHandedSword,
-			kWeaponType_TwoHandedAxe,
-			kWeaponType_Bow,
-			kWeaponType_Staff,
-			kWeaponType_Gun,
-			kWeaponType_Grenade,
-			kWeaponType_Mine,
-			kWeaponType_MagicSpell = 24,
-			kWeaponType_Shield,
-			kWeaponType_Torch,
+			kFlag_IgnoresNormalResist	= 0x0000002,
+			kFlag_MinorCrime			= 0x0000004,
+			kFlag_ChargingReload		= 0x0000008,
+			kFlag_HideBackpack			= 0x0000010,
+			kFlag_NonHostile			= 0x0000040,
+			kFlag_NPCsUseAmmo			= 0x0000200,
+			kFlag_RepeatableSingleFire	= 0x0000800,
+			kFlag_HasScope				= 0x0001000,
+			kFlag_HoldInputToPower		= 0x0002000,
+			kFlag_Automatic				= 0x0004000,
+			kFlag_CantDrop				= 0x0008000,
+			kFlag_ChargingAttack		= 0x0010000,
+			kFlag_NotUsedInNormalCombat	= 0x0020000,
+			kFlag_BoundWeapon			= 0x0040000,
+			kFlag_SecondaryWeapon		= 0x0200000,
+			kFlag_BoltAction			= 0x0400000,
+			kFlag_NoJamAfterReload		= 0x0800000,
+			kFlag_DisableShells			= 0x1000000,
 		};
 
 		UInt32						flags;						// 110
@@ -393,7 +368,7 @@ public:
 		UInt16						baseDamage;					// 132
 		UInt16						unk134;						// 134
 		UInt8						accuracyBonus;				// 136
-		UInt8						weaponType;						// 137
+		UInt8						unk137;						// 137
 	};
 
 	// 150
@@ -420,15 +395,6 @@ public:
 	BGSInstanceNamingRulesForm	namingRules;		// 188 BGSInstanceNamingRulesForm
 	Data						weapData;			// 198 TESObjectWeap::Data
 	BGSAttachParentArray		attachParentArray;	// 2E8 BGSAttachParentArray
-
-	inline TBO_InstanceData * GetInstanceData()
-	{
-		auto fn = (TBO_InstanceData *(**)(TESObjectWEAP*))(*(uintptr_t*)this + 0x2B8);
-		return (*fn)(this);
-	}
-	DEFINE_MEMBER_FUNCTION(GetShootSpeed, float, 0x661D00, TBO_InstanceData *); //661D00 //E8 ? ? ? ? 0F 28 F8 48 85 FF 74 19
-	DEFINE_MEMBER_FUNCTION(GetAttackSpeed, UInt32, 0x34D160); //661D00
-															  //40 53 48 83 EC 20 8B 59 14 48 8D 4C 24 ? 45 33 C0 8B D3 E8 ? ? ? ? 48 8B 15 ? ? ? ? 48 85 D2 74 3E 8B 0D ? ? ? ? 8B 44 24 30 FF C9 48 23 C8 48 C1 E1 04
 };
 STATIC_ASSERT(offsetof(TESObjectWEAP, previewTransform) == 0x50);
 STATIC_ASSERT(offsetof(TESObjectWEAP, destructible) == 0x0E0);
@@ -464,7 +430,7 @@ public:
 		UInt64 unk20;								// 20
 		BGSKeywordForm * keywords;					// 28
 		tArray<DamageTypes>			* damageTypes;	// 30
-		tArray<ValueModifier>		* valueModifier;// 38 tArray<ValueModifier>		* valueModifier;
+		UInt64 unk38;								// 38
 		float weight;								// 40
 		SInt32 pad44;								// 44
 		UInt32 value;								// 48
@@ -484,13 +450,6 @@ public:
 	UInt64						unk2C0;			// 2C0
 	BGSAttachParentArray		parentArray;	// 2C8
 
-	inline TBO_InstanceData * GetInstanceData()
-	{
-		auto fn = (TBO_InstanceData *(**)(TESObjectARMO*))(*(uintptr_t*)this + 0x2B8);
-		return (*fn)(this);
-	}
-
-	DEFINE_MEMBER_FUNCTION(GetFullHealth, UInt32, 0x015ACB0, TBO_InstanceData *);//48 89 5C 24 ? 57 48 83 EC 30 48 8B F9 48 85 D2 74 1A
 };
 STATIC_ASSERT(sizeof(TESObjectARMO::InstanceData) == 0x58);
 STATIC_ASSERT(offsetof(TESObjectARMO, parentArray) == 0x2C8);
@@ -548,46 +507,10 @@ STATIC_ASSERT(sizeof(BGSTextureSet) == 0x350);
 class MagicItem : public TESBoundObject
 {
 public:
-
-	// @members
-	struct EffectItem
-	{
-		struct Description
-		{
-			const char		* pDescription;
-			UInt16			unk08;
-			UInt16			unk0A;
-			UInt16			unk0C;
-			UInt16			unk0E;
-		};
-
-		float				magnitude;		// 00
-		UInt32				area;			// 04
-		UInt32				duration;		// 08
-		UInt32				unk0C;			// 0C
-		EffectSetting		* mgef;			// 10
-		float				cost;			// 18 - ?
-		UInt32				unk14;			// 1C - ?
-		Condition			* conditions;	// 20
-
-		EffectItem()
-		{
-			magnitude = 0;
-			area = 0;
-			duration = 0;
-			mgef = nullptr;
-			cost = 0.0;
-			unk14 = 0;
-		}
-		DEFINE_MEMBER_FUNCTION(GetMagnitude, float, 0x6D1D0);//48 8B 41 10 8B 50 70 C1 EA 0A F6 C2 01 74 04
-		DEFINE_MEMBER_FUNCTION(GetDuration, UInt32, 0x6D290);//48 8B 41 10 8B 50 70 C1 EA 09
-		DEFINE_MEMBER_FUNCTION(CalcDescription, void, 0x06D480, Description&, const char *, const char *, float magnitude, float duration);//4C 8B DC 49 89 5B 08 49 89 6B 10 49 89 73 18 57 48 83 EC 50 44 8B 15 ? ? ? ?
-	};
-
-	TESFullName				name;			// 68
-	BGSKeywordForm			keywordForm;	// 78
-	tArray<EffectItem*>		effectItems;	// 98
-	UInt64					unk0B0[4];		// B0
+	TESFullName		name;			// 68
+	BGSKeywordForm	keywordForm;	// 78
+	UnkArray		effectItemsProbably; // 98
+	UInt64			unk0B0[4];		// B0
 };
 STATIC_ASSERT(offsetof(MagicItem, unk0B0) == 0x0B0);
 STATIC_ASSERT(sizeof(MagicItem) == 0x0D0);
@@ -607,8 +530,8 @@ public:
 	BGSPickupPutdownSounds	pickupPutdown;	// 168
 	BGSCraftingUseSound		craftingSounds;	// 180
 	TESDescription			description;	// 190
-	UInt32					value;			// 1A8
-	UInt32					flags;			// 1AC  65536
+	UInt32					unk1A8;			// 1A8
+	UInt32					unk1AC;			// 1AC
 	UInt64					unk1B0[4];		// 1B0
 	TESIcon					icon1D0;		// 1D0
 };
@@ -840,7 +763,7 @@ public:
 	struct Component
 	{
 		BGSComponent	* component;
-		UInt32			count;
+		UInt64			count;
 	};
 
 	tArray<Component>	* components;	// 158

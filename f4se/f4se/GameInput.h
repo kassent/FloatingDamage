@@ -55,21 +55,6 @@ public:
 	UInt32			flags;		// 34 (00000038 when ALT is pressed, 0000001D when STRG is pressed)
 	float			isDown;		// 38
 	float			timer;		// 3C (hold duration)
-
-	inline bool IsDown()
-	{
-		return (isDown == 1.0f) && (timer == 0.0f);
-	}
-
-	inline bool IsPressing()
-	{
-		return (isDown == 1.0f) && (timer > 0.0f);
-	}
-
-	inline bool IsUp()
-	{
-		return (isDown == 0.0f) && (timer > 0.0f);
-	}
 };
 STATIC_ASSERT(sizeof(ButtonEvent) == 0x040);
 
@@ -240,10 +225,11 @@ STATIC_ASSERT(sizeof(BSPCVirtualKeyboardDevice) == 0x70);
 class BSInputEventUser
 {
 public:
+	BSInputEventUser() : enabled(false) { }
 	BSInputEventUser(bool bEnabled) : enabled(bEnabled) { }
 	virtual ~BSInputEventUser() { };
 
-	virtual bool IsEnabled(InputEvent * inputEvent) { return enabled; };
+	virtual bool IsEnabled(InputEvent * inputEvent = nullptr) { return enabled; };
 	virtual void OnKinectEvent(KinectEvent * inputEvent) { };
 	virtual void OnDeviceConnectEvent(DeviceConnectEvent * inputEvent) { };
 	virtual void OnThumbstickEvent(ThumbstickEvent * inputEvent) { };
@@ -253,6 +239,11 @@ public:
 	virtual void OnButtonEvent(ButtonEvent * inputEvent) { };
 
 	bool	enabled;
+
+private:
+	// GameMenuBase:BSInputEventUser override should be the only one calling this function
+	friend class GameMenuBase;
+	DEFINE_MEMBER_FN_1(Impl_OnGameMenuBaseButtonEvent, bool, 0x0210F540, ButtonEvent * button);
 };
 
 class BSInputEventReceiver

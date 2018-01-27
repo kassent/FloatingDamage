@@ -1,16 +1,19 @@
 #include "f4se/GameData.h"
 
 // 856197F11173AF60E35EBF54A88E7BF43AFC3588+305
-RelocPtr <DataHandler*> g_dataHandler(0x05907100);
+RelocPtr <DataHandler*> g_dataHandler(0x05908100);
 
-// 5ED90DCE1A1D1EDBCC888F3EA1234E23E307DD26+6 (4 matches)
-RelocPtr <bool> g_isGameDataReady(0x05A90A64);
+// 5ED90DCE1A1D1EDBCC888F3EA1234E23E307DD26+6
+RelocPtr <bool> g_isGameDataReady(0x05A91A64);
 
 // 637A4CF3B8D5BEB4F483234F10F54E7595CA465F+A49
-RelocPtr <DefaultObjectMap*> g_defaultObjectMap(0x0590B750);
+RelocPtr <DefaultObjectMap*> g_defaultObjectMap(0x0590C750);
 
 // 637A4CF3B8D5BEB4F483234F10F54E7595CA465F+A3D
-RelocPtr <SimpleLock> g_defaultObjectMapLock(0x0590C1B8);
+RelocPtr <SimpleLock> g_defaultObjectMapLock(0x0590D1B8);
+
+// C449692A90CCF8E972B00FE2979EF8ADEED6925A+3D
+RelocPtr <FavoritesManager*> g_favoritesManager(0x05A98CE0);
 
 class LoadedModFinder
 {
@@ -90,26 +93,3 @@ BGSDefaultObject * DefaultObjectMap::GetDefaultObject(BSFixedString name)
 	return nullptr;
 }
 
-const ModInfo* DataHandler::GetLocatedModInfo(TESForm * form)
-{
-	if (!form || form->formID >> 24 == 0xFF)	return nullptr;
-	UInt32	modIndex = form->formID >> 24;
-	if (modIndex == 0xFE)
-	{
-		UInt16 lightModIndex = static_cast<UInt16>((form->formID & 0x00FFF000) >> 12);
-		auto pModInfo = (modList.lightMods.count > lightModIndex) ? modList.lightMods[lightModIndex] : nullptr;
-		if (pModInfo != nullptr)
-			return pModInfo;
-		return (modList.loadedMods.count > 0xFE) ? modList.loadedMods[0xFE] : nullptr;
-	}
-	else
-	{
-		return (modList.loadedMods.count > modIndex) ? modList.loadedMods[modIndex] : nullptr;
-	}
-}
-
-const ModInfo* DataHandler::GetLastChangeModInfo(TESForm * form)
-{
-	if (!form)	return nullptr;
-	return form->GetLastModifiedMod();
-}
