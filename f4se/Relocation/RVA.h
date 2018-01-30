@@ -122,7 +122,7 @@ public:
 		else if (sig)
 		{
 			std::hash<std::string> hash_fn;
-			size_t hash = hash_fn(sig + std::string("_") + std::to_string(relOffset << 4 | (dataOffset & 0xFF) << 2 | instructionLen & 0xFF));
+			size_t hash = hash_fn(sig + std::string("|") + std::to_string(relOffset << 0x10 | (dataOffset & 0xFF) << 0x8 | instructionLen & 0xFF));
 			settingName = std::string("SIG_") + (sprintf_s(sResult.get(), MAX_PATH, "%016I64X", hash), sResult.get()); //only sig...
 		}
 		if (versionData.count(plugin_info.runtime_version))
